@@ -7,7 +7,7 @@
             class="logo-image rounded" >
 
         <div class="logo"><a
-                href="# "class="text-white text-decoration-none"><strong>Better Think BD</strong></a></div>
+                href="{{ route('index') }} "class="text-white text-decoration-none"><strong>Better Think BD</strong></a></div>
 
     </div>
     <div class="tranzit">
@@ -20,16 +20,16 @@
 
         <ul>
             <li>
-                <a href="#"><strong>Home</strong></a>
+                <a href="{{ route('index') }}"><strong>Home</strong></a>
             </li>
             <li>
-                <a href="#"><strong>Services</strong></a>
+                <a href="{{ route('index') }}"><strong>Services</strong></a>
             </li>
             <li>
-                <a href="#"><strong>About Us</strong></a>
+                <a href="{{ route('index') }}"><strong>About Us</strong></a>
             </li>
             <li>
-                <a href="#"><strong>Blog</strong></a>
+                <a href="{{ route('blog_details') }}"><strong>Blog</strong></a>
             </li>
             @if (Route::has('login'))
                     @auth

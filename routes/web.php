@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -10,9 +11,19 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+//frontend
+
+Route::get('/', [HomeController::class, 'index'])->name('index');
+
+Route::get('/category-products/{id}', [HomeController::class, 'category_details'])->name('category_details');
+
+Route::get('/product-details/{id}', [HomeController::class, 'product_details'])->name('product_details');
+
+Route::get('/blog-details', [HomeController::class, 'blog_details'])->name('blog_details');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
