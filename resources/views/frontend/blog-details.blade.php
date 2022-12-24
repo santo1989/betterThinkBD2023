@@ -8,7 +8,7 @@
             </div>
     </div>
 @else
-    <div class="container" style="height: 100vh;">
+    <div class="container">
         @forelse ($blogs as $blog)
             <div class="row justify-content-center">
                 <div class="col-md-12 col-sm-12 pt-2 pb-1">

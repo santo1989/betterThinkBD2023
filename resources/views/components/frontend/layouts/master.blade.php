@@ -26,30 +26,31 @@
 
 <body>
     {{-- <div style="background-image: url({{ asset('ui/frontend/images/assets/baground-img.webp') }}); background-size: contain; background-repeat: repeat; margin:0px; padding:0px;"> --}}
-        {{-- <div style="background-image: linear-gradient(90deg,#1358a7,
+    {{-- <div style="background-image: linear-gradient(90deg,#1358a7,
  #191839, #0680c6, #273871, #0473bc, #2b4388, #2c2c64, #23345b, #2c3c94); background-size: contain; background-repeat: repeat; margin:0px; padding:0px;"> --}}
-        <!-- Navigation-->
-        {{-- @include('frontend.layouts.partials.nav') --}}
+    <!-- Navigation-->
+    {{-- @include('frontend.layouts.partials.nav') --}}
 
-        <x-frontend.layouts.partials.nav />
+    <x-frontend.layouts.partials.nav />
 
 
-        <!-- Section-->
+    <!-- Section-->
 
-        <section class="py-5" style="width: min-height; background-image: url({{ asset('ui/frontend/images/assets/baground-img.webp') }}); background-size: cover; background-repeat: repeat; margin:0px; padding:0px;">
-            <div class="container px-4 px-lg-5 mt-5">
-                {{ $slot }}
-            </div>
-        </section>
+    <section class="py-5"
+        style="width: min-height; background-image: url({{ asset('ui/frontend/images/assets/baground-img.webp') }}); background-size: cover; background-repeat: round;">
+        <div class="container px-4 px-lg-5 mt-5">
+            {{ $slot }}
+        </div>
+    </section>
 
-        <!-- Footer-->
-        <x-frontend.layouts.partials.footer />
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="{{ asset('ui/frontend/js/scripts.js') }}"></script>
-        @stack('js')
-    </div>
+    <!-- Footer-->
+    <x-frontend.layouts.partials.footer />
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="{{ asset('ui/frontend/js/scripts.js') }}"></script>
+    @stack('js')
+    {{-- </div> --}}
 
 </body>
 
