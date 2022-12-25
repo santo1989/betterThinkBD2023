@@ -29,7 +29,7 @@
 
                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
 
-                <x-backend.form.input name="title" type="text" label="Blog Title" />
+                <x-backend.form.input name="title" type="text" label="Title" />
 
                 <x-backend.form.textarea name="post" type="text" label="Post" />
 

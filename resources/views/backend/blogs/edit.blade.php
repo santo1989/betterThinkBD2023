@@ -31,7 +31,7 @@
 
                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
 
-                <x-backend.form.input name="title" type="text" label="Blog Title" :value="$blog->title" />
+                <x-backend.form.input name="title" type="text" label="Title" :value="$blog->title" />
 
                 <x-backend.form.textarea name="post" type="text" label="Post" :value="$blog->post" />
 

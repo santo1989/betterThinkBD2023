@@ -34,7 +34,15 @@
             <form action="{{ route('categories.update', ['category' => $category->id]) }}" method="post">
                 @csrf
                 @method('patch')
-                <div class="form-floating mb-3 mb-md-0">
+
+                <x-backend.form.input name="title" type="text" label="Product Name"
+                    value="{{ $category->title }}" />
+
+                <x-backend.form.textarea name="description" type="text" label="Description"
+                    value="{{ $category->description }}" />
+
+                <x-backend.form.input name="image" type="file" label="Image" value="{{ $category->image }}" />
+                {{-- <div class="form-floating mb-3 mb-md-0">
                     <input name="title" class="form-control" id="inputTitle" type="text"
                         placeholder="Enter your title" value="{{ old('title', $category->title) }}">
                     <label for="inputTitle">Title</label>
@@ -66,7 +74,7 @@
                         <span class="small text-danger">{{ $message }}</span>
                     @enderror
 
-                </div>
+                </div> --}}
 
                 <div class="mt-4 mb-0">
                     <button type="submit" class="btn btn-primary">

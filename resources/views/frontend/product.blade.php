@@ -1,5 +1,5 @@
 <x-frontend.layouts.master>
-   <div class="container">
+    <div class="container">
         @if (is_null($products) || empty($products))
             <div class="row" id="empty">
                 <div class="col-md-12 col-lg-12 col-sm-12">
