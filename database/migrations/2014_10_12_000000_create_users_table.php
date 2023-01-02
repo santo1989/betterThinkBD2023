@@ -23,9 +23,9 @@ class CreateUsersTable extends Migration
             $table->string('nid')->nullable();
             $table->string('mobile')->nullable();
             $table->date('dob')->nullable();
-            $table->unsignedBigInteger('sponsor_id')->nullable();
+            $table->string('sponsor_id')->nullable();
             $table->integer('point')->nullable();
-            $table->unsignedBigInteger('payment_id')->nullable();
+            $table->string('payment_id')->nullable();
             $table->string('picture')->nullable();
             $table->string('bkash_no')->nullable();
             $table->string('bank_name')->nullable();
