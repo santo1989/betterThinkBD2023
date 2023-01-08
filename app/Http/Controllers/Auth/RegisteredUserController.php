@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Notification;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Exception;
@@ -90,6 +91,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             // 'picture' => $this->uploadImage(request()->file('picture')),
+            // 'picture' => $this->uploadImage(request()->file('picture')),
             'mobile' => $request->mobile,
             'nid' => $request->nid,
             'dob' => $request->dob,
@@ -100,7 +102,48 @@ class RegisteredUserController extends Controller
             'account_no' => $request->account_no,
             'payment_id' => $request->payment_id,
             'role_id' => 2,
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
         ]);
+
+        $sponser_notification = Notification::create([
+            'user_id'=> $user->uuid,
+            'name'=> $request->sponsor_id,
+            'message'=> 'new payment request from ' . ' '.$user-> name . ' '. 'for' . ' '. $request->payment_id . ' '. 'and sponser is' . ' '. $request->sponsor_id,
+            'status'=> 'unread',            
+            'link'=> route('home'),        
+            'color'=> 'red',      
+        ]);
+        $sponser_notification->link = $sponser_notification->link . '/notification_id=' . $sponser_notification->id;
+        $sponser_notification->update();
+
+        $payment_notification = Notification::create([
+            'user_id'=>$user->uuid,
+            'name'=>
+            $request->payment_id,
+            'message'=> 'new payment request from ' . ' '.$user-> name . ' '. 'for' . ' '. $request->payment_id . ' '. 'and sponser is' . ' '. $request->sponsor_id,
+            'status'=> 'unread',            
+            'link'=> route('home'),        
+            'color'=> 'red',      
+        ]);
+        $payment_notification->link = $payment_notification->link . '/notification_id=' . $payment_notification->id;
+        $payment_notification->update();
+
+       // image upload code
+        if($request->hasFile('picture'))
+        {
+            $image = $request->file('picture');
+            $name = $user->uuid . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/images/users');
+            $image->move($destinationPath, $name);
+            $user->picture = $name;
+            $user->update();
+        }
+        else
+        {
+            $user->picture = 'default.png';
+            $user->update();
+        }
 
         event(new Registered($user));
 
@@ -108,10 +151,5 @@ class RegisteredUserController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
-    public function uploadImage($image)
-    {
-        $imageName = time() . '.' . $image->extension();
-        $image->move(public_path('images/users'), $imageName);
-        return $imageName;
-    }
+ 
 }

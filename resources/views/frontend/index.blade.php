@@ -6,7 +6,7 @@
        
         <div class="row justify-content-between">
             @forelse ($categories as $category)
-                <div class="col-md-3 px-1 py-1 mt-1 ml-1">
+                <div class="col-md-4 col-sm-12  pt-2 pb-1">
                     <div class="card" style="width: 18rem;">
                         <div class="card-image" style=" background-color:rgba(0,119,191,255);">
                             <img src="{{ asset('images/categories/' . $category->image) }}" class="card-img-top pt-5 pb-5"

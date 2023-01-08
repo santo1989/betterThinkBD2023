@@ -1,6 +1,6 @@
 <x-frontend.layouts.master>
     <div class="container">
-        @if (is_null($blogs) || empty($blogs))
+        @if (is_null($blog) || empty($blog))
             <div class="row" id="empty">
                 <div class="col-md-12 col-lg-12 col-sm-12">
                     <h1 class="text-danger text-center"> <strong>Currently No Information Available!</strong> </h1>
@@ -9,7 +9,6 @@
     </div>
 @else
     <div class="container">
-        @forelse ($blogs as $blog)
             <div class="row justify-content-center">
                 <div class="col-md-12 col-sm-12 pt-2 pb-1">
                     <div class="card">
@@ -33,15 +32,6 @@
                     </div>
                 </div>
             </div>
-        @empty
-
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">No Blog Post Available</h5>
-                </div>
-            </div>
-        @endforelse
-
     </div>
     @endif
 

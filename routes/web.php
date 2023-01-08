@@ -3,6 +3,7 @@
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -23,8 +24,15 @@ Route::get('/category-products/{id}', [HomeController::class, 'category_details'
 
 Route::get('/product-details/{id}', [HomeController::class, 'product_details'])->name('product_details');
 
-Route::get('/blog-details', [HomeController::class, 'blog_details'])->name('blog_details');
+Route::get('/posts', [HomeController::class, 'blogs'])->name('blogs');
 
+Route::get('/blog-details/{id}', [HomeController::class, 'blog_details'])->name('blog_details');
+
+// Services
+
+Route::get('/services', [HomeController::class, 'services'])->name('services');
+
+Route::get('/about-us', [HomeController::class, 'about'])->name('about');
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
@@ -79,6 +87,24 @@ Route::middleware('auth')->group(function () {
     //blogs
 
     Route::resource('blogs', BlogController::class);
+
+    //request approve
+
+    Route::post('/request-approve', [UserController::class, 'is_approved_sponsor'])->name('is_approved_sponsor');
+
+    Route::post('/payment-approved', [UserController::class, 'is_approved_payment'])->name('is_approved_payment');
+
+    Route::get('/rejected', [UserController::class, 'is_rejected'])->name('is_rejected');
+
+    Route::get('/approved-sponsor-page/{id}', [HomeController::class, 'is_approved_sponsor_page'])->name('is_approved_sponsor_page');
+
+    Route::get('/approved-payment-page/{id}', [HomeController::class, 'is_approved_payment_page'])->name('is_approved_payment_page');
+
+    Route::get('/approved-sponsor-payment-page/{id}', [HomeController::class, 'is_approved_sponsor_payment_page'])->name('is_approved_sponsor_payment_page');
+
+
 });
+
+Route::get('/notification/{message}/{notification}', [NotificationController::class, 'showForUpdating'])->name("notification_showForUpdating");
 
 require __DIR__ . '/auth.php';

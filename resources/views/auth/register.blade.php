@@ -248,7 +248,11 @@
                                             <x-input id="payment_id" class="block mt-1 w-full" type="text"
                                                 name="payment_id" :value="old('payment_id')" required autofocus />
 
+                                            <div class="mt-3" id="payment_name">
+                                            </div>
+
                                         </div>
+
                                     </div>
 
                                     <div class="w-1/2">

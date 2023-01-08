@@ -37,7 +37,7 @@
     <!-- Section-->
 
     <section class="py-5"
-        style="width: min-height; background-image: url({{ asset('ui/frontend/images/assets/baground-img.webp') }}); background-size: cover; background-repeat: round;">
+        style="width: min-width; height: max-height; background-image: url({{ asset('ui/frontend/images/assets/baground-img.webp') }}); background-size: cover; background-repeat: round;">
         <div class="container px-4 px-lg-5 mt-5">
             {{ $slot }}
         </div>
