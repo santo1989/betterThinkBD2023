@@ -19,17 +19,18 @@
 
                     <a class="nav-link text-white" href="{{ route('categories.index') }}">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        Categories List &nbsp; <span class="badge bg-primary text-white">{{ $categoriesCount }}</span>
+                        Categories List &nbsp; <span
+                            class="badge bg-primary text-white">{{ $categoriesCount ?? '0' }}</span>
                     </a>
 
                     <a class="nav-link text-white" href="{{ route('products.index') }}">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        Products List &nbsp; <span class="badge bg-primary text-white">{{ $productsCount }}</span>
+                        Products List &nbsp; <span class="badge bg-primary text-white">{{ $productsCount ?? '0' }}</span>
                     </a>
 
                     <a class="nav-link text-white" href="{{ route('blogs.index') }}">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        Blogs List &nbsp; <span class="badge bg-primary text-white">{{ $blogCount }}</span>
+                        Blogs List &nbsp; <span class="badge bg-primary text-white">{{ $blogCount ?? '0' }}</span>
                     </a>
 
 
