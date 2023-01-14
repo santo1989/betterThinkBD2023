@@ -75,7 +75,7 @@
                             <!-- Validation Errors -->
                             <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-                            <form method="POST" action="{{ route('register') }}">
+                            <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="flex justify-content-between mt-3">
@@ -261,7 +261,7 @@
                                             {{-- <a class="underline text-sm text-gray-600 hover:text-gray-900"
                                             href="{{ route('login') }}">
                                             {{ __('Already registered?') }}
-                                        </a> 
+                                        </a>
                                         <x-button class="grid place-items-center h-screen">
                                                 {{ __('Submit') }}
                                             </x-button> --}}

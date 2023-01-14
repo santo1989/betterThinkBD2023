@@ -15,8 +15,9 @@ class CreatePointsTable extends Migration
     {
         Schema::create('points', function (Blueprint $table) {
             $table->id();
-            $table->integer('level')->nullable();
+            $table->string('type')->nullable();
             $table->integer('point')->nullable();
+            $table->string('details')->nullable();
             $table->timestamps();
         });
     }
