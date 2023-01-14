@@ -46,8 +46,12 @@ class ProductController extends Controller
         try {
             Product::create([
                 'title' => $request->title,
-                'description' => $request->description,
-                'image' => $this->uploadImage(request()->file('image')),
+                'logo'=> $this->uploadImage(request()->file('logo')),
+                'image'=> $this->uploadImage(request()->file('image')),
+                'short_address'=> $request->short_address,
+                'long_address'=> $request->long_address,
+                'description1'=> $request->description1,
+                'description2' => $request->description2,
                 'discount_amount' => $request->discount_amount,
                 'point_needed' => $request->point_needed,
                 'category_id' => $request->category_id,
@@ -84,7 +88,10 @@ class ProductController extends Controller
 
             $requestData = [
                 'title' => $request->title,
-                'description' => $request->description,
+                'short_address' => $request->short_address,
+                'long_address' => $request->long_address,
+                'description1' => $request->description1,
+                'description2' => $request->description2,
                 'discount_amount' => $request->discount_amount,
                 'point_needed' => $request->point_needed,
                 'category_id' => $request->category_id,
@@ -95,6 +102,13 @@ class ProductController extends Controller
                     unlink(public_path('images/products/' . $product->image));
                 }
                 $requestData['image'] = $this->uploadImage(request()->file('image'));
+            }
+
+            if ($request->hasFile('logo')) {
+                if ($product->logo==!null) {
+                    unlink(public_path('images/products/' . $product->logo));
+                }
+                $requestData['logo'] = $this->uploadImage(request()->file('logo'));
             }
 
             $product->update($requestData);
@@ -111,6 +125,7 @@ class ProductController extends Controller
         try {
             $product->delete();
             unlink(public_path('images/products/' . $product->image));
+            unlink(public_path('images/products/' . $product->logo));
             return redirect()->route('products.index')->withMessage('Successfully Deleted!');
         } catch (QueryException $e) {
             return redirect()->back()->withInput()->withErrors($e->getMessage());
@@ -119,8 +134,10 @@ class ProductController extends Controller
 
     public function uploadImage($image)
     {
+        sleep(1);
         $imageName = time() . '.' . $image->extension();
         $image->move(public_path('images/products'), $imageName);
         return $imageName;
     }
+
 }

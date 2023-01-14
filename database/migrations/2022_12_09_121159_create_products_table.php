@@ -17,7 +17,12 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('category_id')->nullable();
             $table->string('title')->nullable();
-            $table->string('description')->nullable();
+            $table->string('logo')->nullable();
+            $table->string('image')->nullable();
+            $table->text('short_address')->nullable();
+            $table->text('long_address')->nullable();
+            $table->text('description1')->nullable();
+            $table->text('description2')->nullable();
             $table->double('discount_amount')->nullable();
             $table->integer('point_needed')->nullable();
             $table->timestamps();
