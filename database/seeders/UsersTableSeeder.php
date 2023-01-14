@@ -18,8 +18,8 @@ class UsersTableSeeder extends Seeder
     {
         User::create([
             'role_id' => 1,
-            'name' => 'Admin',
-            'uuid' => '0012-2022-0000-0000',
+            'name' => 'Md',
+            'uuid' => '0012-2022-0000-1001',
             'email' => 'santo.botany@gmail.com',
             'email_verified_at' => now(),
             'password' => bcrypt('12345678'),
@@ -28,7 +28,7 @@ class UsersTableSeeder extends Seeder
         User::create([
             'role_id' => 2,
             'name' => 'user',
-            'uuid' => '0012-2022-0000-0001',
+            'uuid' => '0012-2022-0000-1002',
             'email' => 'user@gmail.com',
             'email_verified_at' => now(),
             'password' => bcrypt('12345678'),

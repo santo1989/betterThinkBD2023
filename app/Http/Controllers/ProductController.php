@@ -26,7 +26,7 @@ class ProductController extends Controller
                 ->orwhere('title', 'like', '%' . request('search') . '%');
         }
 
-        $products = $productsCollection->paginate(10);
+        $products = $productsCollection;
 
 
         return view('backend.products.index', [

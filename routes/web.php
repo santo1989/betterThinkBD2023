@@ -7,6 +7,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UtilityDynamicController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -33,6 +34,7 @@ Route::get('/blog-details/{id}', [HomeController::class, 'blog_details'])->name(
 Route::get('/services', [HomeController::class, 'services'])->name('services');
 
 Route::get('/about-us', [HomeController::class, 'about'])->name('about');
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
@@ -87,6 +89,10 @@ Route::middleware('auth')->group(function () {
     //blogs
 
     Route::resource('blogs', BlogController::class);
+
+    //utility_dynamic
+
+    Route::resource('utility_dynamic', UtilityDynamicController::class);
 
     //request approve
 

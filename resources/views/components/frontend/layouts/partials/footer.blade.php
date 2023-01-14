@@ -1,6 +1,6 @@
-<footer class="footer col-sm-12 col-md-12 col-xl-12 pt-1" 
+{{-- <footer class="footer col-sm-12 col-md-12 col-xl-12 pt-1" 
     style="background-image: linear-gradient(to right,#1358a7,
- #191839, #0680c6, #273871, #0473bc, #2b4388, #2c2c64, #23345b, #2c3c94);">
+ #191839, #0680c6, #273871, #0473bc, #2b4388, #2c2c64, #23345b, #2c3c94);"> --}}
     <div class="container">
          <div class="footer-lower ">
             <div class="media-container-row mbr-white">
@@ -21,4 +21,4 @@
         </div>
     </div>
 
-</footer>
+{{-- </footer> --}}

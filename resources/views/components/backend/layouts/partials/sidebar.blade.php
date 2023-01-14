@@ -33,6 +33,11 @@
                         Blogs List &nbsp; <span class="badge bg-primary text-white">{{ $blogCount ?? '0' }}</span>
                     </a>
 
+                    <a class="nav-link text-white" href="{{ route('utility_dynamic.index') }}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        Web Page Dynamic tools</span>
+                    </a>
+
 
 
 
