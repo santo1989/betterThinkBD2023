@@ -15,11 +15,11 @@ class CreateNotificationsTable extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id')->nullable();
-            $table->string('name')->nullable();
-            $table->string('message')->nullable();
-            $table->string('status')->nullable();
-            $table->string('link')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('child_id')->nullable();
+            $table->string('type'); // notification type like: sponsor, payment
+            $table->text('message');
+            $table->string('status'); // read, unread
             $table->string('color')->nullable();
             $table->timestamps();
         });

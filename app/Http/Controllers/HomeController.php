@@ -43,7 +43,7 @@ class HomeController extends Controller
     }
 
     public function services()
-    { 
+    {
             return view('frontend.services');
     }
 

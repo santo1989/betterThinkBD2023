@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enums\NotificationColor;
+use App\Enums\NotificationStatus;
+use App\Enums\NotificationType;
 use App\Http\Controllers\Controller;
 use App\Models\Hand;
 use App\Models\Notification;
@@ -48,7 +51,10 @@ class RegisteredUserController extends Controller
             'payment_id' => 'required|exists:users,uuid',
         ]);
 
-        $hands = Hand::where('parent_id', $request->id)->count();
+        $sponsor = User::where('uuid', $request->sponsor_id)->first();
+        $payment = User::where('uuid', $request->payment_id)->first();
+
+        $hands = Hand::where('parent_id', $sponsor->id)->count();
         if($hands>10){
             return redirect()->back()->withInput()->withErrors("This user already sponsored 10 people.");
         }
@@ -93,8 +99,6 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            // 'picture' => $this->uploadImage(request()->file('picture')),
-            // 'picture' => $this->uploadImage(request()->file('picture')),
             'mobile' => $request->mobile,
             'nid' => $request->nid,
             'dob' => $request->dob,
@@ -118,29 +122,23 @@ class RegisteredUserController extends Controller
 //            'Details' => 'User Registration'
 //        ]);
 
-
-        $sponser_notification = Notification::create([
-            'user_id'=> $user->uuid,
-            'name'=> $request->sponsor_id,
-            'message'=> 'new payment request from ' . ' '.$user-> name . ' '. 'for' . ' '. $request->payment_id . ' '. 'and sponser is' . ' '. $request->sponsor_id,
-            'status'=> 'unread',
-            'link'=> route('home'),
-            'color'=> 'red',
+        Notification::create([
+            'user_id' => $sponsor->id,
+            'child_id' => $user->id,
+            'type' => NotificationType::SPONSOR(),
+            'message' => "Sponsor request from $user->name ",
+            'status' => NotificationStatus::UNREAD(),
+            'color' => NotificationColor::RED(),
         ]);
-        $sponser_notification->link = $sponser_notification->link . '/notification_id=' . $sponser_notification->id;
-        $sponser_notification->update();
 
-        $payment_notification = Notification::create([
-            'user_id'=>$user->uuid,
-            'name'=>
-            $request->payment_id,
-            'message'=> 'new payment request from ' . ' '.$user-> name . ' '. 'for' . ' '. $request->payment_id . ' '. 'and sponser is' . ' '. $request->sponsor_id,
-            'status'=> 'unread',
-            'link'=> route('home'),
-            'color'=> 'red',
+        Notification::create([
+            'user_id' => $payment->id,
+            'child_id' => $user->id,
+            'type' => NotificationType::PAYMENT(),
+            'message' => "Payment request from $user->name ",
+            'status' => NotificationStatus::UNREAD(),
+            'color' => NotificationColor::RED(),
         ]);
-        $payment_notification->link = $payment_notification->link . '/notification_id=' . $payment_notification->id;
-        $payment_notification->update();
 
        // image upload code
         if($request->hasFile('picture'))

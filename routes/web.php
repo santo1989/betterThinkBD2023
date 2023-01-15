@@ -44,9 +44,10 @@ Route::middleware('auth')->group(function () {
         return "Hello world";
     });
 
-    Route::get('/home', function () {
-        return view('backend.home');
-    })->name('home');
+//    Route::get('/home', function () {
+//        return view('backend.home');
+//    })->name('home');
+    Route::get('/home', [UserController::class, 'home'])->name('home');
 
     //role
 
@@ -95,6 +96,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('utility_dynamic', UtilityDynamicController::class);
 
     //request approve
+
+    Route::get('/approve/{notification}', [UserController::class, 'approvePage'])->name('approvePage');
+    Route::post('/approve', [UserController::class, 'approve'])->name('approve');
 
     Route::post('/request-approve', [UserController::class, 'is_approved_sponsor'])->name('is_approved_sponsor');
 

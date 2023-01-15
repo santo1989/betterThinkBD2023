@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\NotificationStatus;
 use App\Models\Hand;
 use App\Models\Notification;
 use App\Models\PaymentHistory;
@@ -16,6 +17,13 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function home()
+    {
+//        $notifications = Auth::user()->notifications;
+//        dd($notifications);
+
+        return view('backend.home');
+    }
     public function index()
     {
 
@@ -146,5 +154,40 @@ class UserController extends Controller
         } catch (QueryException $e) {
             return redirect()->back()->withInput()->withErrors($e->getMessage());
         }
+    }
+
+    public function approvePage(Notification $notification)
+    {
+        return view('backend.approved.approve', compact('notification'));
+    }
+
+    public function approve(Request $request)
+    {
+        $child_user = User::where('id', $request->child_id)->first();
+
+        if($request->type == 'sponsor'){
+            $child_user->update([
+                'is_approved_sponsor' => 1
+            ]);
+        }
+
+        if($request->type == 'payment'){
+            $child_user->update([
+                'is_approved_payment' => 1
+            ]);
+        }
+
+        if($child_user->is_approved_sponsor == 1 && $child_user->is_approved_payment == 1){
+            $child_user->update([
+                'is_approve' => 1
+            ]);
+        }
+
+        $notification = Notification::where('id', $request->notification_id)->first();
+        $notification->update([
+            'status' => NotificationStatus::READ()
+        ]);
+
+        return redirect()->route('home')->withMessage('Successfully approved '.$request->type);
     }
 }
