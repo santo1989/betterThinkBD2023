@@ -15,6 +15,6 @@ class CategoryFactory extends Factory
             'description' => $this->faker->paragraph,
             'image' => $this->faker->imageUrl(400, 300, 'cats', true, 'Faker', true),
         ];
-       
+
     }
 }

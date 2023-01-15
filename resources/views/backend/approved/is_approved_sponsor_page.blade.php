@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-md-12">
 {{-- @dd($sponser) --}}
-@if($sponser_details->is_approved_sponsor == 0)
+{{--@if($sponser_details->is_approved_sponsor == 0)--}}
                @isset($sponser)
                        <div class="alert alert-success" role="alert">
                            <h4 class="alert-heading">Conform Approve Request</h4>
@@ -25,9 +25,9 @@
                            <button type="submit" class="btn btn-success">Conform </button>
                         </form>
                        </div>
-                   
+
                @endisset
-               @endif
+{{--               @endif--}}
             </div>
         </div>
     </div>

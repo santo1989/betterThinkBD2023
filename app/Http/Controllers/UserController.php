@@ -61,7 +61,7 @@ class UserController extends Controller
                 'password' => $request->password ? Hash::make($request->password) : $user->password,
             ];
 
-           
+
 
             $user->update($requestData);
 
@@ -84,28 +84,20 @@ class UserController extends Controller
 
     public function is_approved_sponsor(Request $request, User $user)
     {
-        // dd($request->all());
         try {
-            // dd($request->all());
-            $user= User::where('uuid', $request->sponser_uuid);
-            // dd($user);
-            $user->update([
-                // 'is_approved_sponsor' => 1,
+            $sponsor= User::where('uuid', $request->id)->first();
+            $user= User::where('uuid', $request->sponser_uuid)->first();
+
+            Hand::create([
+                'parent_id' => $sponsor->id,
+                'child_id' => $user->id,
             ]);
-            $hands = Hand::where('parent_id', $request->id)->count();
-            // dd($hands);
-            // $hands:: parent_id child_id
-            if($hands < 11){
-                // dd($request->id, $request->sponser_uuid);
-                Hand::create([
-                    'parent_id' => $request->id,
-                    'child_id' => $request->sponser_uuid,
-                    // dd($request->id, $request->sponser_uuid)
-                ]);
-                // 
-            }else{
-                return redirect()->route('home')->withMessage('You can not add more than 10 users!');
-            }
+
+
+            $user->update([
+                'is_approved_sponsor' => 1
+            ]);
+
             if($user->is_approved_payment == 1){
                 $notification = Notification::find($request->notification_id);
                 $notification->update([
@@ -139,7 +131,7 @@ class UserController extends Controller
                     'status' => 'read',
                 ]);
             }
-           
+
             return redirect()->route('home')->withMessage('Successfully Updated!');
         } catch (QueryException $e) {
             return redirect()->back()->withInput()->withErrors($e->getMessage());
@@ -149,7 +141,7 @@ class UserController extends Controller
     public function is_rejected(Request $request, User $user)
     {
         try {
-           
+
             return redirect()->route('home')->withMessage('Successfully Updated!');
         } catch (QueryException $e) {
             return redirect()->back()->withInput()->withErrors($e->getMessage());

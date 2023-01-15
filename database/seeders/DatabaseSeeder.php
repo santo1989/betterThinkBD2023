@@ -22,10 +22,11 @@ class DatabaseSeeder extends Seeder
             CategoriesTableSeeder::class,
             ProductsTableSeeder::class,
             BlogsTableSeeder::class,
+            TypesTableSeeder::class,
 
         ]);
 
-       
+
     }
 
 

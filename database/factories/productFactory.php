@@ -19,7 +19,7 @@ class productFactory extends Factory
             'long_address' => $this->faker->address,
             'point_needed' => $this->faker->numberBetween(1001, 2000),
             'discount_amount' => $this->faker->numberBetween(1, 100),
-            
+
             'logo' => $this->faker->imageUrl(400, 300, 'cats', true, 'Faker', true),
             'image' => $this->faker->imageUrl(400, 300, 'cats', true, 'Faker', true),
             'category_id' => $this->faker->numberBetween(1, 10),
