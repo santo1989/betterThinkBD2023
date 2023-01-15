@@ -9,9 +9,9 @@
     </div>
 @else
     <section>
-        <div class="row">
-            <h2 class="section-heading">Services Details</h2>
-        </div>
+        {{-- <div class="row">
+        <h2 class="section-heading">Services Details</h2>
+        </div> --}}
         <div class="row">
             <div class="column">
                 <div class="card">
@@ -28,8 +28,8 @@
                 <div class="card">
                     {{-- <div class="icon-wrapper">
                         <i class="fas fa-brush"></i>
-                    </div>--}}
-                    <h3 class="h3-heading">{{ $product->title }}</h3> 
+                    </div> --}}
+                    <h3 class="h3-heading">{{ $product->title }}</h3>
                     {{-- <p>
                       {{ $product->title }}
                     </p> --}}
@@ -39,50 +39,62 @@
                 <div class="card">
                     {{-- <div class="icon-wrapper">
                         <i class="fas fa-wrench"></i>
-                    </div>--}}
-                    <h3 class="h3-heading">{{ $product->long_address }}</h3> 
+                    </div> --}}
+                    <h3 class="h3-heading">{{ $product->long_address }}</h3>
                     {{-- <p>
                         {{ $product->long_address }} 
-                    </p>--}}
+                    </p> --}}
                 </div>
             </div>
             <div class="column">
                 <div class="card">
-                    <div class="icon-wrapper">
-                        <i class="fas fa-truck-pickup"></i>
+                    {{-- <div class="icon-wrapper">
+                    </div> --}}
+                    <!-- company logo-->
+                    <div class="company_logo">
+                        <img class="card-img-top"
+                            src="https://img.favpng.com/21/3/25/logo-symbol-graphic-design-png-favpng-sphXDsdhAQSvnRLYPLzdASPRK_t.jpg"
+                            height="100" alt="..." />
+                        {{-- <img class="card-img-top" src="{{ asset('images/products/' . $product->logo) }}"
+                                        height="100" alt="..." /> --}}
                     </div>
-                    <h3>Service Heading</h3>
+                    <!-- product image-->
+                    <div class="company_image-round">
+                        <img class="card-img-top"
+                            src="https://png.pngtree.com/png-clipart/20210906/ourmid/pngtree-business-office-building-construction-png-image_3865022.jpg"
+                            height="200" alt="..." />
+                        {{-- <img class="card-img-top" src="{{ asset('images/products/' . $product->image) }}"
+                                        height="200" alt="..." /> --}}
+                    </div>
+                    <h3>{{ $product->title }}</h3>
                     <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam
-                        consequatur necessitatibus eaque.
+                        {{ $product->short_address }}
                     </p>
                 </div>
             </div>
             <div class="column">
                 <div class="card">
-                    <div class="icon-wrapper">
-                        <i class="fas fa-broom"></i>
-                    </div>
-                    <h3>Service Heading</h3>
+                    <h5 class="h3-heading text-center"> Discount {{ $product->discount_amount }} %</h5>
+                    {{-- <div class="icon-wrapper"> --}}
+                        {{-- <h4 class="my-0 fw-normal"> </h4> --}}
+                    {{-- </div> --}}
                     <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam
-                        consequatur necessitatibus eaque.
+                       {{ $product->description1 }}
                     </p>
                 </div>
             </div>
             <div class="column">
                 <div class="card">
-                    <div class="icon-wrapper">
-                        <i class="fas fa-plug"></i>
-                    </div>
-                    <h3>Service Heading</h3>
+                    <a class="btn btn-outline-warning" type="button">
+                       {{ $product->point_needed }} Point <br> Buy Now
+                    </a>
                     <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam
-                        consequatur necessitatibus eaque.
+                       {{ $product->description2 }}
                     </p>
                 </div>
             </div>
         </div>
+
     </section>
     @endif
     @push('css')
