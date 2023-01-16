@@ -8,8 +8,6 @@ use App\Enums\NotificationType;
 use App\Http\Controllers\Controller;
 use App\Models\Hand;
 use App\Models\Notification;
-use App\Models\PaymentHistory;
-use App\Models\Type;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Exception;
@@ -86,14 +84,6 @@ class RegisteredUserController extends Controller
             return redirect()->back()->withInput()->withErrors("Oops! Unsuccessful attempt to generate user id!");
         }
 
-//        $payingUser = User::where('uuid', $request->payment_id)->first();
-//        $minimumPoint = Type::where('name', 'register')->first()->point->point;
-//
-//        if($payingUser->point < $minimumPoint){
-//            return redirect()->back()->withInput()->withErrors("User don't have enough point.");
-//        }
-
-
         $user = User::create([
             'uuid' => $user_id,
             'name' => $request->name,
@@ -112,15 +102,6 @@ class RegisteredUserController extends Controller
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
         ]);
-
-//        // Cut point from payment_id
-//        $payingUser['point'] -= $minimumPoint;
-//        $payingUser->update();
-//        PaymentHistory::create([
-//            'user_id' => $payingUser->id,
-//            'point' => $minimumPoint,
-//            'Details' => 'User Registration'
-//        ]);
 
         Notification::create([
             'user_id' => $sponsor->id,

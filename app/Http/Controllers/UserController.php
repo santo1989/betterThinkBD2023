@@ -7,21 +7,17 @@ use App\Models\Hand;
 use App\Models\Notification;
 use App\Models\PaymentHistory;
 use App\Models\Role;
+use App\Models\Type;
 use App\Models\User;
-use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     public function home()
     {
-//        $notifications = Auth::user()->notifications;
-//        dd($notifications);
-
         return view('backend.home');
     }
     public function index()
@@ -172,6 +168,25 @@ class UserController extends Controller
         }
 
         if($request->type == 'payment'){
+
+            $registerFee = Type::where('name', 'register')->first()->point->point;
+
+            if(Auth::user()->point < $registerFee){
+                return redirect()->back()->withInput()->withErrors("You don't have enough point.");
+            }
+
+            $userPoint = Auth::user()->point - $registerFee;
+
+            Auth::user()->update([
+                'point' => $userPoint
+            ]);
+
+            PaymentHistory::create([
+                'user_id' => Auth::id(),
+                'point' => $registerFee,
+                'Details' => 'User Registration'
+            ]);
+
             $child_user->update([
                 'is_approved_payment' => 1
             ]);
