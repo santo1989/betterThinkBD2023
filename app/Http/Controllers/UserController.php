@@ -12,6 +12,7 @@ use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -159,50 +160,56 @@ class UserController extends Controller
 
     public function approve(Request $request)
     {
-        $child_user = User::where('id', $request->child_id)->first();
+        try{
+            DB::beginTransaction();
+            $child_user = User::where('id', $request->child_id)->first();
 
-        if($request->type == 'sponsor'){
-            $child_user->update([
-                'is_approved_sponsor' => 1
-            ]);
-        }
-
-        if($request->type == 'payment'){
-
-            $registerFee = Type::where('name', 'register')->first()->point->point;
-
-            if(Auth::user()->point < $registerFee){
-                return redirect()->back()->withInput()->withErrors("You don't have enough point.");
+            if($request->type == 'sponsor'){
+                $child_user->update([
+                    'is_approved_sponsor' => 1
+                ]);
             }
 
-            $userPoint = Auth::user()->point - $registerFee;
+            if($request->type == 'payment'){
 
-            Auth::user()->update([
-                'point' => $userPoint
-            ]);
+                $registerFee = Type::where('name', 'register')->first()->point->point;
 
-            PaymentHistory::create([
-                'user_id' => Auth::id(),
-                'point' => $registerFee,
-                'Details' => 'User Registration'
-            ]);
+                if(Auth::user()->point < $registerFee){
+                    return redirect()->back()->withInput()->withErrors("You don't have enough point.");
+                }
 
-            $child_user->update([
-                'is_approved_payment' => 1
+                $userPoint = Auth::user()->point - $registerFee;
+
+                Auth::user()->update([
+                    'point' => $userPoint
+                ]);
+
+                PaymentHistory::create([
+                    'user_id' => Auth::id(),
+                    'point' => $registerFee,
+                    'Details' => 'User Registration'
+                ]);
+
+                $child_user->update([
+                    'is_approved_payment' => 1
+                ]);
+            }
+
+            if($child_user->is_approved_sponsor == 1 && $child_user->is_approved_payment == 1){
+                $child_user->update([
+                    'is_approve' => 1
+                ]);
+            }
+
+            $notification = Notification::where('id', $request->notification_id)->first();
+            $notification->update([
+                'status' => NotificationStatus::READ()
             ]);
+            DB::commit();
+            return redirect()->route('home')->withMessage('Successfully approved '.$request->type);
+        }catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->withInput()->withErrors($e);
         }
-
-        if($child_user->is_approved_sponsor == 1 && $child_user->is_approved_payment == 1){
-            $child_user->update([
-                'is_approve' => 1
-            ]);
-        }
-
-        $notification = Notification::where('id', $request->notification_id)->first();
-        $notification->update([
-            'status' => NotificationStatus::READ()
-        ]);
-
-        return redirect()->route('home')->withMessage('Successfully approved '.$request->type);
     }
 }

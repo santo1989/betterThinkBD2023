@@ -13,6 +13,6 @@ class TypesTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Type::factory(5)->create();
+        \App\Models\Type::factory(1)->create();
     }
 }

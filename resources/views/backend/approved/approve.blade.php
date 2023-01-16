@@ -1,11 +1,16 @@
 <x-backend.layouts.master>
     <div class="m-5">
-        <h3>Welcome,
+        <h3>
             {{ Auth::user()->name }}
         </h3>
     </div>
     {{-- notification --}}
-
+    @if (session('errors'))
+        <div class="alert alert-danger">
+            <span class="close" data-dismiss="alert">&times;</span>
+            <strong>{{ session('errors')->first() }}</strong>
+        </div>
+    @endif
     <div class="container">
         <div class="row">
             <div class="col-md-12">
