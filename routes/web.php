@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UtilityDynamicController;
 use Illuminate\Support\Facades\Route;
@@ -112,6 +113,18 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/approved-sponsor-payment-page/{id}', [HomeController::class, 'is_approved_sponsor_payment_page'])->name('is_approved_sponsor_payment_page');
 
+    // Route::resource('types', TypeController::class);
+    //type
+
+    Route::get('/types', [TypeController::class, 'index'])->name('types.index');
+    Route::get('/types/create', [TypeController::class, 'create'])->name('types.create');
+    Route::post('/types', [TypeController::class, 'store'])->name('types.store');
+    Route::get('/types/{type}', [TypeController::class, 'show'])->name('types.show');
+    Route::get('/types/{type}/edit', [TypeController::class, 'edit'])->name('types.edit');
+    Route::patch('/types/{type}', [TypeController::class, 'update'])->name('types.update');
+    Route::delete('/types/{type}', [TypeController::class, 'destroy'])->name('types.destroy');
+
+    
 
 });
 

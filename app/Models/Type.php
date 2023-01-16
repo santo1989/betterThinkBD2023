@@ -10,6 +10,10 @@ class Type extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+    ];
+
     public function point(): HasOne
     {
         return $this->hasOne(Point::class);
