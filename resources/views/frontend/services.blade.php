@@ -8,72 +8,65 @@
         <div class="column">
           <div class="card">
             <div class="icon-wrapper">
-              <i class="fas fa-hammer"></i>
+              <i class='fas fa-user-md'></i>
             </div>
-            <h3>Service Heading</h3>
+            <h3>Hospital</h3>
             <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam
-              consequatur necessitatibus eaque.
+             <img src="{{ asset('ui/frontend/images/assets/hospital.jpg') }}" alt="" heigt=50px; width=60px; class="image-log rounded">
             </p>
           </div>
         </div>
         <div class="column">
           <div class="card">
             <div class="icon-wrapper">
-              <i class="fas fa-brush"></i>
+              <i class='fas fa-capsules'></i>
             </div>
-            <h3>Service Heading</h3>
+            <h3>Pharmacy</h3>
             <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam
-              consequatur necessitatibus eaque.
+              <img src="{{ asset('ui/frontend/images/assets/pharmacy.jpg') }}" alt="" heigt=50px; width=60px; class="image-log rounded">
             </p>
           </div>
         </div>
         <div class="column">
           <div class="card">
             <div class="icon-wrapper">
-              <i class="fas fa-wrench"></i>
+              <i class="fa fa-shopping-basket" aria-hidden="true"></i>
             </div>
-            <h3>Service Heading</h3>
+            <h3>Super Shop</h3>
             <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam
-              consequatur necessitatibus eaque.
+             <img src="{{ asset('ui/frontend/images/assets/SuperShop.jpg') }}" alt="" heigt=50px; width=60px; class="image-log rounded">
             </p>
           </div>
         </div>
         <div class="column">
           <div class="card">
             <div class="icon-wrapper">
-              <i class="fas fa-truck-pickup"></i>
+              <i class="fa fa-suitcase" aria-hidden="true"></i>
             </div>
-            <h3>Service Heading</h3>
+            <h3>Hotel</h3>
             <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam
-              consequatur necessitatibus eaque.
+              <img src="{{ asset('ui/frontend/images/assets/Hotel.jpg') }}" alt="" heigt=50px; width=60px; class="image-log rounded">
             </p>
           </div>
         </div>
         <div class="column">
           <div class="card">
             <div class="icon-wrapper">
-              <i class="fas fa-broom"></i>
+              <i class="fa fa-plane" aria-hidden="true"></i>
             </div>
-            <h3>Service Heading</h3>
+            <h3>Travel</h3>
             <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam
-              consequatur necessitatibus eaque.
-            </p>
+               <img src="{{ asset('ui/frontend/images/assets/Travel.jpg') }}" alt="" heigt=50px; width=60px; class="image-log rounded">
           </div>
         </div>
         <div class="column">
           <div class="card">
             <div class="icon-wrapper">
-              <i class="fas fa-plug"></i>
+              <i class='fas fa-hamburger'></i>
             </div>
-            <h3>Service Heading</h3>
+            <h3>Restaurant</h3>
             <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam
-              consequatur necessitatibus eaque.
+               <img src="{{ asset('ui/frontend/images/assets/Restaurant.jpg') }}" alt="" heigt=50px; width=60px; class="image-log rounded">
             </p>
           </div>
         </div>
@@ -155,6 +148,15 @@ p {
 .card:hover p {
   color: #f0f0f0;
 }
+
+ .image-log {
+                width: 200px;
+                height: 100px;
+                background-color: transparent;
+            }
+
+
+
 @media screen and (min-width: 768px) {
   section {
     padding: 0 2em;

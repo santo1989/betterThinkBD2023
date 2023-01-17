@@ -76,5 +76,10 @@ class HomeController extends Controller
         return view('backend.approved.is_approved_sponsor_payment_page', compact('sponsor_payment', 'user_sponsor_payment_details'));
     }
 
+    public function contactUS()
+    {
+        return view('frontend.contact-us');
+    }
+
 
 }

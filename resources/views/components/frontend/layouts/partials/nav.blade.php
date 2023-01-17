@@ -29,6 +29,9 @@
                 <a href="{{ route('about') }}"><strong>About Us</strong></a>
             </li>
             <li>
+                <a href="{{ route('contactUS') }}"><strong>Contact Us</strong></a>
+            </li>
+            <li>
                 <a href="{{ route('blogs') }}"><strong>Blog</strong></a>
             </li>
             @if (Route::has('login'))

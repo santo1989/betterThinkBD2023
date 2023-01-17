@@ -1,86 +1,173 @@
 <x-frontend.layouts.master>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
-        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
-
-    <!-- Material UI CSS -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.indigo-pink.min.css" />
-
-    <!-- Bootstrap JavaScript -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
-        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous">
-    </script>
-
-    <!-- Material UI JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.min.js"></script>
-
-
-    <div class="container-fluid">
+    <section>
+        {{-- <div class="row">
+            <h2 class="section-heading">Our Services</h2>
+        </div> --}}
         <div class="row">
-            <div class="col-8">
-                <!-- main content goes here -->
-                <form>
-                    <div class="form-group">
-                        <label for="name-input">Name</label>
-                        <input type="text" class="form-control" id="name-input">
+            <div class="column">
+                <div class="card">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-plug"></i>
                     </div>
-                    <div class="form-group">
-                        <label for="email-input">Email</label>
-                        <input type="email" class="form-control" id="email-input">
-                    </div>
-                    <div class="form-group">
-                        <label for="message-input">Message</label>
-                        <textarea class="form-control" id="message-input" rows="3"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-
-                <script>
-                    const form = document.querySelector('form');
-
-                    form.addEventListener('submit', function(event) {
-                        event.preventDefault();
-
-                        const nameInput = document.querySelector('#name-input');
-                        const emailInput = document.querySelector('#email-input');
-                        const messageInput = document.querySelector('#message-input');
-
-                        if (nameInput.value === '' || emailInput.value === '' || messageInput.value === '') {
-                            alert('All fields are required!');
-                            return;
-                        }
-
-                        // submit the form
-                    });
-                </script>
-
+                    <h3>Our Goal</h3>
+                    <p>
+                        In this era of busy work, this effort or initiative of Better Thing BD is to bring our daily
+                        essential needs easily available and affordable.
+                        Better Thing BD is doing the job of bringing the country's standard services to your doorstep
+                        easily.
+                        Through our new concept, we are committed to creating a bridge between service providers and
+                        service receivers.
+                    </p>
+                </div>
             </div>
-            <div class="col-4">
-                <!-- sidebar goes here -->
 
-                <ul class="list-group">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Phone
-                        <span class="badge badge-primary badge-pill">(123) 456-7890</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Email
-                        <span class="badge badge-primary badge-pill">info@example.com</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Address
-                        <span class="badge badge-primary badge-pill">123 Main Street, Anytown USA</span>
-                    </li>
-                </ul>
-
+            <div class="column">
+                <div class="card">
+                    <div class="icon-wrapper">
+                        <i class="fa fa-building" aria-hidden="true"></i>
+                    </div>
+                    <h3>Better Think BD</h3>
+                    <p>
+                        Up to 15% Discount for our Card holder
+                        Our Facilities
+                       
+                            Hospitals<br />
+                            Medicines<br />
+                            Super shops<br />
+                            Restaurants<br />
+                            Hotel & Resorts<br />
+                        
+                    </p>
+                </div>
             </div>
+
+            <div class="column">
+                <div class="card">
+                    <div class="icon-wrapper">
+                        <i class="fa fa-bullhorn" aria-hidden="true"></i>
+                    </div>
+                    <h3> আমাদের লক্ষ্য ও উদ্দেশ্য </h3>
+                    <p>
+                        কর্ম ব্যস্তার এই যুগে আমাদের দৈনন্দিন প্রয়োজনীয় চাহিদাগুলো সহজলব্য ও সাশ্রয়ী করে সহজে আপনাদের
+                        সামনে নিয়ে আসার জন্য Better Thing BD এর এই প্রচেষ্টা বা উদ্যোগ।
+                        দেশের মানসম্মত সেবাখাতগুলোকে সহজে আপনার দ্বারপ্রান্তে আনার কাজটুকু করে যাচ্ছে Better Thing BD.
+                        আমাদের এই নতুন ভাবনার মাধ্যমে আমরা সেবাদানকারী ও সেবাগ্রহনকারীর মধ্যে একটি সেতু বন্ধন তৈরিতে
+                        প্রতিশ্রুতিবন্ধ।
+
+                    </p>
+                </div>
+            </div>
+
         </div>
-    </div>
+    </section>
 
+    @push('css')
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+                font-family: "Poppins", sans-serif;
+            }
 
+            section {
+                height: 100vh;
+                width: 100%;
+                display: grid;
+                place-items: center;
+            }
 
+            .row {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .column {
+                width: 100%;
+                padding: 0 1em 1em 1em;
+                text-align: center;
+            }
+
+            .card {
+                width: 100%;
+                height: 100%;
+                padding: 2em 1.5em;
+                background: linear-gradient(#ffffff 50%, #2c7bfe 50%);
+                background-size: 100% 200%;
+                background-position: 0 2.5%;
+                border-radius: 5px;
+                box-shadow: 0 0 35px rgba(0, 0, 0, 0.12);
+                cursor: pointer;
+                transition: 0.5s;
+            }
+
+            h3 {
+                font-size: 20px;
+                font-weight: 600;
+                color: #1f194c;
+                margin: 1em 0;
+            }
+
+            p {
+                color: #575a7b;
+                font-size: 15px;
+                line-height: 1.6;
+                letter-spacing: 0.03em;
+            }
+
+            .icon-wrapper {
+                background-color: #2c7bfe;
+                position: relative;
+                margin: auto;
+                font-size: 30px;
+                height: 2.5em;
+                width: 2.5em;
+                color: #ffffff;
+                border-radius: 50%;
+                display: grid;
+                place-items: center;
+                transition: 0.5s;
+            }
+
+            .card:hover {
+                background-position: 0 100%;
+            }
+
+            .card:hover .icon-wrapper {
+                background-color: #ffffff;
+                color: #2c7bfe;
+            }
+
+            .card:hover h3 {
+                color: #ffffff;
+            }
+
+            .card:hover p {
+                color: #f0f0f0;
+            }
+
+            @media screen and (min-width: 768px) {
+                section {
+                    padding: 0 2em;
+                }
+
+                .column {
+                    flex: 0 50%;
+                    max-width: 50%;
+                }
+            }
+
+            @media screen and (min-width: 992px) {
+                section {
+                    padding: 1em 3em;
+                }
+
+                .column {
+                    flex: 0 0 33.33%;
+                    max-width: 33.33%;
+                }
+            }
+        </style>
+    @endpush
 </x-frontend.layouts.master>

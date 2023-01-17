@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContractMessageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProductController;
@@ -29,6 +30,8 @@ Route::get('/product-details/{id}', [HomeController::class, 'product_details'])-
 Route::get('/posts', [HomeController::class, 'blogs'])->name('blogs');
 
 Route::get('/blog-details/{id}', [HomeController::class, 'blog_details'])->name('blog_details');
+
+Route::get('/contactUs', [HomeController::class, 'contactUS'])->name('contactUS');
 
 // Services
 
@@ -123,6 +126,22 @@ Route::middleware('auth')->group(function () {
     Route::get('/types/{type}/edit', [TypeController::class, 'edit'])->name('types.edit');
     Route::patch('/types/{type}', [TypeController::class, 'update'])->name('types.update');
     Route::delete('/types/{type}', [TypeController::class, 'destroy'])->name('types.destroy');
+
+    //message
+
+    Route::get('/contract-message', [ContractMessageController::class, 'index'])->name('contract_message.index');
+
+    Route::get('/contract-message/create', [ContractMessageController::class, 'create'])->name('contract_message.create');
+
+    Route::post('/contract-message', [ContractMessageController::class, 'store'])->name('contract_message.store');
+
+    Route::get('/contract-message/{message}', [ContractMessageController::class, 'show'])->name('contract_message.show');
+
+    Route::get('/contract-message/{message}/edit', [ContractMessageController::class, 'edit'])->name('contract_message.edit');
+
+    Route::put('/contract-message/{message}', [ContractMessageController::class, 'update'])->name('contract_message.update');
+
+    Route::delete('/contract-message/{message}', [ContractMessageController::class, 'destroy'])->name('contract_message.destroy');
 
     
 
