@@ -11,11 +11,16 @@
                         <p class="text-white text-decoration-none d-flex justify-content-between"
                             style="font-family: 'Inconsolata', monospace; "> © Copyright {{ now()->year }}
                             
+                            <a class="text-white text-decoration-none d-flex justify-content-between"
+                                href="https://wa.me/8801628002002" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i> Chat on WhatsApp</a>
 
                             <a class="text-white text-decoration-none d-flex justify-content-between"
                                 href="https://breakitsolution.com/" target="_blank">Developed By: Break-IT</a>
                         </p>
                     </div>
+                    {{-- <div class="col-md-6 col-sm-6">
+                        
+                    </div> --}}
                 </div>
             </div>
         </div>
