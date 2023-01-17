@@ -33,24 +33,25 @@
                         <th>Sl#</th>
                         <th>Title</th>
                         <th>Category</th>
-                        <th>Description</th>
-                        <th>Image</th>
-                        <th>Discount Amount</th>
+                        <th>Address</th>
+                        <th>Logo</th>
+                        <th>Discount %</th>
                         <th>Point</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @php $sl=0 @endphp
-                    @foreach ($products as $product)
+                    {{-- @dd($productList) --}}
+                    @foreach ($productList as $product)
                     {{-- @dd($product) --}}
                         <tr>
                             <td>{{ ++$sl }}</td>
                             <td>{{ $product->title }}</td>
                             <td>{{ $product->category->title }}</td>
-                            <td>{{ $product->description }}</td>
+                            <td>{{ $product->short_address }}</td>
                             <td>
-                                <img src="{{ asset('images/products/' . $product->image) }}" alt="{{ $product->title }}"
+                                <img src="{{ asset('images/products/' . $product->logo) }}" alt="{{ $product->title }}"
                                     width="100" height="100">
                             </td>
                             <td>{{ $product->discount_amount }}</td>

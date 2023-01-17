@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class TypeFactory extends Factory
+class PointFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,7 +14,8 @@ class TypeFactory extends Factory
     public function definition()
     {
         return [
-            // 'name' => 'register',
+            // 'type_id' => $this->faker->numberBetween(1, 7),
+            // 'point' => $this->faker->numberBetween(50, 2000),
         ];
     }
 }

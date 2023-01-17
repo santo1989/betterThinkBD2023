@@ -9,29 +9,28 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         $categories = Category::all();
 
-        $productsCollection = Product::latest();
+        $productList = Product::latest()->get();
 
 
-        if ($request->has('category_id')) {
-            $productsCollection->where('category_id', $request->category_id);
-        }
+        // if ($request->has('category_id')) {
+        //     $productsCollection->where('category_id', $request->category_id);
+        // }
 
-        if (request('search')) {
-            $productsCollection = $productsCollection
-                ->where('description', 'like', '%' . request('search') . '%')
-                ->orwhere('title', 'like', '%' . request('search') . '%');
-        }
-
-        $products = $productsCollection;
+        // if (request('search')) {
+        //     $productsCollection = $productsCollection
+        //         ->where('description', 'like', '%' . request('search') . '%')
+        //         ->orwhere('title', 'like', '%' . request('search') . '%');
+        // }
 
 
         return view('backend.products.index', [
-            'products' => $products
-        ])->with('categories', $categories);
+            'productList' => $productList,
+            'categories' => $categories,
+        ]);
     }
 
     public function create()
@@ -46,7 +45,7 @@ class ProductController extends Controller
         try {
             Product::create([
                 'title' => $request->title,
-                'logo'=> $this->uploadImage(request()->file('logo')),
+                'logo'=> $this->uploadImage1(request()->file('logo')),
                 'image'=> $this->uploadImage(request()->file('image')),
                 'short_address'=> $request->short_address,
                 'long_address'=> $request->long_address,
@@ -108,7 +107,7 @@ class ProductController extends Controller
                 if ($product->logo==!null) {
                     unlink(public_path('images/products/' . $product->logo));
                 }
-                $requestData['logo'] = $this->uploadImage(request()->file('logo'));
+                $requestData['logo'] = $this->uploadImage1(request()->file('logo'));
             }
 
             $product->update($requestData);
@@ -130,6 +129,13 @@ class ProductController extends Controller
         } catch (QueryException $e) {
             return redirect()->back()->withInput()->withErrors($e->getMessage());
         }
+    }
+
+    public function uploadImage1($image)
+    {
+        $imageName = time() . '.' . $image->extension();
+        $image->move(public_path('images/products'), $imageName);
+        return $imageName;
     }
 
     public function uploadImage($image)

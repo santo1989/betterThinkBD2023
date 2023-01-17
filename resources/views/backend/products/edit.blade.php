@@ -48,13 +48,27 @@
 
                 <x-backend.form.input name="title" label="Product Name" :value="$product->title" />
 
-                <x-backend.form.textarea name="description" label="Description">
-                    {{ $product->description }}
+                <x-backend.form.textarea name="description1" label="Description of Product">
+                    {{ $product->description1 }}
                 </x-backend.form.textarea>
 
-                <x-backend.form.input name="image" type="file" label="Image" :value="$product->image" />
+                <x-backend.form.textarea name="description2" label="Description of Service by Us">
+                    {{ $product->description2 }}
+                </x-backend.form.textarea>
 
-                <x-backend.form.input name="discount_amount" label="Discount Amount" :value="$product->discount_amount" />
+                <x-backend.form.textarea name="short_address" label="Address of Company short">
+                    {{ $product->short_address }}
+                </x-backend.form.textarea>
+                
+                <x-backend.form.textarea name="long_address" label="Company Location Full">
+                    {{ $product->long_address }}
+                </x-backend.form.textarea>
+
+                <x-backend.form.input name="image" type="file" label="Company Image" :value="$product->image" />
+
+                <x-backend.form.input name="logo" type="file" label="Company Logo" :value="$product->logo" />
+
+                <x-backend.form.input name="discount_amount" label="Discount %" :value="$product->discount_amount" />
 
                 <x-backend.form.input name="point_needed" label="Point Needed" :value="$product->point_needed" />
 

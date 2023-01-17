@@ -38,6 +38,16 @@
                         Web Page Dynamic tools</span>
                     </a>
 
+                    <a class="nav-link text-white" href="{{ route('types.index') }}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        type List
+                    </a>
+
+                    <a class="nav-link text-white" href="{{ route('admin_level_show') }}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        All level
+                    </a>
+
 
 
 
@@ -78,7 +88,10 @@
                         Home
                     </a>
 
-
+                    <a class="nav-link text-white" href="{{ route('level_show') }}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        level
+                    </a>
 
                 </div>
             @endcan

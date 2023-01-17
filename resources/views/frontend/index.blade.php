@@ -30,4 +30,39 @@
             @endforelse
         </div>
     </div>
+    @push('css')
+        <style>
+            .card-image {
+                height: 200px;
+            }
+    
+            .card-image img {
+                height: 100%;
+                width: 100%;
+            }
+    
+            .card-body {
+                height: 100px;
+            }
+    
+            .card-body a {
+                height: 100%;
+            }
+    
+            .card-body a:hover {
+                text-decoration: none;
+            }
+    
+            .card-body a h5 {
+                height: 100%;
+            }
+    
+            .card-body a h5:hover {
+                text-decoration: none;
+            }
+    
+        </style>	
+
+        
+    @endpush
 </x-frontend.layouts.master>

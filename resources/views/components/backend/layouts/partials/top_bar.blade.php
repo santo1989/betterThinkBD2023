@@ -2,7 +2,8 @@
     style="background-image: linear-gradient(to right,#1358a7,
  #191839, #0680c6, #273871, #0473bc, #2b4388, #2c2c64, #23345b, #2c3c94);">
     <!-- Navbar Brand-->
-    <a class="navbar-brand ps-3" href="{{ route('home') }}">Dashboard</a>
+    {{-- <a class="navbar-brand ps-3" href="{{ route('home') }}">Dashboard</a> --}}
+    <a class="navbar-brand ps-3" href="{{ url('/') }}">Buy Products</a>
     <!-- Sidebar Toggle-->
     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
             class="fas fa-bars"></i></button>

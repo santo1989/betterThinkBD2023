@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Type;
 use Illuminate\Database\Seeder;
 
 class TypesTableSeeder extends Seeder
@@ -13,6 +14,26 @@ class TypesTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Type::factory(1)->create();
+        Type::create([
+            'name' => 'level_1',
+        ]);
+        Type::create([
+            'name' => 'level_2',
+        ]);
+        Type::create([
+            'name' => 'level_3',
+        ]);
+        Type::create([
+            'name' => 'level_4',
+        ]);
+        Type::create([
+            'name' => 'level_5',
+        ]);
+        Type::create([
+            'name' => 'level_6',
+        ]);
+        Type::create([
+            'name' => 'register',
+        ]);
     }
 }

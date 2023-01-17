@@ -52,19 +52,19 @@
                     </div> --}}
                     <!-- company logo-->
                     <div class="company_logo">
-                        <img class="card-img-top"
+                       {{--  <img class="card-img-top"
                             src="https://img.favpng.com/21/3/25/logo-symbol-graphic-design-png-favpng-sphXDsdhAQSvnRLYPLzdASPRK_t.jpg"
-                            height="100" alt="..." />
-                        {{-- <img class="card-img-top" src="{{ asset('images/products/' . $product->logo) }}"
-                                        height="100" alt="..." /> --}}
+                            height="100" alt="..." /> --}}
+                        <img class="card-img-top" src="{{ asset('images/products/' . $product->logo) }}"
+                                        height="100" alt="..." />
                     </div>
                     <!-- product image-->
                     <div class="company_image-round">
-                        <img class="card-img-top"
+                       {{--   <img class="card-img-top"
                             src="https://png.pngtree.com/png-clipart/20210906/ourmid/pngtree-business-office-building-construction-png-image_3865022.jpg"
-                            height="200" alt="..." />
-                        {{-- <img class="card-img-top" src="{{ asset('images/products/' . $product->image) }}"
-                                        height="200" alt="..." /> --}}
+                            height="200" alt="..." />--}}
+                       <img class="card-img-top" src="{{ asset('images/products/' . $product->image) }}"
+                                        height="200" alt="..." /> 
                     </div>
                     <h3>{{ $product->title }}</h3>
                     <p>

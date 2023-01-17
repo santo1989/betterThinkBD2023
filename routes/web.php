@@ -3,6 +3,7 @@
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContractMessageController;
+use App\Http\Controllers\HandController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProductController;
@@ -142,6 +143,14 @@ Route::middleware('auth')->group(function () {
     Route::put('/contract-message/{message}', [ContractMessageController::class, 'update'])->name('contract_message.update');
 
     Route::delete('/contract-message/{message}', [ContractMessageController::class, 'destroy'])->name('contract_message.destroy');
+
+    //levels
+
+    Route::get('/levels', [HandController::class, 'index'])->name('levels.index');
+
+    Route::get('/levels/level_show', [HandController::class, 'level_show'])->name('level_show');
+
+    Route::get('/levels/admin_level_show', [HandController::class, 'admin_level_show'])->name('admin_level_show');
 
     
 

@@ -32,8 +32,6 @@
                     <tr>
                         <th>Sl#</th>
                         <th>Title</th>
-                        <th>Description</th>
-                        <th>Image</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -46,14 +44,14 @@
                         <td>
                             <a class="btn btn-info btn-sm" href="{{ route('types.show', ['type' => $type->id]) }}" >Show</a>
 
-                            <a class="btn btn-warning btn-sm" href="{{ route('types.edit', ['type' => $type->id]) }}" >Edit</a>
+                            {{-- <a class="btn btn-warning btn-sm" href="{{ route('types.edit', ['type' => $type->id]) }}" >Edit</a> --}}
 
-                            <form style="display:inline" action="{{ route('types.destroy', ['type' => $type->id]) }}" method="post">
+                            {{-- <form style="display:inline" action="{{ route('types.destroy', ['type' => $type->id]) }}" method="post">
                                 @csrf
                                 @method('delete')
                                 
                                 <button onclick="return confirm('All product of that types are also delete ! Are you sure want to delete ?')" class="btn btn-sm btn-danger" type="submit">Delete</button>
-                            </form>
+                            </form> --}}
                         </td>
                     </tr>
                     @endforeach

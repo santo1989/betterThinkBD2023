@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             ProductsTableSeeder::class,
             BlogsTableSeeder::class,
             TypesTableSeeder::class,
+            PointsTableSeeder::class,
 
         ]);
 
