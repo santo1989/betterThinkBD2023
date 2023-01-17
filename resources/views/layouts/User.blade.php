@@ -17,7 +17,7 @@
             <div class="col-md-12">
                 @foreach (Auth::user()->notifications->where('status', \App\Enums\NotificationStatus::UNREAD()) as $item)
                     <div class="alert alert-success" role="alert">
-                        <h4 class="alert-heading">{{ \App\Models\User::find($item->child_id)->uuid }}</h4>
+{{--                        <h4 class="alert-heading">{{ \App\Models\User::find($item->child_id)->uuid }}</h4>--}}
                         <p>{{ $item->message }}</p>
                         <hr>
                         <a href="{{ route('approvePage',['notification' => $item]) }}" type="button"

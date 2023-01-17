@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -165,9 +166,44 @@ class UserController extends Controller
             $child_user = User::where('id', $request->child_id)->first();
 
             if($request->type == 'sponsor'){
+                $hand = Hand::create([
+                    'parent_id' => Auth::id(),
+                    'child_id' => $request->child_id
+                ]);
+
                 $child_user->update([
                     'is_approved_sponsor' => 1
                 ]);
+
+                $parent_id = $hand->parent_id;
+
+                for($i=1; $i<7; $i++){
+                    if(!is_null($parent_id)){
+                        $type = Type::where("name", "level_$i")->first();
+                        $point = $type->point->point;
+                    }else{
+                        break;
+                    }
+
+                    $parentUser = User::find($parent_id);
+                    $parentUser->point = $parentUser->point+$point;
+                    $parentUser->update();
+
+                    $parentUser->notifications()->create([
+                        "type" => "level_$i",
+                        "message" => "$point for refer a user $parent_id",
+                        "status" => NotificationStatus::UNREAD()
+                    ]);
+
+
+                    $hand = Hand::where('child_id', $parent_id)->first();
+//                    dd($hand->id);
+                    if(!is_null($hand)){
+                        $parent_id = $hand->parent_id;
+                    }else{
+                        $parent_id = null;
+                    }
+                }
             }
 
             if($request->type == 'payment'){
