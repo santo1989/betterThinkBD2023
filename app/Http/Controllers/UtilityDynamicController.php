@@ -10,12 +10,12 @@ class UtilityDynamicController extends Controller
    public function index()
     {
         $utilityDynamics = UtilityDynamic::all();
-        return view('backend.utility_dynamic.index', compact('utilityDynamics'));
+        return view('backend.Admin.utility_dynamic.index', compact('utilityDynamics'));
     }
 
     public function create()
     {
-        return view('backend.utility_dynamic.create');
+        return view('backend.Admin.utility_dynamic.create');
     }
 
     public function store(Request $request)
@@ -48,13 +48,13 @@ class UtilityDynamicController extends Controller
     public function show($id)
     {
         $utilityDynamic = UtilityDynamic::findOrFail($id);
-        return view('backend.utility_dynamic.show', compact('utilityDynamic'));
+        return view('backend.Admin.utility_dynamic.show', compact('utilityDynamic'));
     }
 
     public function edit($id)
     {
         $utilityDynamic = UtilityDynamic::findOrFail($id);
-        return view('backend.utility_dynamic.edit', compact('utilityDynamic'));
+        return view('backend.Admin.utility_dynamic.edit', compact('utilityDynamic'));
     }
 
     public function update(Request $request, $id)
@@ -86,8 +86,9 @@ class UtilityDynamicController extends Controller
     public function destroy($id)
     {
         $utilityDynamic = UtilityDynamic::findOrFail($id);
-        unlink(public_path('/images/utilityDynamic' . $utilityDynamic->picture));
         $utilityDynamic->delete();
+        unlink(public_path('/images/utilityDynamic' . $utilityDynamic->picture));
+        
         
         return redirect()->route('utility_dynamic.index')->with('success', 'Utility Dynamic deleted successfully.');
     }

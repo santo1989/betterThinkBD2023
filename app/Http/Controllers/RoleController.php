@@ -12,14 +12,14 @@ class RoleController extends Controller
 
         $roles = Role::get();
 
-        return view('backend.roles.index', [
+        return view('backend.Admin.roles.index', [
             'roles' => $roles
         ]);
     }
 
     public function create()
     {
-        return view('backend.roles.create');
+        return view('backend.Admin.roles.create');
     }
 
     public function store(Request $request)
@@ -37,7 +37,7 @@ class RoleController extends Controller
 
     public function edit(Role $role)
     {
-        return view('backend.roles.edit', [
+        return view('backend.Admin.roles.edit', [
             'role' => $role
         ]);
     }

@@ -12,14 +12,14 @@ class BlogController extends Controller
     {
 
         $blogs = Blog::orderBy('id', 'desc')->get();
-        return view('backend.blogs.index', [
+        return view('backend.Admin.blogs.index', [
             'blogs' => $blogs
         ]);
     }
 
     public function create()
     {
-        return view('backend.blogs.create');
+        return view('backend.Admin.blogs.create');
     }
 
     public function store(request $request)
@@ -42,14 +42,14 @@ class BlogController extends Controller
 
     public function show(Blog $blog)
     {
-        return view('backend.blogs.show', [
+        return view('backend.Admin.blogs.show', [
             'blog' => $blog
         ]);
     }
 
     public function edit(Blog $blog)
     {
-        return view('backend.blogs.edit', [
+        return view('backend.Admin.blogs.edit', [
             'blog' => $blog,
         ]);
     }

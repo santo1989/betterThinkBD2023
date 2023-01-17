@@ -52,30 +52,6 @@ class HomeController extends Controller
         return view('frontend.about');
     }
 
-    public function is_approved_sponsor_page($id)
-    {
-        // dd($id);
-        $sponser = Notification::where('id', $id)->get()->first();
-        // dd($sponser);
-        $sponser_details = User::where('sponsor_id', $sponser->name)->get()->first();
-        // dd($sponser_details);
-        return view('backend.approved.is_approved_sponsor_page', compact('sponser', 'sponser_details'));
-    }
-
-    public function is_approved_payment_page($id)
-    {
-        $payment = Notification::where('id', $id)->get();
-        $user_payment_details = User::where('payment_id', $payment->name)->get();
-        return view('backend.approved.is_approved_payment_page', compact('payment', 'user_payment_details'));
-    }
-
-    public function is_approved_sponsor_payment_page($id)
-    {
-        $sponsor_payment = Notification::where('id', $id)->get();
-        $user_sponsor_payment_details = User::where('payment_id', $sponsor_payment->name)->where('sponsor_id', $sponsor_payment->name)->get();
-        return view('backend.approved.is_approved_sponsor_payment_page', compact('sponsor_payment', 'user_sponsor_payment_details'));
-    }
-
     public function contactUS()
     {
         return view('frontend.contact-us');

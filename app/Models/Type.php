@@ -14,7 +14,7 @@ class Type extends Model
         'name',
     ];
 
-    public function point(): HasOne
+    public function point()
     {
         return $this->hasOne(Point::class);
     }

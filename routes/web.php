@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContractMessageController;
@@ -151,6 +152,22 @@ Route::middleware('auth')->group(function () {
     Route::get('/levels/level_show', [HandController::class, 'level_show'])->name('level_show');
 
     Route::get('/levels/admin_level_show', [HandController::class, 'admin_level_show'])->name('admin_level_show');
+
+    //points
+
+    Route::get('/points/reward', [AccountController::class, 'reward'])->name('reward');
+
+    Route::get('/points/withdraw', [AccountController::class, 'Withdraw'])->name('Withdraw');
+
+    Route::get('/points/generate_point', [AccountController::class, 'generate_point'])->name('generate_point');
+
+    Route::get('/points/Admin_Reward', [AccountController::class, 'Admin_Reward'])->name('Admin_Reward.store');
+
+    Route::get('/points/Withdraw_point', [AccountController::class, 'Withdraw_point'])->name('Withdraw_point.store');
+
+    Route::get('/points/Admin_generate_point', [AccountController::class, 'Admin_generate_point'])->name('Admin_generate_point.store');
+
+
 
     
 

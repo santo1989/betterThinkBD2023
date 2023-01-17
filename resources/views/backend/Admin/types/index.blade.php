@@ -16,7 +16,7 @@
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-            Types <a class="btn btn-sm btn-info" href="{{ route('types.create') }}">Add New</a>
+            {{-- Types <a class="btn btn-sm btn-info" href="{{ route('types.create') }}">Add New</a> --}}
         </div>
         <div class="card-body">
 
@@ -32,7 +32,7 @@
                     <tr>
                         <th>Sl#</th>
                         <th>Title</th>
-                        <th>Action</th>
+                        <th>Point</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,9 +40,10 @@
                     @foreach ($types as $type)
                     <tr>
                         <td>{{ ++$sl }}</td>
-                        <td>{{ $type->name }}</td>
+                        <td>{{ ucwords($type->name) }}</td>
                         <td>
-                            <a class="btn btn-info btn-sm" href="{{ route('types.show', ['type' => $type->id]) }}" >Show</a>
+                            {{ $type->point->point }}
+                            {{-- <a class="btn btn-info btn-sm" href="{{ route('types.show', ['type' => $type->id]) }}" >Show</a> --}}
 
                             {{-- <a class="btn btn-warning btn-sm" href="{{ route('types.edit', ['type' => $type->id]) }}" >Edit</a> --}}
 
@@ -54,6 +55,7 @@
                             </form> --}}
                         </td>
                     </tr>
+                    @break($sl==6)
                     @endforeach
 
                 </tbody>

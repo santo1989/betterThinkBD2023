@@ -42,7 +42,7 @@ class UserController extends Controller
         // dd($users);
         $roles = Role::all();
 
-        return view('backend.users.index', [
+        return view('backend.Admin.users.index', [
             'users' => $users,
             'roles' => $roles
         ]);
@@ -51,7 +51,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $roles = Role::latest()->get();
-        return view('backend.users.edit', [
+        return view('backend.Admin.users.edit', [
             'user' => $user,
             'roles' => $roles
         ]);
@@ -156,7 +156,7 @@ class UserController extends Controller
 
     public function approvePage(Notification $notification)
     {
-        return view('backend.approved.approve', compact('notification'));
+        return view('backend.user_interface.approved.approve', compact('notification'));
     }
 
     public function approve(Request $request)
