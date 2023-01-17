@@ -140,6 +140,10 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                         Home
                     </a>
+                    <a class="nav-link text-white" href="{{ route('profiles') }}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        Profile
+                    </a>
                     @php
                         $hands = App\Models\Hand::where('parent_id', auth()->user()->id)->first();
                         $is_approve = App\Models\User::where('is_approve', 1)->first();

@@ -22,6 +22,12 @@ class UserController extends Controller
     {
         return view('backend.home');
     }
+
+
+    public function profiles()
+    {
+        return view('backend.Admin.users.profiles');
+    }
     public function index()
     {
 
@@ -52,6 +58,15 @@ class UserController extends Controller
     {
         $roles = Role::latest()->get();
         return view('backend.Admin.users.edit', [
+            'user' => $user,
+            'roles' => $roles
+        ]);
+    }
+
+    public function show(User $user)
+    {
+        $roles = Role::latest()->get();
+        return view('backend.Admin.users.show', [
             'user' => $user,
             'roles' => $roles
         ]);
@@ -88,71 +103,71 @@ class UserController extends Controller
         }
     }
 
-    public function is_approved_sponsor(Request $request, User $user)
-    {
-        try {
-            $sponsor= User::where('uuid', $request->id)->first();
-            $user= User::where('uuid', $request->sponser_uuid)->first();
+    // public function is_approved_sponsor(Request $request, User $user)
+    // {
+    //     try {
+    //         $sponsor= User::where('uuid', $request->id)->first();
+    //         $user= User::where('uuid', $request->sponser_uuid)->first();
 
-            Hand::create([
-                'parent_id' => $sponsor->id,
-                'child_id' => $user->id,
-            ]);
+    //         Hand::create([
+    //             'parent_id' => $sponsor->id,
+    //             'child_id' => $user->id,
+    //         ]);
 
 
-            $user->update([
-                'is_approved_sponsor' => 1
-            ]);
+    //         $user->update([
+    //             'is_approved_sponsor' => 1
+    //         ]);
 
-            if($user->is_approved_payment == 1){
-                $notification = Notification::find($request->notification_id);
-                $notification->update([
-                    'status' => 'read',
-                ]);
-            }
-            return redirect()->route('home')->withMessage('Successfully Updated!');
-        } catch (QueryException $e) {
-            return redirect()->back()->withInput()->withErrors($e->getMessage());
-        }
-    }
+    //         if($user->is_approved_payment == 1){
+    //             $notification = Notification::find($request->notification_id);
+    //             $notification->update([
+    //                 'status' => 'read',
+    //             ]);
+    //         }
+    //         return redirect()->route('home')->withMessage('Successfully Updated!');
+    //     } catch (QueryException $e) {
+    //         return redirect()->back()->withInput()->withErrors($e->getMessage());
+    //     }
+    // }
 
-    public function is_approved_payment(Request $request, User $user)
-    {
-        try {
-            $user->update([
-                'is_approved_payment' =>1,
-            ]);
-            $payment = PaymentHistory::create([
-                'user_id' => Auth::user()->uuid,
-                'details' => $request->details,
-                'payment_id'=> Auth::user()->uuid,
-                'sponsor_id' => $request->sponsor_id,
-                'product_id' => $request->product_id,
-                'point' => $request->point,
-            ]);
+    // public function is_approved_payment(Request $request, User $user)
+    // {
+    //     try {
+    //         $user->update([
+    //             'is_approved_payment' =>1,
+    //         ]);
+    //         $payment = PaymentHistory::create([
+    //             'user_id' => Auth::user()->uuid,
+    //             'details' => $request->details,
+    //             'payment_id'=> Auth::user()->uuid,
+    //             'sponsor_id' => $request->sponsor_id,
+    //             'product_id' => $request->product_id,
+    //             'point' => $request->point,
+    //         ]);
 
-            if($user->is_approved_sponsor == 1){
-                $notification = Notification::find($request->notification_id);
-                $notification->update([
-                    'status' => 'read',
-                ]);
-            }
+    //         if($user->is_approved_sponsor == 1){
+    //             $notification = Notification::find($request->notification_id);
+    //             $notification->update([
+    //                 'status' => 'read',
+    //             ]);
+    //         }
 
-            return redirect()->route('home')->withMessage('Successfully Updated!');
-        } catch (QueryException $e) {
-            return redirect()->back()->withInput()->withErrors($e->getMessage());
-        }
-    }
+    //         return redirect()->route('home')->withMessage('Successfully Updated!');
+    //     } catch (QueryException $e) {
+    //         return redirect()->back()->withInput()->withErrors($e->getMessage());
+    //     }
+    // }
 
-    public function is_rejected(Request $request, User $user)
-    {
-        try {
+    // public function is_rejected(Request $request, User $user)
+    // {
+    //     try {
 
-            return redirect()->route('home')->withMessage('Successfully Updated!');
-        } catch (QueryException $e) {
-            return redirect()->back()->withInput()->withErrors($e->getMessage());
-        }
-    }
+    //         return redirect()->route('home')->withMessage('Successfully Updated!');
+    //     } catch (QueryException $e) {
+    //         return redirect()->back()->withInput()->withErrors($e->getMessage());
+    //     }
+    // }
 
     public function approvePage(Notification $notification)
     {
