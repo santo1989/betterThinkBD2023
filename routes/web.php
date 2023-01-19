@@ -153,21 +153,15 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/points/reward', [AccountController::class, 'rewardView'])->name('reward');
     Route::post('/points/reward', [AccountController::class, 'reward'])->name('admin.reward');
+    Route::get('/points/history', [AccountController::class, 'paymentHistory'])->name('admin.payment.history');
 
     Route::get('/points/withdraw', [AccountController::class, 'Withdraw'])->name('Withdraw');
 
     Route::get('/points/generate_point', [AccountController::class, 'generate_point'])->name('generate_point');
 
-    Route::get('/points/Admin_Reward', [AccountController::class, 'Admin_Reward'])->name('Admin_Reward.store');
-
     Route::get('/points/Withdraw_point', [AccountController::class, 'Withdraw_point'])->name('Withdraw_point.store');
 
     Route::get('/points/Admin_generate_point', [AccountController::class, 'Admin_generate_point'])->name('Admin_generate_point.store');
-
-
-
-
-
 });
 
 Route::get('/notification/{message}/{notification}', [NotificationController::class, 'showForUpdating'])->name("notification_showForUpdating");

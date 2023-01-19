@@ -78,4 +78,11 @@ class AccountController extends Controller
         $user-> save();
         return redirect()->back();
     }
+
+    public function paymentHistory()
+    {
+        $histories = Auth::user()->paymentHistories;
+
+        return view('backend.Admin.points.history', compact('histories'));
+    }
 }
