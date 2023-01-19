@@ -8,12 +8,10 @@ use Illuminate\Http\Request;
 
 class NotificationController extends Controller
 {
-    
+
     public function showForUpdating($id, $notification_id)
 
     {
-        
-
         $notifications = Notification::find($notification_id)->latest();
         $notifications->status = 'read';
         $notifications->color = 'green';
@@ -21,7 +19,5 @@ class NotificationController extends Controller
         return view('home', [
             'notifications' => $notifications
         ]);
-       
-
     }
 }

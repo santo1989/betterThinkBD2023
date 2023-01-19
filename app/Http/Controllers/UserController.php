@@ -138,9 +138,7 @@ class UserController extends Controller
                         "status" => NotificationStatus::UNREAD()
                     ]);
 
-
                     $hand = Hand::where('child_id', $parent_id)->first();
-//                    dd($hand->id);
                     if(!is_null($hand)){
                         $parent_id = $hand->parent_id;
                     }else{

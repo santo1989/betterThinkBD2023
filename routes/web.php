@@ -78,7 +78,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
-   
+
 
     //categories
 
@@ -151,7 +151,8 @@ Route::middleware('auth')->group(function () {
 
     //points
 
-    Route::get('/points/reward', [AccountController::class, 'reward'])->name('reward');
+    Route::get('/points/reward', [AccountController::class, 'rewardView'])->name('reward');
+    Route::post('/points/reward', [AccountController::class, 'reward'])->name('admin.reward');
 
     Route::get('/points/withdraw', [AccountController::class, 'Withdraw'])->name('Withdraw');
 
@@ -165,7 +166,7 @@ Route::middleware('auth')->group(function () {
 
 
 
-    
+
 
 });
 
