@@ -105,12 +105,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/approve/{notification}', [UserController::class, 'approvePage'])->name('approvePage');
     Route::post('/approve', [UserController::class, 'approve'])->name('approve');
 
-    Route::post('/request-approve', [UserController::class, 'is_approved_sponsor'])->name('is_approved_sponsor');
-
-    Route::post('/payment-approved', [UserController::class, 'is_approved_payment'])->name('is_approved_payment');
-
-    Route::get('/rejected', [UserController::class, 'is_rejected'])->name('is_rejected');
-
     Route::get('/approved-sponsor-page/{id}', [HomeController::class, 'is_approved_sponsor_page'])->name('is_approved_sponsor_page');
 
     Route::get('/approved-payment-page/{id}', [HomeController::class, 'is_approved_payment_page'])->name('is_approved_payment_page');
@@ -152,7 +146,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/levels/admin_level_show', [HandController::class, 'admin_level_show'])->name('admin_level_show');
 
-    
+
 
 });
 

@@ -11,22 +11,28 @@
         </div>
     @endif
 
+    <?php
+    $notification = App\Models\Notification::where('status', 'unread')->where(function ($query){
+        $query->where('type','sponsor')->orWhere('type', 'payment');
+    })->paginate();
+    ?>
+
     {{-- notification --}}
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                @foreach (Auth::user()->notifications->where('status', \App\Enums\NotificationStatus::UNREAD()) as $item)
+                @foreach ($notification as $item)
                     <div class="alert alert-success" role="alert">
-{{--                        <h4 class="alert-heading">{{ \App\Models\User::find($item->child_id)->uuid }}</h4>--}}
                         <p>{{ $item->message }}</p>
                         <hr>
                         <a href="{{ route('approvePage',['notification' => $item]) }}" type="button"
                            class="btn btn-success">Approved Request</a>
-                        <a type="button" class="btn btn-danger" href="{{ route('is_rejected') }}">Decline Request</a>
+                        <a type="button" class="btn btn-danger">Decline Request</a>
                     </div>
                 @endforeach
             </div>
         </div>
+        {{ $notification->links() }}
     </div>
     {{-- end notification --}}
 

@@ -14,7 +14,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -39,7 +38,6 @@ class UserController extends Controller
         }
 
         $users = $usersCollection;
-        // dd($users);
         $roles = Role::all();
 
         return view('backend.users.index', [
@@ -60,17 +58,13 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         try {
-
             $requestData = [
                 'name' => $request->name,
                 'role_id' => $request->role_id,
                 'password' => $request->password ? Hash::make($request->password) : $user->password,
             ];
 
-
-
             $user->update($requestData);
-
 
             return redirect()->route('users.index')->withMessage('Successfully Updated!');
         } catch (QueryException $e) {
@@ -85,72 +79,6 @@ class UserController extends Controller
             return redirect()->route('users.index')->withMessage('Successfully Deleted!');
         } catch (QueryException $e) {
             return redirect()->back()->withErrors($e->getMessage());
-        }
-    }
-
-    public function is_approved_sponsor(Request $request, User $user)
-    {
-        try {
-            $sponsor= User::where('uuid', $request->id)->first();
-            $user= User::where('uuid', $request->sponser_uuid)->first();
-
-            Hand::create([
-                'parent_id' => $sponsor->id,
-                'child_id' => $user->id,
-            ]);
-
-
-            $user->update([
-                'is_approved_sponsor' => 1
-            ]);
-
-            if($user->is_approved_payment == 1){
-                $notification = Notification::find($request->notification_id);
-                $notification->update([
-                    'status' => 'read',
-                ]);
-            }
-            return redirect()->route('home')->withMessage('Successfully Updated!');
-        } catch (QueryException $e) {
-            return redirect()->back()->withInput()->withErrors($e->getMessage());
-        }
-    }
-
-    public function is_approved_payment(Request $request, User $user)
-    {
-        try {
-            $user->update([
-                'is_approved_payment' =>1,
-            ]);
-            $payment = PaymentHistory::create([
-                'user_id' => Auth::user()->uuid,
-                'details' => $request->details,
-                'payment_id'=> Auth::user()->uuid,
-                'sponsor_id' => $request->sponsor_id,
-                'product_id' => $request->product_id,
-                'point' => $request->point,
-            ]);
-
-            if($user->is_approved_sponsor == 1){
-                $notification = Notification::find($request->notification_id);
-                $notification->update([
-                    'status' => 'read',
-                ]);
-            }
-
-            return redirect()->route('home')->withMessage('Successfully Updated!');
-        } catch (QueryException $e) {
-            return redirect()->back()->withInput()->withErrors($e->getMessage());
-        }
-    }
-
-    public function is_rejected(Request $request, User $user)
-    {
-        try {
-
-            return redirect()->route('home')->withMessage('Successfully Updated!');
-        } catch (QueryException $e) {
-            return redirect()->back()->withInput()->withErrors($e->getMessage());
         }
     }
 

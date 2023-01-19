@@ -45,9 +45,16 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'nid' => ['required', 'max:255', 'unique:users,nid'],
+            'mobile' => ['required'],
+            'dob' => 'required|date|before:-18 years',
             'sponsor_id' => 'required|exists:users,uuid',
             'payment_id' => 'required|exists:users,uuid',
-        ]);
+        ],
+            [
+                'dob.before'=> 'You must be 18 years old or above'
+            ]
+        );
 
         $sponsor = User::where('uuid', $request->sponsor_id)->first();
         $payment = User::where('uuid', $request->payment_id)->first();
@@ -62,22 +69,13 @@ class RegisteredUserController extends Controller
             $year = $now->format("Y");
 
             $latest_uuid = User::get('uuid')->last();
-            // dd($latest_uuid);
             $a = str_replace('-', '', $latest_uuid->uuid);
-            // $a = str_replace('-', '', "0012-2023-0000-9999");
-            //$a = "0012-2023-0000-0000";
-            //  dd($a);
             $b = Str::substr($a, 8);
-            //dd($b);
             $c = (int)$b;
             $d = (string)($c+1);
-            // dd($d);
             $e= sprintf('%08d', $d);
-            //dd($e);
             $f = Str::substr($e, 0, 4).'-'.Str::substr($e, 4);
-            // dd($f);
             $user_id = '0012'.'-'.$year.'-'.$f;
-            // dd($user_id);
         }
         catch(Exception $e)
         {
@@ -93,6 +91,7 @@ class RegisteredUserController extends Controller
             'nid' => $request->nid,
             'dob' => $request->dob,
             'sponsor_id' => $request->sponsor_id,
+            'point' => 0,
             'bkash_no' => $request->bkash_no,
             'bank_name' => $request->bank_name,
             'branch' => $request->branch_name,
