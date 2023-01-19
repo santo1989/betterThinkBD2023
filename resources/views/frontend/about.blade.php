@@ -27,7 +27,8 @@
                     <div class="icon-wrapper">
                         <i class="fa fa-building" aria-hidden="true"></i>
                     </div>
-                    <h3>Better Think BD</h3>
+                    <h3>Better Think BD,<br />
+2/ka/14, Nawab Habibullah Road, Shahbagh, Dhaka-1000.</h3>
                     <p>
                         Up to 15% Discount for our Card holder
                         Our Facilities

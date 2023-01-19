@@ -188,6 +188,8 @@
                                             <x-input id="sponsor_id" class="block mt-1 w-full" type="text"
                                                 name="sponsor_id" :value="old('sponsor_id')" required autofocus />
 
+                                            <div class="mt-3" id="sponsor_name">
+                                            </div>
                                         </div>
 
 
@@ -323,5 +325,6 @@
                 });
             });
         </script>
+        <script></script>
     @endpush
 </x-guest-layout>
