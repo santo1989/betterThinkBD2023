@@ -19,38 +19,39 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-<style>
-    body {
-  background-image: url('{{ asset('ui/frontend/images/assets/baground-img.webp') }}');
-  background-size: cover;
-  background-repeat: no-repeat;
-}
+    <style>
+        body {
+            background-image: url('{{ asset('ui/frontend/images/assets/baground-img.webp') }}');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
 
-.footer {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-    }
-
-    .footer .container {
-      padding-right: 15px;
-      padding-left: 15px;
-      margin-right: auto;
-      margin-left: auto;
-    }
-
-     @media (min-width: 768px) and (max-width: 991px) {
-
-      .footer {
-        height: 40px;
-      }
-    }
-    /* Small screens (max-width: 767px) */
-    @media (max-width: 767px) { 
         .footer {
-        height: 30px;
-      }
-    }
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .footer .container {
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        @media (min-width: 768px) and (max-width: 991px) {
+
+            .footer {
+                height: 40px;
+            }
+        }
+
+        /* Small screens (max-width: 767px) */
+        @media (max-width: 767px) {
+            .footer {
+                height: 30px;
+            }
+        }
     </style>
     @stack('css')
 
@@ -60,13 +61,47 @@
     {{-- <div style="background-image: url({{ asset('ui/frontend/images/assets/baground-img.webp') }}); background-size: contain; background-repeat: repeat; margin:0px; padding:0px;"> --}}
     {{-- <div style="background-image: linear-gradient(90deg,#1358a7,
  #191839, #0680c6, #273871, #0473bc, #2b4388, #2c2c64, #23345b, #2c3c94); background-size: contain; background-repeat: repeat; margin:0px; padding:0px;"> --}}
- 
-        {{-- style="width: min-width; height: max-height; background-image: url({{ asset('ui/frontend/images/assets/baground-img.webp') }}); background-size: cover; background-repeat: round;" --}}
+
+    {{-- style="width: min-width; height: max-height; background-image: url({{ asset('ui/frontend/images/assets/baground-img.webp') }}); background-size: cover; background-repeat: round;" --}}
     <!-- Navigation-->
     {{-- @include('frontend.layouts.partials.nav') --}}
 
     <x-frontend.layouts.partials.nav />
+    <!-- Messenger Chat Plugin Code -->
+    <div id="fb-root">
 
+    </div>
+
+    <!-- Your Chat Plugin code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "100089652786812");
+        chatbox.setAttribute("attribution", "biz_inbox");
+    </script>
+
+    <!-- Your SDK code -->
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                xfbml: true,
+                version: 'v13.0'
+            });
+        };
+
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <!-- Your Chat Plugin code -->
 
     <!-- Section-->
 
@@ -77,10 +112,10 @@
     </section>
 
     <!-- Footer-->
-   <footer class="footer col-sm-12 col-md-12 col-xl-12 pt-1" 
-    style="background-image: linear-gradient(to right,#1358a7,
+    <footer class="footer col-sm-12 col-md-12 col-xl-12 pt-1"
+        style="background-image: linear-gradient(to right,#1358a7,
  #191839, #0680c6, #273871, #0473bc, #2b4388, #2c2c64, #23345b, #2c3c94);">
-    <x-frontend.layouts.partials.footer />
+        <x-frontend.layouts.partials.footer />
     </footer>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
