@@ -263,4 +263,13 @@ class UserController extends Controller
             return redirect()->back()->withInput()->withErrors($e);
         }
     }
+
+    public function autocomplete(Request $request)
+    {
+        $data = User::select("name")
+            ->where("uuid","LIKE","%{$request->input('query')}%")
+            ->get();
+
+        return response()->json($data);
+    }
 }

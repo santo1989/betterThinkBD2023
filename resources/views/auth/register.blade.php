@@ -61,12 +61,12 @@
             </div>
         </form>
     </x-auth-card> --}}
-    <section class="vh-100 gradient-custom"
+
+    <section class="gradient-custom"
         style="background-image: linear-gradient(90deg,#1358a7,
- #191839, #0680c6, #273871, #0473bc, #2b4388, #2c2c64, #23345b, #2c3c94); background-repeat: no-repeat;
-  background-size: contain">
-        <div class="container py-5 h-100 ">
-            <div class="row justify-content-center align-items-center h-100">
+ #191839, #0680c6, #273871, #0473bc, #2b4388, #2c2c64, #23345b, #2c3c94); background-size: cover; background-repeat: no-repeat;">
+        <div class="container py-5 ">
+            <div class="row justify-content-center align-items-center">
                 <div class="col-12 col-lg-9 col-xl-7">
                     <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                         <div class="card-body p-4 p-md-5">
@@ -183,6 +183,7 @@
 
                                         {{-- sponsor id --}}
                                         <div class="mt-3">
+
                                             <x-label for="sponsor_id" :value="__('Sponsor ID')" />
 
                                             <x-input id="sponsor_id" class="block mt-1 w-full" type="text"
@@ -191,8 +192,16 @@
                                             <div class="mt-3" id="sponsor_name">
                                             </div>
                                         </div>
-
-
+                                        @php
+                                            $db_sponsor_id = DB::table('users')
+                                                ->select('uuid')
+                                                ->get()
+                                                ->toArray();
+                                            
+                                            dd($db_sponsor_id);
+                                            
+                                        @endphp
+                                        <script></script>
 
                                     </div>
                                     <div class="w-1/2">
@@ -322,6 +331,59 @@
                 $('.datepicker').datepicker({
                     format: 'dd/mm/yyyy',
                     uiLibrary: 'bootstrap5'
+                });
+            });
+
+            $(document).ready(function() {
+                $('#sponsor_id').onchange(function() {
+                    alert(var query = $(this).val());
+                    if (query != '') {
+                        var _token = $('input[name="_token"]').val();
+                        $.ajax({
+                            url: "{{ route('autocomplete.fetch') }}",
+                            method: "POST",
+                            data: {
+                                query: query,
+                                _token: _token
+                            },
+                            success: function(data) {
+                                $('#sponsor_name').fadeIn();
+                                $('#sponsor_name').html(data);
+                            }
+                        });
+                    }
+                });
+
+                $(document).on('click', 'li', function() {
+                    $('#sponsor_id').val($(this).text());
+                    $('#sponsor_name').fadeOut();
+                });
+            });
+
+
+            $(document).ready(function() {
+                $('#payment_id').keyup(function() {
+                    var query = $(this).val();
+                    if (query != '') {
+                        var _token = $('input[name="_token"]').val();
+                        $.ajax({
+                            url: "{{ route('autocomplete.fetch') }}",
+                            method: "POST",
+                            data: {
+                                query: query,
+                                _token: _token
+                            },
+                            success: function(data) {
+                                $('#payment_name').fadeIn();
+                                $('#payment_name').html(data);
+                            }
+                        });
+                    }
+                });
+
+                $(document).on('click', 'li', function() {
+                    $('#payment_id').val($(this).text());
+                    $('#payment_name').fadeOut();
                 });
             });
         </script>

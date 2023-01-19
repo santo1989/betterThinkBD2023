@@ -176,4 +176,5 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/notification/{message}/{notification}', [NotificationController::class, 'showForUpdating'])->name("notification_showForUpdating");
 
+Route::post('/autocomplete', [UserController::class, 'autocomplete'])->name("autocomplete.fetch");
 require __DIR__ . '/auth.php';

@@ -16,7 +16,7 @@
         <div class="line"></div>
     </div>
 
-    <nav class="bla-bar pt-3">
+    <nav class="bla-bar">
 
         <ul>
             <li>
@@ -72,4 +72,11 @@
         </ul>
 
     </nav>
+    <script>
+tranzit = document.querySelector(".tranzit");
+    tranzit.onclick = function() {
+        navBar = document.querySelector(".bla-bar");
+        navBar.classList.toggle("active");
+    }
+        </script>
 </header>
