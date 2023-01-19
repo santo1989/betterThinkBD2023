@@ -54,7 +54,7 @@ class User extends Authenticatable
         return $this->hasMany(Hand::class);
     }
 
-    public function paymentHistories()
+    public function paymentHistories(): HasMany
     {
         return $this->hasMany(PaymentHistory::class);
     }

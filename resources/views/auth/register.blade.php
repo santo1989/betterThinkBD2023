@@ -272,7 +272,7 @@
                                             {{-- <a class="underline text-sm text-gray-600 hover:text-gray-900"
                                             href="{{ route('login') }}">
                                             {{ __('Already registered?') }}
-                                        </a> 
+                                        </a>
                                         <x-button class="grid place-items-center h-screen">
                                                 {{ __('Submit') }}
                                             </x-button> --}}

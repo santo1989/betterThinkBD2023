@@ -40,7 +40,7 @@
                     @foreach ($types as $type)
                     <tr>
                         <td>{{ ++$sl }}</td>
-                        <td>{{ ucwords($type->name) }}</td>
+                        <td>{{ str_replace("_", " ", $type->name) }}</td>
                         <td>
                             {{ $type->point->point }}
                             {{-- <a class="btn btn-info btn-sm" href="{{ route('types.show', ['type' => $type->id]) }}" >Show</a> --}}
@@ -50,7 +50,7 @@
                             {{-- <form style="display:inline" action="{{ route('types.destroy', ['type' => $type->id]) }}" method="post">
                                 @csrf
                                 @method('delete')
-                                
+
                                 <button onclick="return confirm('All product of that types are also delete ! Are you sure want to delete ?')" class="btn btn-sm btn-danger" type="submit">Delete</button>
                             </form> --}}
                         </td>

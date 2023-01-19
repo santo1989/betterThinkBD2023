@@ -3,6 +3,13 @@
         Admin Reward
     </x-slot>
 
+    @if (session('message'))
+        <div class="alert alert-success">
+            <span class="close" data-dismiss="alert">&times;</span>
+            <strong>{{ session('message') }}.</strong>
+        </div>
+    @endif
+
     <x-slot name='breadCrumb'>
         <x-backend.layouts.elements.breadcrumb>
             <x-slot name="pageHeader"> Admin Reward </x-slot>
@@ -17,7 +24,7 @@
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-            User Reward Point History <a class="btn btn-sm btn-info" href="#">History</a>
+            User Reward Point History <a class="btn btn-sm btn-info" href="{{ route('admin.payment.history') }}">History</a>
         </div>
         <div class="card-body">
 
@@ -40,29 +47,24 @@
                     </ul>
                 </div>
             @else
-                <form action="{{ route('Admin_Reward.store') }}" enctype="multipart/form-data" method="post">
+                <form action="{{ route('admin.reward') }}" method="post">
                     @csrf
-                    @method('put')
-
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Select User</label>
                         {{-- search user by uuid or email or nid or phone number and select user --}}
-                        <select class="js-example-basic-single">
+                        <select name="user_id" class="js-example-basic-single">
                             @foreach ($users as $user)
-                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                <option  value="{{ $user->id }}">{{ $user->name }}</option>
                             @endforeach
                         </select>
 
                     </div>
-                    <x-backend.form.input name="Admin_Reward" type="number" label="Admin Reward Point" />
+                    <x-backend.form.input name="point" type="number" label="Admin Reward Point" />
 
                     <span id="point_status"></span>
 
-
                     <div class="mt-4 mb-0">
-                        <button type="submit" class="btn btn-primary">
-                            Save
-                        </button>
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </form>
             @endif
