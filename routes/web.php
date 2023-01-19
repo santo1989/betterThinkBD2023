@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContractMessageController;
@@ -53,6 +54,7 @@ Route::middleware('auth')->group(function () {
 //        return view('backend.home');
 //    })->name('home');
     Route::get('/home', [UserController::class, 'home'])->name('home');
+    Route::get('/profiles', [UserController::class, 'profiles'])->name('profiles');
 
     //role
 
@@ -71,12 +73,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
     Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
-    Route::get(
-        '/users/{user}/edit',
-        [UserController::class, 'edit']
+    Route::get('/users/{user}/edit',[UserController::class, 'edit']
     )->name('users.edit');
     Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
+   
 
     //categories
 
@@ -147,6 +149,23 @@ Route::middleware('auth')->group(function () {
     Route::get('/levels/admin_level_show', [HandController::class, 'admin_level_show'])->name('admin_level_show');
 
 
+    //points
+
+    Route::get('/points/reward', [AccountController::class, 'reward'])->name('reward');
+
+    Route::get('/points/withdraw', [AccountController::class, 'Withdraw'])->name('Withdraw');
+
+    Route::get('/points/generate_point', [AccountController::class, 'generate_point'])->name('generate_point');
+
+    Route::get('/points/Admin_Reward', [AccountController::class, 'Admin_Reward'])->name('Admin_Reward.store');
+
+    Route::get('/points/Withdraw_point', [AccountController::class, 'Withdraw_point'])->name('Withdraw_point.store');
+
+    Route::get('/points/Admin_generate_point', [AccountController::class, 'Admin_generate_point'])->name('Admin_generate_point.store');
+
+
+
+    
 
 });
 

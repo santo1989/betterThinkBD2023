@@ -21,6 +21,12 @@ class UserController extends Controller
     {
         return view('backend.home');
     }
+
+
+    public function profiles()
+    {
+        return view('backend.Admin.users.profiles');
+    }
     public function index()
     {
 
@@ -40,7 +46,7 @@ class UserController extends Controller
         $users = $usersCollection;
         $roles = Role::all();
 
-        return view('backend.users.index', [
+        return view('backend.Admin.users.index', [
             'users' => $users,
             'roles' => $roles
         ]);
@@ -49,7 +55,16 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $roles = Role::latest()->get();
-        return view('backend.users.edit', [
+        return view('backend.Admin.users.edit', [
+            'user' => $user,
+            'roles' => $roles
+        ]);
+    }
+
+    public function show(User $user)
+    {
+        $roles = Role::latest()->get();
+        return view('backend.Admin.users.show', [
             'user' => $user,
             'roles' => $roles
         ]);
@@ -84,7 +99,7 @@ class UserController extends Controller
 
     public function approvePage(Notification $notification)
     {
-        return view('backend.approved.approve', compact('notification'));
+        return view('backend.user_interface.approved.approve', compact('notification'));
     }
 
     public function approve(Request $request)

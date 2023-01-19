@@ -12,14 +12,14 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::latest()->get();
-        return view('backend.categories.index', [
+        return view('backend.Admin.categories.index', [
             'categories' => $categories
         ]);
     }
 
     public function create()
     {
-        return view('backend.categories.create');
+        return view('backend.Admin.categories.create');
     }
 
     public function store(request $request)
@@ -51,14 +51,14 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-        return view('backend.categories.show', [
+        return view('backend.Admin.categories.show', [
             'category' => $category
         ]);
     }
 
     public function edit(Category $category)
     {
-        return view('backend.categories.edit', [
+        return view('backend.Admin.categories.edit', [
             'category' => $category
         ]);
     }

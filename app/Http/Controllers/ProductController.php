@@ -16,18 +16,7 @@ class ProductController extends Controller
         $productList = Product::latest()->get();
 
 
-        // if ($request->has('category_id')) {
-        //     $productsCollection->where('category_id', $request->category_id);
-        // }
-
-        // if (request('search')) {
-        //     $productsCollection = $productsCollection
-        //         ->where('description', 'like', '%' . request('search') . '%')
-        //         ->orwhere('title', 'like', '%' . request('search') . '%');
-        // }
-
-
-        return view('backend.products.index', [
+        return view('backend.Admin.products.index', [
             'productList' => $productList,
             'categories' => $categories,
         ]);
@@ -36,7 +25,7 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('backend.products.create', compact('categories'));
+        return view('backend.Admin.products.create', compact('categories'));
     }
 
     public function store(request $request)
@@ -65,7 +54,7 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        return view('backend.products.show', [
+        return view('backend.Admin.products.show', [
             'product' => $product
         ]);
     }
@@ -73,7 +62,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::all();
-        return view('backend.products.edit', [
+        return view('backend.Admin.products.edit', [
             'product' => $product,
             'categories' => $categories,
         ]);

@@ -85,9 +85,9 @@
             </div>
             <div class="column">
                 <div class="card">
-                    <a class="btn btn-outline-warning" type="button">
+                    {{-- <a class="btn btn-outline-warning" type="button">
                        {{ $product->point_needed }} Point <br> Buy Now
-                    </a>
+                    </a> --}}
                     <p>
                        {{ $product->description2 }}
                     </p>

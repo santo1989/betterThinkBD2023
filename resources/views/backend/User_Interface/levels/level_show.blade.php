@@ -19,9 +19,9 @@
         <div class="text-center">
             <div class="card mb-4 text-center">
                 <div class="card-header pt-1 pb-1">
-                    <div class="badge badge-primary pt-1 pb-1">
+                    {{-- <div class="badge badge-primary pt-1 pb-1">
                         <h5>Level 1</h5>
-                    </div>
+                    </div> --}}
 
                     @isset($parent)
                         <div class="row justify-content-center pt-1 pb-1">
@@ -41,7 +41,7 @@
                 </div>
                 <div class="card-body">
                     <div class="badge badge-secondary pt-1 pb-1">
-                        <h5>Level 2</h5>
+                        <h5>Level 1</h5>
                     </div>
                     @isset($child_details)
                         <div class="row justify-content-between pt-1 pb-1">
