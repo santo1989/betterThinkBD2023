@@ -13,7 +13,6 @@
         </x-backend.layouts.elements.breadcrumb>
     </x-slot>
 
-
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
@@ -30,6 +29,13 @@
                     </ul>
                 </div>
             @endif
+                @if (session('message'))
+                    <div class="alert alert-success">
+                        <span class="close" data-dismiss="alert">&times;</span>
+                        <strong>{{ session('message') }}</strong>
+                    </div>
+                @endif
+
                 @php
                     $point = Auth::user()->point;
                 @endphp
@@ -39,26 +45,19 @@
                             <li>Sorry! You can't withdraw point. You have to earn point first.</li>
                         </ul>
                     </div>
-                @else    
-                
-            <form action="{{ route('Withdraw_point.store') }}" enctype="multipart/form-data" method="post">
+                @else
+
+            <form action="{{ route('point.withdraw') }}" method="post">
                 @csrf
-
-                <x-backend.form.input name="Withdraw_point" type="number" label="Point" />
-
-                <span id="point_status"></span>
-
-                
+                <x-backend.form.input name="point" type="number" label="Point" />
 
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Select Payment Method</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
+                    <select name="method" class="form-control" id="exampleFormControlSelect1">
                         <option>Bank</option>
-                        <option>Mobile Banking</option>
+                        <option>Mobile</option>
                     </select>
                 </div>
-
-                
 
                 <div class="mt-4 mb-0">
                     <button type="submit" class="btn btn-primary">
@@ -69,7 +68,7 @@
             @endif
         </div>
     </div>
-    
+
 @push('js')
     <script>
         $(document).ready(function() {
@@ -85,7 +84,7 @@
         });
 
     </script>
-    
+
 @endpush
 
 </x-backend.layouts.master>

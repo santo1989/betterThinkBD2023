@@ -49,10 +49,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/check', function () {
         return "Hello world";
     });
-
-//    Route::get('/home', function () {
-//        return view('backend.home');
-//    })->name('home');
     Route::get('/home', [UserController::class, 'home'])->name('home');
     Route::get('/profiles', [UserController::class, 'profiles'])->name('profiles');
 
@@ -155,11 +151,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/points/reward', [AccountController::class, 'reward'])->name('admin.reward');
     Route::get('/points/history', [AccountController::class, 'paymentHistory'])->name('admin.payment.history');
 
-    Route::get('/points/withdraw', [AccountController::class, 'Withdraw'])->name('Withdraw');
-
+    Route::get('/points/withdraw', [AccountController::class, 'withdrawView'])->name('Withdraw');
+    Route::post('/points/withdraw', [AccountController::class, 'withdraw'])->name('point.withdraw');
     Route::get('/points/generate_point', [AccountController::class, 'generate_point'])->name('generate_point');
 
-    Route::get('/points/Withdraw_point', [AccountController::class, 'Withdraw_point'])->name('Withdraw_point.store');
+
+    Route::get('/points/withdraw/request', [\App\Http\Controllers\Admin\AccountController::class, 'request'])->name('withdraw.request');
+    Route::get('/points/{notification}/approve', [\App\Http\Controllers\Admin\AccountController::class, 'approvePage'])->name('approve.withdraw.confirm');
+    Route::post('/points/approve', [\App\Http\Controllers\Admin\AccountController::class, 'approve'])->name('approve.withdraw');
 
     Route::get('/points/Admin_generate_point', [AccountController::class, 'Admin_generate_point'])->name('Admin_generate_point.store');
 });

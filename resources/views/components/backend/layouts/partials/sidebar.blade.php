@@ -92,14 +92,19 @@
                             Admin Reward
                         </a>
 
+                    <a class="nav-link text-white" href="{{ route('withdraw.request') }}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        Withdraw Request
+                    </a>
+
                         <a class="nav-link text-white" href="{{ route('generate_point') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Generate Point
                         </a>
 
-                    
 
-                   
+
+
 
 
 

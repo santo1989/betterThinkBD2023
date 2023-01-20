@@ -19,6 +19,7 @@ class CreateNotificationsTable extends Migration
             $table->unsignedBigInteger('child_id')->nullable();
             $table->string('type'); // notification type like: sponsor, payment
             $table->text('message');
+            $table->integer('point')->nullable();
             $table->string('status'); // read, unread
             $table->string('color')->nullable();
             $table->timestamps();

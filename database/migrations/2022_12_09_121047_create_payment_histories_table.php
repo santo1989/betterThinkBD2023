@@ -17,9 +17,9 @@ class CreatePaymentHistoriesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('details')->nullable();
+            $table->string('type');
+            $table->string('method')->nullable();
             $table->unsignedBigInteger('payment_id')->nullable();
-            $table->unsignedBigInteger('sponsor_id')->nullable();
-            $table->unsignedBigInteger('product_id')->nullable();
             $table->integer('point')->nullable();
             $table->timestamps();
         });

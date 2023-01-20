@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\NotificationStatus;
+use App\Enums\PaymentType;
 use App\Models\Hand;
 use App\Models\Notification;
 use App\Models\PaymentHistory;
@@ -134,8 +135,14 @@ class UserController extends Controller
 
                     $parentUser->notifications()->create([
                         "type" => "level_$i",
-                        "message" => "$point for refer a user $parent_id",
+                        "message" => "$point point for refer a user $parent_id",
                         "status" => NotificationStatus::UNREAD()
+                    ]);
+
+                    $parentUser->paymentHistories()->create([
+                        'details' => "$point point for refer a user $parent_id",
+                        'payment_id' => $parent_id,
+                        'type' => PaymentType::RECEIVED()
                     ]);
 
                     $hand = Hand::where('child_id', $parent_id)->first();
@@ -164,7 +171,9 @@ class UserController extends Controller
                 PaymentHistory::create([
                     'user_id' => Auth::id(),
                     'point' => $registerFee,
-                    'Details' => 'User Registration'
+                    'Details' => $registerFee.' point successfully paid for '.$child_user->name. 'registration',
+                    'type' => PaymentType::SENT(),
+                    'payment_id' => $child_user->id
                 ]);
 
                 $child_user->update([

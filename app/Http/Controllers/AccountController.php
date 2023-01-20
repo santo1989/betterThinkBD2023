@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\NotificationStatus;
+use App\Enums\NotificationType;
 use App\Enums\PaymentType;
+use App\Models\Notification;
 use App\Models\User;
 use Faker\Provider\Payment;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,7 +22,7 @@ class AccountController extends Controller
         ]);
     }
 
-    public function Withdraw()
+    public function withdrawView()
     {
         return view('backend.user_interface.points.Withdraw_point');
     }
@@ -27,15 +31,25 @@ class AccountController extends Controller
     {
         return view('backend.Admin.points.Admin_generate_point');
     }
-    public function Withdraw_point(Request $request)
+    public function withdraw(Request $request): RedirectResponse
     {
-        $this->validate($request, [
-            'points' => 'required|numeric|min:1',
+        $data = $this->validate($request, [
+            'point' => 'required|numeric|min:1',
+            'method' => 'required|string'
         ]);
-        $user = User::find(Auth::user()->id);
-        $user->points = $user->points - $request->Withdraw_point;
-        $user-> save();
-        return redirect()->back();
+
+        if(Auth::user()->point<$data['point']){
+            return redirect()->back()->withInput()->withErrors("You don't have sufficient point");
+        }
+
+        Auth::user()->notifications()->create([
+            'type' => NotificationType::WITHDRAW(),
+            'message' => $data['point']." point requested for withdraw from ".Auth::user()->name,
+            'point' => $data['point'],
+            'status' => NotificationStatus::UNREAD(),
+        ]);
+
+        return redirect()->back()->withMessage($data['point'].' point withdraw requested successfully!');
     }
 
     public function reward(Request $request)
