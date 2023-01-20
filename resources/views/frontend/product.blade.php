@@ -39,7 +39,7 @@
                                         {{-- short description from long description of the product will be here --}}
 
                                         <div class="text-muted">
-                                            {{ Str::limit($product->discription, 100) }}
+                                            {{ Str::limit($product->discription1, 100) }}
                                         </div>
                                     </div>
                                     <!-- product price-->
