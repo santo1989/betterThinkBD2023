@@ -192,16 +192,7 @@
                                             <div class="mt-3" id="sponsor_name">
                                             </div>
                                         </div>
-                                        @php
-                                            $db_sponsor_id = DB::table('users')
-                                                ->select('uuid')
-                                                ->get()
-                                                ->toArray();
-                                            
-                                            dd($db_sponsor_id);
-                                            
-                                        @endphp
-                                        <script></script>
+                                        
 
                                     </div>
                                     <div class="w-1/2">

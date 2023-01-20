@@ -67,18 +67,18 @@
     {{-- @include('frontend.layouts.partials.nav') --}}
 
     <x-frontend.layouts.partials.nav />
-    <!-- Messenger Chat Plugin Code -->
-    <div id="fb-root">
 
-    </div>
 
-    <!-- Your Chat Plugin code -->
+    <!-- Messenger Chat plugin Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Chat plugin code -->
     <div id="fb-customer-chat" class="fb-customerchat">
     </div>
 
     <script>
         var chatbox = document.getElementById('fb-customer-chat');
-        chatbox.setAttribute("page_id", "100089652786812");
+        chatbox.setAttribute("page_id", "101073292895178");
         chatbox.setAttribute("attribution", "biz_inbox");
     </script>
 
@@ -87,7 +87,7 @@
         window.fbAsyncInit = function() {
             FB.init({
                 xfbml: true,
-                version: 'v13.0'
+                version: 'v15.0'
             });
         };
 
@@ -101,8 +101,7 @@
         }(document, 'script', 'facebook-jssdk'));
     </script>
 
-    <!-- Your Chat Plugin code -->
-
+    <!-- Page Content-->
     <!-- Section-->
 
     <section class="py-5">
