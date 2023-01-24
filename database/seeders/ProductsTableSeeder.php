@@ -13,6 +13,6 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Product::factory(10)->create();
+        \App\Models\Product::factory(9)->create();
     }
 }

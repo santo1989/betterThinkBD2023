@@ -55,7 +55,7 @@
                             </form> --}}
                         </td>
                     </tr>
-                    @break($sl==6)
+                    {{-- @break($sl==6) --}}
                     @endforeach
 
                 </tbody>

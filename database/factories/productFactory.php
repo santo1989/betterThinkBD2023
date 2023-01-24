@@ -21,8 +21,10 @@ class productFactory extends Factory
             'discount_amount' => $this->faker->numberBetween(1, 15),
 
             'logo' => $this->faker->imageUrl(400, 300, 'cats', true, 'Faker', true),
+            // 'logo' => $this->faker->image('public/images/products', 400, 300, null, false),
             'image' => $this->faker->imageUrl(400, 300, 'cats', true, 'Faker', true),
-            'category_id' => $this->faker->numberBetween(1, 10),
+            // 'image' => $this->faker->image('public/images/products', 400, 300, null, false),
+            'category_id' => $this->faker->numberBetween(1, 3),
         ];
     }
 }

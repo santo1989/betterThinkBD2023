@@ -23,11 +23,6 @@ class UserController extends Controller
         return view('backend.home');
     }
 
-
-    public function profiles()
-    {
-        return view('backend.Admin.users.profiles');
-    }
     public function index()
     {
 
@@ -44,7 +39,7 @@ class UserController extends Controller
                 ->orWhere('email', 'like', '%' . request('search') . '%');
         }
 
-        $users = $usersCollection;
+        $users = $usersCollection->get();
         $roles = Role::all();
 
         return view('backend.Admin.users.index', [
@@ -78,6 +73,7 @@ class UserController extends Controller
                 'name' => $request->name,
                 'role_id' => $request->role_id,
                 'password' => $request->password ? Hash::make($request->password) : $user->password,
+
             ];
 
             $user->update($requestData);
@@ -86,6 +82,51 @@ class UserController extends Controller
         } catch (QueryException $e) {
             return redirect()->back()->withInput()->withErrors($e->getMessage());
         }
+    }
+
+    public function profiles()
+    {
+        return view('backend.Admin.users.profiles');
+    }
+
+    public function profile_edit(User $user)
+    {
+        $roles = Role::latest()->get();
+        return view('backend.Admin.users.profile_edit', [
+            'user' => $user,
+            'roles' => $roles
+        ]);
+    }
+
+    public function profile_update(Request $request, User $user)
+    {
+        try {
+            $requestData = [
+                'nid' => $request->nid,
+                'dob' => $request->dob,
+                'bkash_no' => $request->bkash_no,
+                'bank_name' => $request->bank_name,
+                'branch' => $request->branch,
+                'account_no' => $request->account_no,
+            ];
+
+            if ($request->hasFile('picture')) {
+                $requestData['picture'] = $this->uploadImage($request->file('picture'));
+            }
+
+            $user->update($requestData);
+
+            return redirect()->route('home')->withMessage('Profile Successfully Updated!');
+        } catch (QueryException $e) {
+            return redirect()->back()->withInput()->withErrors($e->getMessage());
+        }
+    }
+
+  public function uploadImage($image)
+    {
+        $imageName = time() . '.' . $image->extension();
+        $image->move(public_path('images/users'), $imageName);
+        return $imageName;
     }
 
     public function destroy(User $user)
@@ -202,9 +243,19 @@ class UserController extends Controller
     public function autocomplete(Request $request)
     {
         $data = User::select("name")
-            ->where("uuid","LIKE","%{$request->input('query')}%")
+            ->where("uuid", $request->input('query'))
             ->get();
 
         return response()->json($data);
     }
+
+    public function search(Request $request)
+    {
+        $sponsor_id = $request->input('sponsor_id');
+        $userName = User::where('uuid', $sponsor_id)->get();
+        // $userName = $userName->name;
+        return $userName;
+    }
+
+
 }

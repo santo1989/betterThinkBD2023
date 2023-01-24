@@ -22,33 +22,27 @@
     </div>
 @endif
 {{-- <form action="{{ route('roles.update') }}" method="post"> --}}
-<form action="{{ route('users.update', ['user' => $user->id]) }}" method="post">
+<form action="{{ route('profile_update', ['user' => $user->id]) }}" method="post">
   <div>
     @csrf
     @method('put')
     
 
       <div class="row m-4">
-        <div class="col-sm-6">
-          <!-- text input -->
-          
-            
-         
-          <div class="form-group">
-              <label>Role</label>
-              <select name="role_id" id="role_id" class="form-select">
-                @foreach ($roles as $role)
-                <option value="{{ $role->id }}"   {{ $role->id == $user->role_id ? 'selected' : '' }} >{{ $role->name }}</option>
-                @endforeach
-            </select>
-          </div>
-        
-          </div>
-          <x-backend.form.input name="name" type="text" label="Name" :value="$user->name "/>
 
-          <x-backend.form.input name="password" type="password" label="Password" :value="$user->password"/>
+          <x-backend.form.input name="picture" type="file" label="Picture" :value="$user->picture"/>
 
-          <x-backend.form.input name="confirm_password" type="password" label="Confirm Password" :value="$user->confirm_password"/>
+          <x-backend.form.input name="nid" type="number" label="Nid" :value="$user->nid"/>
+
+          <x-backend.form.input name="dob" type="Date" label="Date of Birth" :value="$user->dob"/>
+
+          <x-backend.form.input name="bkash_no" type="text" label="Bkash No" :value="$user->bkash_no"/>
+
+          <x-backend.form.input name="bank_name" type="text" label="Bank Name" :value="$user->bank_name"/>
+
+          <x-backend.form.input name="branch" type="text" label="Branch Name" :value="$user->branch"/>
+
+          <x-backend.form.input name="account_no" type="text" label="Account No" :value="$user->account_no"/>
           
       </div>
       <button type="submit" class="btn btn-primary" style="margin-left: 33px">Save</button>

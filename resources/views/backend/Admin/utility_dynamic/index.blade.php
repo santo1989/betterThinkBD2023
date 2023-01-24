@@ -41,7 +41,7 @@
             <tr>
                 <td>{{ $utilityDynamic->name }}</td>
                 <td>{{ $utilityDynamic->description }}</td>
-                <td><img src="{{ asset('images/utilityDynamic'.$utilityDynamic->picture) }}" width="100px"></td>
+                <td><img src="{{ asset('images/utilityDynamic/'.$utilityDynamic->picture) }}"  height="100px" width="100px"></td>
                 <td>{{ $utilityDynamic->type_of_placement }}</td>
                 <td>
                     <a href="{{ route('utility_dynamic.show', $utilityDynamic->id) }}" class="btn btn-primary">View</a>

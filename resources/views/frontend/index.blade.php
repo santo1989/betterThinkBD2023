@@ -3,50 +3,50 @@
         $categories = App\Models\Category::all();
         // $utilityDynamics =  App\Models\UtilityDynamic::where('')
         $products = App\Models\Product::all();
-		$galary_utilities = App\Models\UtilityDynamic::where('type_of_placement', 1)->get();
-		$logos = App\Models\UtilityDynamic::where('type_of_placement', 2)->get();
+        $galary_utilities = App\Models\UtilityDynamic::where('type_of_placement', 2)->get();
+        $logos = App\Models\UtilityDynamic::where('type_of_placement', 1)->get();
     @endphp
-<div class="top_gallary_container">
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            @forelse($galary_utilities as $key => $product)
-                <li data-target="#carouselExampleIndicators" data-slide-to="{{ $key }}"
-                    class="{{ $key == 0 ? 'active' : '' }}"></li>
-            @empty
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            @endforelse
-        </ol>
-        <div class="carousel-inner">
-            @forelse($galary_utilities as $key => $product)
-                <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                    <div class="img-glary">
-                        <img src="{{ asset('images/utilityDynamic/' . $product->picture) }}" class="d-block w-100" alt="{{ $product->name }}"
-                            height="300px">
+    <div class="top_gallary_container">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                @forelse($galary_utilities as $key => $product)
+                    <li data-target="#carouselExampleIndicators" data-slide-to="{{ $key }}"
+                        class="{{ $key == 0 ? 'active' : '' }}"></li>
+                @empty
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                @endforelse
+            </ol>
+            <div class="carousel-inner">
+                @forelse($galary_utilities as $key => $product)
+                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                        <div class="img-glary">
+                            <img src="{{ asset('images/utilityDynamic/' . $product->picture) }}" class="d-block w-100"
+                                alt="{{ $product->name }}" height="300px">
+                        </div>
+                        <div class="carousel-caption">
+                            <h3>{{ $product->name }}</h3>
+                            <p>{{ $product->description }}</p>
+                        </div>
                     </div>
-                    <div class="carousel-caption">
-                        <h3>{{ $product->name }}</h3>
-                        <p>{{ $product->description }}</p>
+                @empty
+                    <div class="carousel-item active">
+                        <div class="img-glary">
+                            <div class="col-md-12">
+                                <div class="alert alert-danger">
+                                    No Image found for show
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            @empty
-                <div class="carousel-item active">
-                    <div class="img-glary">
-                        <div class="col-md-12">
-					<div class="alert alert-danger">
-						No Image found for show
-					</div>
-				</div>
-                    </div>
-                </div>
-            @endforelse
-        </div>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
+                @endforelse
+            </div>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
 
+        </div>
     </div>
-</div>
 
     <hr class="hr1 bg-info p-1 mt-2 mb-2">
 
@@ -97,8 +97,8 @@
                     @forelse ($logos as $key => $product)
                         <div class="col-md-2">
                             <div class="card">
-                                <img src="{{ asset('images/utilityDynamic/' . $product->picture) }}" class="card-img-top img-thumbnail"
-                                    alt="{{ $product->name }}">
+                                <img src="{{ asset('images/utilityDynamic/' . $product->picture) }}"
+                                    class="card-img-top img-thumbnail" alt="{{ $product->name }}">
                                 {{-- <div class="card-body">
                                     <h5 class="card-title">{{ $product->title }}</h5>
                                     <p class="card-text">{{ $product->description1 }}</p>
@@ -113,12 +113,12 @@
                     <div class="row">
             @endif
             @endif
-			@empty
-				<div class="col-md-12">
-					<div class="alert alert-danger">
-						No Logo for show
-					</div>
-				</div>
+        @empty
+            <div class="col-md-12">
+                <div class="alert alert-danger">
+                    No Logo for show
+                </div>
+            </div>
 
             @endforelse
         </div>
@@ -212,10 +212,10 @@
             }
 
             /* .card-img-top {
-          width: 100%;
-          height: 200px;
-          object-fit: cover;
-        } */
+                  width: 100%;
+                  height: 200px;
+                  object-fit: cover;
+                } */
             @media (min-width: 576px) {
 
                 /* Show 4 products per row on screens larger than 576px */
@@ -223,7 +223,7 @@
                     width: 25%;
                 }
 
-				
+
             }
 
             @media (min-width: 768px) {
@@ -242,15 +242,13 @@
                 }
             }
 
-			@media (min-width: 1200px) {
+            @media (min-width: 1200px) {
 
-				/* Show 10 products per row on screens larger than 1200px */
-				.carousel-item .col-md-2 {
-					width: 10%;
-				}
-			}
-
-			
+                /* Show 10 products per row on screens larger than 1200px */
+                .carousel-item .col-md-2 {
+                    width: 10%;
+                }
+            }
         </style>
     @endpush
 
@@ -269,7 +267,6 @@
                     interval: 3000
                 })
             });
-			
         </script>
     @endpush
 </x-frontend.layouts.master>

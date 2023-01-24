@@ -42,7 +42,7 @@
                     <div class="form-group">
                         <label for="picture">Picture</label>
                         <input type="file" class="form-control" id="picture" name="picture">
-                        <img src="{{ asset('images/utilityDynamic' . $utilityDynamic->picture) }}" width="50">
+                        <img src="{{ asset('images/utilityDynamic' . $utilityDynamic->picture) }}" height="100px" width="100px">
                     </div>
                     <div class="form-group">
                         <label for="type_of_placement">Type of Placement</label>

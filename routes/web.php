@@ -52,6 +52,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/home', [UserController::class, 'home'])->name('home');
     Route::get('/profiles', [UserController::class, 'profiles'])->name('profiles');
 
+    Route::get('/profiles/{user}/edit', [UserController::class, 'profile_edit'])->name('profile_edit');
+
+    Route::put('/profile/{user}', [UserController::class, 'profile_update'])->name('profile_update');
+
     //role
 
     Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
@@ -164,6 +168,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/notification/{message}/{notification}', [NotificationController::class, 'showForUpdating'])->name("notification_showForUpdating");
+
+//search autocomplete
+
+Route::get('search', 'UserController@search')->name('search');
 
 Route::post('/autocomplete', [UserController::class, 'autocomplete'])->name("autocomplete.fetch");
 require __DIR__ . '/auth.php';

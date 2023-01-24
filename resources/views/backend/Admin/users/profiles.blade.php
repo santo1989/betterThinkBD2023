@@ -2,7 +2,9 @@
 
     {{-- Profile of {{ Auth::user()->name }} --}}
 
-
+    @php
+        $user = App\Models\User::where('id', Auth::user()->id)->first();
+    @endphp
 
     <div class="container">
         <div class="main-body">
@@ -11,11 +13,14 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
-                                <img src="{{ asset('images/users/' . Auth::user()->picture) }}" class="rounded-circle"
-                                    width="150" alt="{{ Auth::user()->name }}">
+                                <img src="{{ asset('images/users/' . $user->picture) }}" class="rounded-circle"
+                                    width="150" alt="{{ $user->name }}">
                                 <div class="mt-3">
-                                    <h4>{{ Auth::user()->name ?? '' }}</h4>
-                                    <p class="text-muted font-size-sm">{{ Auth::user()->email }}</p>
+                                    <h4>{{ $user->name ?? '' }}</h4>
+                                    <p class="text-muted font-size-sm">{{ $user->email }}</p>
+                                    <a class="btn btn-warning btn-sm"
+                                        href="{{ route('profile_edit', ['user' => $user->id]) }}"><i class="fa fa-edit"
+                                            aria-hidden="true"></i>Edit</a>
                                 </div>
                             </div>
                         </div>
@@ -24,12 +29,12 @@
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                 <h6 class="mb-0">Sponser</h6>
-                                <span class="text-secondary">{{ Auth::user()->sponser_id ?? '' }}</span>
+                                <span class="text-secondary">{{ $user->sponser_id ?? '' }}</span>
                             </li>
 
                             <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                 <h6 class="mb-0">Point</h6>
-                                <span class="text-secondary">{{ Auth::user()->point ?? '' }}</span>
+                                <span class="text-secondary">{{ $user->point ?? '0' }}</span>
 
                             </li>
                         </ul>
@@ -43,7 +48,7 @@
                                     <h6 class="mb-0">Bkash</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    {{ Auth::user()->bkash_no ?? '' }}
+                                    {{ $user->bkash_no ?? '' }}
                                 </div>
                             </div>
                             <hr>
@@ -52,62 +57,63 @@
                                     <h6 class="mb-0">Bank Information</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                   Account No: {{ Auth::user()->account_no ?? '' }},<br /> Bank Name: {{ Auth::user()->bank_name ?? '' }},<br /> Branch:
-                                    {{ Auth::user()->branch ?? '' }}
+                                    Account No: {{ $user->account_no ?? '' }},<br /> Bank Name:
+                                    {{ $user->bank_name ?? '' }},<br /> Branch:
+                                    {{ $user->branch ?? '' }}
                                 </div>
                             </div>
                             <hr>
                             @php
-                                $sponser = App\Models\User::where('uuid', Auth::user()->sponsor_id)->first();
+                                $sponser = App\Models\User::where('uuid', $user->sponsor_id)->first();
                                 // dd($sponser)
                             @endphp
-                            
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        
-                                        <h6 class="mb-0">Sponsor Information</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
 
-                                        {{ $sponser->name ?? '' }}, {{ $sponser->mobile ?? '' }}
-                                    </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+
+                                    <h6 class="mb-0">Sponsor Information</h6>
                                 </div>
-                                <hr>
-                            
+                                <div class="col-sm-9 text-secondary">
+
+                                    {{ $sponser->name ?? '' }}, {{ $sponser->mobile ?? '' }}
+                                </div>
+                            </div>
+                            <hr>
+
                             @php
-                                $payment = App\Models\User::where('id', Auth::user()->payment_id)->first();
+                                $payment = App\Models\User::where('id', $user->payment_id)->first();
                             @endphp
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Payment Information</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-
-
-                                        {{ $payment->name ?? '' }}, {{ $payment->mobile ?? '' }}
-
-
-                                    </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Payment Information</h6>
                                 </div>
+                                <div class="col-sm-9 text-secondary">
 
-                                <hr>
 
-                           <div class="row">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Mobile</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">{{ Auth::user()->mobile }}</div>
+                                    {{ $payment->name ?? '' }}, {{ $payment->mobile ?? '' }}
+
+
                                 </div>
+                            </div>
 
-                                <hr>
-                                 <div class="row">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">National ID</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">{{ Auth::user()->nid }}</div>
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Mobile</h6>
                                 </div>
+                                <div class="col-sm-9 text-secondary">{{ $user->mobile }}</div>
+                            </div>
 
-                                <hr>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">National ID</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">{{ $user->nid }}</div>
+                            </div>
+
+                            <hr>
                         </div>
                     </div>
 

@@ -61,9 +61,9 @@
                       @foreach ($users as $user)
                       <tr>
                           <td>{{ ++$sl }}</td>
-                          <td>{{ $user->name }}</td>
-                          <td>{{ $user->email }}</td>
-                          <td>{{ $user->role->name }}</td>
+                          <td>{{ $user->name ??null }}</td>
+                          <td>{{ $user->email ??null }}</td>
+                          <td>{{ $user->role->name ?? null }}</td>
                           <td>
   
                               <a class="btn btn-warning btn-sm" href="{{ route('users.edit', ['user' => $user->id]) }}">Edit</a>

@@ -77,201 +77,211 @@
 
                             <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                                 @csrf
+                                @php
+                                    $UUID = App\Models\User::all()->last()->uuid;
+                                @endphp
 
-                                <div class="flex justify-content-between mt-3">
-                                    <!-- Name -->
-                                    <div class="w-1/2">
-                                        <div class="mt-3">
-                                            <x-label for="name" :value="__('Name')" />
-
-                                            <x-input id="name" class="block mt-1 w-full" type="text"
-                                                name="name" :value="old('name')" required autofocus />
-
-                                        </div>
-
-                                        <!-- Email Address -->
-                                        <div class="mt-3">
-                                            <x-label for="email" :value="__('Email')" />
-
-                                            <x-input id="email" class="block mt-1 w-full" type="email"
-                                                name="email" :value="old('email')" required />
-                                        </div>
-
-                                        <!-- Password -->
-                                        <div class="mt-3">
-                                            <x-label for="password" :value="__('Password')" />
-
-                                            <x-input id="password" class="block mt-1 w-full" type="password"
-                                                name="password" required autocomplete="new-password" />
-                                        </div>
-
-                                        <!-- Confirm Password -->
-                                        <div class="mt-3">
-                                            <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                                            <x-input id="password_confirmation" class="block mt-1 w-full"
-                                                type="password" name="password_confirmation" required />
-                                        </div>
-
-
-
+                                <div class="w-1">
+                                    <div class="mt-3">
+                                        Last Account: {{ $UUID }}
                                     </div>
+                                    <div class="flex justify-content-between mt-3">
 
-                                    {{-- image upload --}}
+                                        <!-- Name -->
+                                        <div class="w-1/2">
+                                            <div class="mt-3">
+                                                <x-label for="name" :value="__('Name')" />
 
-                                    <div class="w-1/2">
-                                        <div class="mt-3 mr-4">
-                                            <x-label for="imageUpload" :value="__('Picture')" />
+                                                <x-input id="name" class="block mt-1 w-full" type="text"
+                                                    name="name" :value="old('name')" required autofocus />
 
-                                            <x-input id="image" class="block mt-1 ml-2 w-full" type="file"
-                                                name="picture" :value="old('picture')" required autofocus accept="image/*"
-                                                onchange="loadFile(event)" />
-
-                                        </div>
-
-                                        <div class="mt-3 ">
-                                            <img class="img-thumbnail mx-auto d-block" id="output" height="100px"
-                                                width="100px" />
-                                            <script>
-                                                var loadFile = function(event) {
-                                                    var output = document.getElementById('output');
-                                                    output.src = URL.createObjectURL(event.target.files[0]);
-                                                    output.onload = function() {
-                                                        URL.revokeObjectURL(output.src) // free memory
-                                                    }
-                                                };
-                                            </script>
-
-                                        </div>
-                                        {{-- end image upload --}}
-
-                                    </div>
-
-                                </div>
-                                <div class="flex justify-content-between mt-3">
-                                    <div class="w-1/2">
-
-                                        {{-- mobile --}}
-                                        <div class="mt-3">
-                                            <x-label for="mobile" :value="__('Mobile')" />
-
-                                            <x-input id="mobile" class="block mt-1 w-full" type="text"
-                                                name="mobile" :value="old('mobile')" required autofocus />
-
-                                        </div>
-
-                                        {{-- nid --}}
-
-                                        <div class="mt-3">
-                                            <x-label for="nid" :value="__('NID')" />
-
-                                            <x-input id="nid" class="block mt-1 w-full" type="text"
-                                                name="nid" :value="old('nid')" required autofocus />
-
-                                        </div>
-
-
-                                        {{-- Dob --}}
-
-                                        <div class="mt-3">
-                                            <x-label for="dob" :value="__('Date of Birth')" />
-
-                                            <x-input id="dob" class="block mt-1 w-full" type="date"
-                                                name="dob" :value="old('dob')" required autofocus />
-
-                                        </div>
-
-                                        {{-- sponsor id --}}
-                                        <div class="mt-3">
-
-                                            <x-label for="sponsor_id" :value="__('Sponsor ID')" />
-
-                                            <x-input id="sponsor_id" class="block mt-1 w-full" type="text"
-                                                name="sponsor_id" :value="old('sponsor_id')" required autofocus />
-
-                                            <div class="mt-3" id="sponsor_name">
                                             </div>
+
+                                            <!-- Email Address -->
+                                            <div class="mt-3">
+                                                <x-label for="email" :value="__('Email')" />
+
+                                                <x-input id="email" class="block mt-1 w-full" type="email"
+                                                    name="email" :value="old('email')" required />
+                                            </div>
+
+                                            <!-- Password -->
+                                            <div class="mt-3">
+                                                <x-label for="password" :value="__('Password')" />
+
+                                                <x-input id="password" class="block mt-1 w-full" type="password"
+                                                    name="password" required autocomplete="new-password" />
+                                            </div>
+
+                                            <!-- Confirm Password -->
+                                            <div class="mt-3">
+                                                <x-label for="password_confirmation" :value="__('Confirm Password')" />
+
+                                                <x-input id="password_confirmation" class="block mt-1 w-full"
+                                                    type="password" name="password_confirmation" required />
+                                            </div>
+
+
+
                                         </div>
-                                        
+
+                                        {{-- image upload --}}
+
+                                        <div class="w-1/2">
+                                            <div class="mt-3 mr-4">
+                                                <x-label for="imageUpload" :value="__('Picture')" />
+
+                                                <x-input id="image" class="block mt-1 ml-2 w-full" type="file"
+                                                    name="picture" :value="old('picture')" required autofocus accept="image/*"
+                                                    onchange="loadFile(event)" />
+
+                                            </div>
+
+                                            <div class="mt-3 ">
+                                                <img class="img-thumbnail mx-auto d-block" id="output" height="100px"
+                                                    width="100px" />
+                                                <script>
+                                                    var loadFile = function(event) {
+                                                        var output = document.getElementById('output');
+                                                        output.src = URL.createObjectURL(event.target.files[0]);
+                                                        output.onload = function() {
+                                                            URL.revokeObjectURL(output.src) // free memory
+                                                        }
+                                                    };
+                                                </script>
+
+                                            </div>
+                                            {{-- end image upload --}}
+
+                                        </div>
 
                                     </div>
-                                    <div class="w-1/2">
+                                    <div class="flex justify-content-between mt-3">
+                                        <div class="w-1/2">
 
-                                        {{-- bkash no --}}
+                                            {{-- mobile --}}
+                                            <div class="mt-3">
+                                                <x-label for="mobile" :value="__('Mobile')" />
 
-                                        <div class="mt-3">
-                                            <x-label for="bkash_no" :value="__('Bkash No')" />
+                                                <x-input id="mobile" class="block mt-1 w-full" type="text"
+                                                    name="mobile" :value="old('mobile')" required autofocus />
 
-                                            <x-input id="bkash_no" class="block mt-1 w-full" type="text"
-                                                name="bkash_no" :value="old('bkash_no')" required autofocus />
+                                            </div>
+
+                                            {{-- nid --}}
+
+                                            <div class="mt-3">
+                                                <x-label for="nid" :value="__('NID')" />
+
+                                                <x-input id="nid" class="block mt-1 w-full" type="text"
+                                                    name="nid" :value="old('nid')" required autofocus />
+
+                                            </div>
+
+
+                                            {{-- Dob --}}
+
+                                            <div class="mt-3">
+                                                <x-label for="dob" :value="__('Date of Birth')" />
+
+                                                <x-input id="dob" class="block mt-1 w-full" type="date"
+                                                    name="dob" :value="old('dob')" required autofocus />
+
+                                            </div>
+
+                                            {{-- sponsor id --}}
+                                            <div class="mt-3">
+
+                                                <x-label for="sponsor_id" :value="__('Sponsor ID')" />
+
+                                                <x-input id="sponsor_id" class="block mt-1 w-full" type="text"
+                                                    name="sponsor_id" :value="old('sponsor_id')" required autofocus />
+
+                                                <label class="mt-3" id="sponsor_name">
+
+                                                </label>
+
+                                            </div>
+
 
                                         </div>
+                                        <div class="w-1/2">
 
-                                        {{-- bank name --}}
+                                            {{-- bkash no --}}
 
-                                        <div class="mt-3">
-                                            <x-label for="bank_name" :value="__('Bank Name')" />
+                                            <div class="mt-3">
+                                                <x-label for="bkash_no" :value="__('Bkash No')" />
 
-                                            <x-input id="bank_name" class="block mt-1 w-full" type="text"
-                                                name="bank_name" :value="old('bank_name')" required autofocus />
+                                                <x-input id="bkash_no" class="block mt-1 w-full" type="text"
+                                                    name="bkash_no" :value="old('bkash_no')" required autofocus />
 
-                                        </div>
+                                            </div>
 
-                                        {{-- branch name --}}
+                                            {{-- bank name --}}
 
-                                        <div class="mt-3">
-                                            <x-label for="branch_name" :value="__('Branch Name')" />
+                                            <div class="mt-3">
+                                                <x-label for="bank_name" :value="__('Bank Name')" />
 
-                                            <x-input id="branch_name" class="block mt-1 w-full" type="text"
-                                                name="branch_name" :value="old('branch_name')" required autofocus />
+                                                <x-input id="bank_name" class="block mt-1 w-full" type="text"
+                                                    name="bank_name" :value="old('bank_name')" required autofocus />
 
-                                        </div>
+                                            </div>
 
-                                        {{-- account no --}}
+                                            {{-- branch name --}}
 
-                                        <div class="mt-3">
-                                            <x-label for="account_no" :value="__('Account No')" />
+                                            <div class="mt-3">
+                                                <x-label for="branch" :value="__('Branch Name')" />
 
-                                            <x-input id="account_no" class="block mt-1 w-full" type="text"
-                                                name="account_no" :value="old('account_no')" required autofocus />
+                                                <x-input id="branch" class="block mt-1 w-full" type="text"
+                                                    name="branch" :value="old('branch')" required autofocus />
 
-                                        </div>
+                                            </div>
 
-                                    </div>
-                                </div>
+                                            {{-- account no --}}
 
-                                <div class="flex justify-content-between mt-3">
-                                    <div class="w-1/2">
+                                            <div class="mt-3">
+                                                <x-label for="account_no" :value="__('Account No')" />
 
-                                        {{-- payment Id  --}}
-                                        <div class="mt-3">
-                                            <x-label for="payment_id" :value="__('Payment ID')" />
+                                                <x-input id="account_no" class="block mt-1 w-full" type="text"
+                                                    name="account_no" :value="old('account_no')" required autofocus />
 
-                                            <x-input id="payment_id" class="block mt-1 w-full" type="text"
-                                                name="payment_id" :value="old('payment_id')" required autofocus />
-
-                                            <div class="mt-3" id="payment_name">
                                             </div>
 
                                         </div>
-
                                     </div>
 
-                                    <div class="w-1/2">
+                                    <div class="flex justify-content-between mt-3">
+                                        <div class="w-1/2">
 
-                                        <div class="mt-3">
-                                            {{-- <a class="underline text-sm text-gray-600 hover:text-gray-900"
+                                            {{-- payment Id  --}}
+                                            <div class="mt-3">
+                                                <x-label for="payment_id" :value="__('Payment ID')" />
+
+                                                <x-input id="payment_id" class="block mt-1 w-full" type="text"
+                                                    name="payment_id" :value="old('payment_id')" required autofocus />
+
+                                                <div class="mt-3" id="payment_name">
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="w-1/2">
+
+                                            <div class="mt-3">
+                                                {{-- <a class="underline text-sm text-gray-600 hover:text-gray-900"
                                             href="{{ route('login') }}">
                                             {{ __('Already registered?') }}
                                         </a>
                                         <x-button class="grid place-items-center h-screen">
                                                 {{ __('Submit') }}
                                             </x-button> --}}
-                                            <button type="submit"
-                                                class="btn btn-outline-primary mx-auto d-block mt-3">Submit</button>
+                                                <button type="submit"
+                                                    class="btn btn-outline-primary mx-auto d-block mt-3">Submit</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                             </form>
                         </div>
                     </div>
@@ -325,59 +335,38 @@
                 });
             });
 
-            $(document).ready(function() {
-                $('#sponsor_id').onchange(function() {
-                    alert(var query = $(this).val());
-                    if (query != '') {
-                        var _token = $('input[name="_token"]').val();
-                        $.ajax({
-                            url: "{{ route('autocomplete.fetch') }}",
-                            method: "POST",
-                            data: {
-                                query: query,
-                                _token: _token
-                            },
-                            success: function(data) {
-                                $('#sponsor_name').fadeIn();
-                                $('#sponsor_name').html(data);
-                            }
-                        });
+            // $(document).ready(function() {
+                
+            //     $('#sponsor_id').change( function() {
+            //         $value = $(this).val();
+            //         console.log($value);
+            //         $.ajax({
+            //             type: 'get',
+            //             url: '{{ route('search') }}',
+            //             data: {
+            //                 'sponsor_id': $value
+            //             },
+            //             success: function(data) {
+            //                 $('#sponsor_name').text(data);
+            //             }
+            //         });
+            //     });
+            // });
+            let sponsor_id = document.getElementById('sponsor_id');
+            sponsor_id.addEventListener('key', function() {
+                var sponsor_id = this.value;
+                console.log(sponsor_id);
+                $.ajax({
+                    type: 'get',
+                    url: '{{ route('search') }}',
+                    data: {
+                        'sponsor_id': sponsor_id
+                    },
+                    success: function(data) {
+                        $('#sponsor_name').text(data);
                     }
-                });
-
-                $(document).on('click', 'li', function() {
-                    $('#sponsor_id').val($(this).text());
-                    $('#sponsor_name').fadeOut();
-                });
-            });
-
-
-            $(document).ready(function() {
-                $('#payment_id').keyup(function() {
-                    var query = $(this).val();
-                    if (query != '') {
-                        var _token = $('input[name="_token"]').val();
-                        $.ajax({
-                            url: "{{ route('autocomplete.fetch') }}",
-                            method: "POST",
-                            data: {
-                                query: query,
-                                _token: _token
-                            },
-                            success: function(data) {
-                                $('#payment_name').fadeIn();
-                                $('#payment_name').html(data);
-                            }
-                        });
-                    }
-                });
-
-                $(document).on('click', 'li', function() {
-                    $('#payment_id').val($(this).text());
-                    $('#payment_name').fadeOut();
                 });
             });
         </script>
-        <script></script>
     @endpush
 </x-guest-layout>
