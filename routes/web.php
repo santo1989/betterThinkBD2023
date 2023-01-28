@@ -24,6 +24,8 @@ use Illuminate\Support\Facades\Route;
 //frontend
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::get('product_search', [ProductController::class, 'product_search'])->name('product_search');
+Route::get('product_division_search', [ProductController::class, 'product_division_search'])->name('product_division_search');
 
 Route::get('/category-products/{id}', [HomeController::class, 'category_details'])->name('category_details');
 
@@ -172,6 +174,7 @@ Route::get('/notification/{message}/{notification}', [NotificationController::cl
 //search autocomplete
 
 Route::get('search', 'UserController@search')->name('search');
+
 
 Route::post('/autocomplete', [UserController::class, 'autocomplete'])->name("autocomplete.fetch");
 require __DIR__ . '/auth.php';

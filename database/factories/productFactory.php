@@ -17,7 +17,7 @@ class productFactory extends Factory
             'description2' => $this->faker->paragraph,
             'short_address' => $this->faker->address,
             'long_address' => $this->faker->address,
-            'point_needed' => $this->faker->numberBetween(1001, 2000),
+            // 'point_needed' => $this->faker->numberBetween(1001, 2000),
             'discount_amount' => $this->faker->numberBetween(1, 15),
 
             'logo' => $this->faker->imageUrl(400, 300, 'cats', true, 'Faker', true),
@@ -25,6 +25,8 @@ class productFactory extends Factory
             'image' => $this->faker->imageUrl(400, 300, 'cats', true, 'Faker', true),
             // 'image' => $this->faker->image('public/images/products', 400, 300, null, false),
             'category_id' => $this->faker->numberBetween(1, 3),
+            'division_id' => $this->faker->numberBetween(1, 8),
+            'district_id' => $this->faker->numberBetween(1, 64),
         ];
     }
 }

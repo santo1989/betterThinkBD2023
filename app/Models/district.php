@@ -5,28 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class district extends Model
 {
     use HasFactory;
-
     protected $guarded = [];
-
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
 
     public function division()
     {
         return $this->belongsTo(division::class);
     }
 
-    public function district()
+    public function products()
     {
-        return $this->belongsTo(district::class);
+        return $this->hasMany(Product::class);
     }
-
-    
-
-    
 }

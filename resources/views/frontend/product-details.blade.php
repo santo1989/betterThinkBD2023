@@ -18,7 +18,8 @@
                     {{-- <div class="icon-wrapper">
                         <i class="fas fa-hammer"></i>
                     </div> --}}
-                    <h3 class="h3-heading">{{ $product->short_address }}</h3>
+                    {{-- @dd($product->division) --}}
+                    <h3 class="h3-heading">{{ $product->division->name }}<br> ({{ $product->division->bn_name }})</h3>
                     {{-- <p>
                         {{ $product->short_address }}
                     </p> --}}
@@ -40,7 +41,7 @@
                     {{-- <div class="icon-wrapper">
                         <i class="fas fa-wrench"></i>
                     </div> --}}
-                    <h3 class="h3-heading">{{ $product->long_address }}</h3>
+                    <h3 class="h3-heading">{{ $product->district->name }} <br> ({{ $product->district->bn_name }})</h3>
                     {{-- <p>
                         {{ $product->long_address }} 
                     </p> --}}
@@ -56,7 +57,7 @@
                             src="https://img.favpng.com/21/3/25/logo-symbol-graphic-design-png-favpng-sphXDsdhAQSvnRLYPLzdASPRK_t.jpg"
                             height="100" alt="..." /> --}}
                         <img class="card-img-top" src="{{ asset('images/products/' . $product->logo) }}"
-                                        height="100" alt="..." />
+                                        height="100px" width="100px" alt="..." />
                     </div>
                     <!-- product image-->
                     <div class="company_image-round">
@@ -64,11 +65,12 @@
                             src="https://png.pngtree.com/png-clipart/20210906/ourmid/pngtree-business-office-building-construction-png-image_3865022.jpg"
                             height="200" alt="..." />--}}
                        <img class="card-img-top" src="{{ asset('images/products/' . $product->image) }}"
-                                        height="200" alt="..." /> 
+                                        height="200px" width="200px" alt="..." /> 
                     </div>
                     <h3>{{ $product->title }}</h3>
                     <p>
-                        {{ $product->short_address }}
+                        {{ $product->short_address }} <br>
+                        {{ $product->long_address }}
                     </p>
                 </div>
             </div>

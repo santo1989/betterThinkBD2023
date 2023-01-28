@@ -14,6 +14,7 @@
             <p>
              <img src="{{ asset('ui/frontend/images/assets/hospital.jpg') }}" alt="" heigt=50px; width=60px; class="image-log rounded">
             </p>
+            <p class="btn btn-outline">View More</p>
           </div>
         </div>
         <div class="column">
@@ -25,6 +26,7 @@
             <p>
               <img src="{{ asset('ui/frontend/images/assets/pharmacy.jpg') }}" alt="" heigt=50px; width=60px; class="image-log rounded">
             </p>
+            <p class="btn btn-outline">View More</p>
           </div>
         </div>
         <div class="column">
@@ -36,6 +38,7 @@
             <p>
              <img src="{{ asset('ui/frontend/images/assets/SuperShop.jpg') }}" alt="" heigt=50px; width=60px; class="image-log rounded">
             </p>
+            <p class="btn btn-outline">View More</p>
           </div>
         </div>
         <div class="column">
@@ -47,6 +50,7 @@
             <p>
               <img src="{{ asset('ui/frontend/images/assets/Hotel.jpg') }}" alt="" heigt=50px; width=60px; class="image-log rounded">
             </p>
+            <p class="btn btn-outline">View More</p>
           </div>
         </div>
         <div class="column">
@@ -57,6 +61,8 @@
             <h3>Travel</h3>
             <p>
                <img src="{{ asset('ui/frontend/images/assets/Travel.jpg') }}" alt="" heigt=50px; width=60px; class="image-log rounded">
+            </p>
+            <p class="btn btn-outline">View More</p>
           </div>
         </div>
         <div class="column">
@@ -68,6 +74,7 @@
             <p>
                <img src="{{ asset('ui/frontend/images/assets/Restaurant.jpg') }}" alt="" heigt=50px; width=60px; class="image-log rounded">
             </p>
+            <p class="btn btn-outline">View More</p>
           </div>
         </div>
       </div>
@@ -76,7 +83,6 @@
     @push('css')
 
     <style>
-
         * {
   padding: 0;
   margin: 0;
@@ -84,7 +90,7 @@
   font-family: "Poppins", sans-serif;
 }
 section {
-  height: 100vh;
+  height: 100%;
   width: 100%;
   display: grid;
   place-items: center;

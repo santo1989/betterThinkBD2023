@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\division;
 use App\Models\Notification;
 use App\Models\Product;
 use App\Models\User;
@@ -15,13 +16,15 @@ class HomeController extends Controller
     {
         $categories = Category::all();
         $products = Product::all();
-        return view('frontend.index', compact('categories', 'products'));
+        $divisions = division::all();
+        return view('frontend.index', compact('categories', 'products', 'divisions'));
     }
 
     public function category_details($id)
     {
         $products = Product::where('category_id', $id)->get();
-        return view('frontend.product', compact('products'));
+        $divisions = division::all();
+        return view('frontend.product', compact('products', 'divisions'));
     }
 
     public function product_details($id)

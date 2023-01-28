@@ -13,7 +13,7 @@
                 </h5>
                 <!-- product reviews-->
                 <div class="d-flex justify-content-center small text-warning mb-2">
-                        {{ $product->description, 10 }}
+                        {{ $product->description}}
                 </div>
                 <!-- product price-->
             </div>

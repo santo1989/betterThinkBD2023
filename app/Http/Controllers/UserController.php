@@ -141,7 +141,7 @@ class UserController extends Controller
 
     public function approvePage(Notification $notification)
     {
-        return view('backend.user_interface.approved.approve', compact('notification'));
+        return view('backend.User_Interface.approved.approve', compact('notification'));
     }
 
     public function approve(Request $request)

@@ -1,47 +1,31 @@
 <x-frontend.layouts.master>
     <div class="container">
-        @if (is_null($products) || empty($products))
+        @if (is_null($productList) || empty($productList))
             <div class="row" id="empty">
                 <div class="col-md-12 col-lg-12 col-sm-12">
                     <h1 class="text-danger text-center"> <strong>Currently No Information Available!</strong> </h1>
                 </div>
             </div>
         @else
-            <div>
-
-                {{-- dropdown for division --}}
-
-                <div class="row">
-                    <form>
-                        <div class="mb-3">
-                            <label for="division_id" class="form-label">Division</label>
-                            <select class="form-control" name="division_id" id="division_id">
-                                <option selected>Select Division</option>
-                                @foreach ($divisions as $division)
-                                    <option value="{{ $division->id }}">{{ $division->name }}-{{ $division->bn_name }}
-                                    </option>
-                                @endforeach
-                            </select>
+          {{--  <div>
+                 @dd($productList) --}}
+                {{-- <div class="mb-5">
+                    <form action="#">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control " aria-describedby="button-addon2" name='search'
+                                placeholder="Search" />
                         </div>
-                        {{-- @forelse ($products as $product)
-                            <input type="hidden" name="product_id" value="{{ $product->category_id }}">
-                            @break($loop->first)
-                        @empty
-                        @endforelse --}}
                     </form>
-                </div>
-
-                {{-- dropdown for district --}}
-
-            </div>
+                </div> 
+            </div>--}}
             <div class="row justify-content-center">
-                @forelse ($products as $product)
+                @forelse ($productList as $product)
                     {{-- <x-frontend.product-card :product="$product" /> --}}
                     <div class="col-md-3 col-sm-12 col-xl-3 mb-5" id="card_event">
                         <div class="card h-100">
                             <!-- product image-->
                             <img class="card-img-top" src="{{ asset('images/products/' . $product->image) }}"
-                                height="180" alt="{{ $product->title }}" />
+                                height="180px" width="100px" alt="{{ $product->title }}" />
                             <!-- product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">

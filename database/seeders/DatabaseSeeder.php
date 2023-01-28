@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
             BlogsTableSeeder::class,
             TypesTableSeeder::class,
             PointsTableSeeder::class,
+            DivisionsTableSeeder::class,
+            DistrictsTableSeeder::class,
 
         ]);
 

@@ -16,6 +16,8 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('category_id')->nullable();
+            $table->unsignedBigInteger('division_id')->nullable();
+            $table->unsignedBigInteger('district_id')->nullable();
             $table->string('title')->nullable();
             $table->string('logo')->nullable();
             $table->string('image')->nullable();
@@ -24,7 +26,6 @@ class CreateProductsTable extends Migration
             $table->text('description1')->nullable();
             $table->text('description2')->nullable();
             $table->double('discount_amount')->nullable();
-            $table->integer('point_needed')->nullable();
             $table->timestamps();
         });
     }

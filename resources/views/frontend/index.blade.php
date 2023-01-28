@@ -6,7 +6,7 @@
         $galary_utilities = App\Models\UtilityDynamic::where('type_of_placement', 2)->get();
         $logos = App\Models\UtilityDynamic::where('type_of_placement', 1)->get();
     @endphp
-    <div class="top_gallary_container">
+    {{-- <div class="top_gallary_container">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 @forelse($galary_utilities as $key => $product)
@@ -46,7 +46,7 @@
             </a>
 
         </div>
-    </div>
+    </div> --}}
 
     <hr class="hr1 bg-info p-1 mt-2 mb-2">
 
@@ -137,6 +137,11 @@
     <!-- Carousel wrapper -->
 
     {{-- logo show end  --}}
+
+
+
+
+
     @push('css')
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Open+Sans">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">

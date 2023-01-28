@@ -19,16 +19,12 @@
             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
                 data-bs-toggle="dropdown" aria-expanded="false">
                 {{-- <i class="fas fa-user fa-fw"></i> --}}
-                <img src="{{ asset('images/users/' . Auth::user()->picture) }}" class="rounded-circle"
-                    height="30px" width="30px" alt="{{ Auth::user()->name }}">
+                <img src="{{ asset('images/users/' . Auth::user()->picture) }}" class="rounded-circle" height="30px"
+                    width="30px" alt="{{ Auth::user()->name }}">
                 {{ auth()->user()->name ?? '' }}
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 {{-- <li><a class="dropdown-item" href="{{ route('profiles')}}">Profiles</a></li> --}}
-                {{-- <li><a class="dropdown-item" href="#!">Activity Log</a></li> --}}
-                {{-- <li>
-                    <hr class="dropdown-divider" />
-                </li> --}}
                 <li>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
@@ -38,6 +34,12 @@
 
                     </form>
                 </li>
+                <li>
+                    <hr class="dropdown-divider" />
+                </li>
+                <li><a class="dropdown-item" href="#!"><i class="fa-solid fa-bell"></i> Notifications</a></li>
+
+
             </ul>
         </li>
     </ul>
