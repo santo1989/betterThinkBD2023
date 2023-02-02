@@ -183,6 +183,7 @@ Route::post('/autocomplete', [UserController::class, 'autocomplete'])->name("aut
 
 Route::get('/get/district/{id}', [ProductController::class, 'getDistricts'])->name('getDistricts');
 
+
 require __DIR__ . '/auth.php';
 
 //php artisan command

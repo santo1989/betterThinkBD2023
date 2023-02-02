@@ -23,11 +23,10 @@
                                 @endforeach
                             </select>
                         </div>
-                        @forelse ($products as $product)
-                            <input type="hidden" name="category_id" value="{{ $product->category_id }}">
-                            @break($loop->first)
-                        @empty
-                        @endforelse
+                        @php
+                            $category_id = $products[0]->category_id;
+                        @endphp
+                        <input type="hidden" name="category_id" value="{{ $category_id }}">
                     </form>
                 </div>
 
@@ -93,6 +92,31 @@
                 }
             });
         });
+
+        $(document).ready(function() {
+            $('#division_id').change(function() {
+                let division_id = $(this).val();
+                let category_id = $('input[name=""]').val();
+                if (division_id != '') {
+                    let _token = $('input[name="_token"]').val();
+                    $.ajax({
+                        url: "{{ route('product_division_search') }}",
+                        method: "POST",
+                        data: {
+                            division_id: division_id,
+                            _token: _token
+                        },
+                        success: function(data) {
+                            $('#empty').hide();
+                            $('#card_event').html(data);
+                        }
+                    });
+                }
+            });
+        });
+
+
+        
     </script>
     @endif
 
