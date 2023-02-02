@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Auth;
 ?>
 <x-backend.layouts.master>
      <?php
-    
+
     $todayPoints = \App\Models\PaymentHistory::where('payment_id', 4)
         ->whereDate('created_at', Carbon::today())
         ->sum('point');
@@ -14,16 +14,16 @@ use Illuminate\Support\Facades\Auth;
     $totalEarning = \App\Models\PaymentHistory::where('payment_id', 2)
         ->whereDate('created_at', Carbon::today())
         ->sum('point');
-    
+
     ?>
     <x-slot name="pageTitle">
         Admin Dashboard
     </x-slot>
-   
+
       <x-slot name='breadCrumb'>
         <br />
         <div class="text-end">
-            <h4> Current Point : {{ auth()->user()->point ?? '0' }} 
+            <h4> Current Point : {{ auth()->user()->point ?? '0' }}
         <br />
         Admin Reward : {{ $adminReword ?? '0' }} <br />
         Client Reward : {{ ($todayPoints - $adminReword) ?? '0' }} <br />

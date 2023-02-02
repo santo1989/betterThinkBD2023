@@ -162,9 +162,19 @@
                         @endisset
 
                         <a class="nav-link text-white" href="{{ route('Withdraw') }}">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
                             Withdraw point
                         </a>
+
+                            <a class="nav-link text-white" href="{{ route('history.sponsor') }}">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                </div>
+                                Sponsor History
+                            </a>
+
                     @endisset
                     {{-- <a class="nav-link text-white" href="{{ route('level_show') }}">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>

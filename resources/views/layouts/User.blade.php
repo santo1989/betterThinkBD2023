@@ -8,30 +8,33 @@ use Illuminate\Support\Facades\Auth;
     $notification = \App\Models\Notification::where('user_id', auth::id())
         ->where('status', 'unread')
         ->where(function ($query) {
-            $query->where('type', 'sponsor')->orWhere('type', 'payment');
+            $query->Where('type', 'payment');
         })
         ->paginate();
-    
-    $todayPoints = \App\Models\PaymentHistory::where('payment_id', 4)
+
+    $todayPoints = \App\Models\PaymentHistory::where('user_id', Auth::id())
         ->whereDate('created_at', Carbon::today())
         ->sum('point');
-    $adminReword = \App\Models\PaymentHistory::where('payment_id', 3)
-        ->whereDate('created_at', Carbon::today())
+    $adminReward = \App\Models\PaymentHistory::where('user_id', Auth::id())
+        ->where('type', \App\Enums\PaymentType::REWARD())
         ->sum('point');
-    $totalEarning = \App\Models\PaymentHistory::where('payment_id', 2)
-        ->whereDate('created_at', Carbon::today())
+    $withdraw = \App\Models\PaymentHistory::where('user_id', Auth::id())
+        ->where('type', \App\Enums\PaymentType::WITHDRAW())
         ->sum('point');
-    
+    $clientReward = \App\Models\PaymentHistory::where('user_id', Auth::id())
+        ->where('type', \App\Enums\PaymentType::SPONSOR())
+        ->sum('point');
+
     ?>
 
     <x-slot name='breadCrumb'>
         <br />
         <div class="text-end">
-            <h4> Current Point : {{ auth()->user()->point ?? '0' }} 
+            <h4> Current Point : {{ auth()->user()->point ?? '0' }}
         <br />
-        Admin Reward : {{ $adminReword ?? '0' }} <br />
-        Client Reward : {{ ($todayPoints - $adminReword) ?? '0' }} <br />
-        Withdraw Point : {{ $todayPoints ?? '0' }} <br />
+        Admin Reward : {{ $adminReward ?? '0' }} <br />
+        Client Reward : {{ $clientReward ?? '0' }} <br />
+        Withdraw Point : {{ $withdraw ?? '0' }} <br />
         Today Point : {{ $todayPoints ?? '0'}}</h4>
         {{-- <x-backend.layouts.elements.breadcrumb>
             <x-slot name="pageHeader"> Dashboard</x-slot>

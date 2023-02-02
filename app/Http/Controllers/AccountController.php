@@ -72,14 +72,14 @@ class AccountController extends Controller
         $admin->save();
 
         Auth::user()->paymentHistories()->create([
-            'type' => PaymentType::SENT(),
+            'type' => PaymentType::REWARD(),
             'details' => $data['point']." point Sent to ".$user->name,
             'payment_id' => $user->id,
             'point' => $data['point']
         ]);
 
         $user->paymentHistories()->create([
-            'type' => PaymentType::RECEIVED(),
+            'type' => PaymentType::REWARD(),
             'details' => $data['point']." point received from ".Auth::user()->name,
             'payment_id' => Auth::id(),
             'point' => $data['point']
