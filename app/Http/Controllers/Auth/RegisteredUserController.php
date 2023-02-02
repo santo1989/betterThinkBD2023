@@ -45,28 +45,17 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'nid' => ['required', 'max:255', 'unique:users,nid'],
+            'nid' => ['nullable', 'max:255', 'unique:users,nid'],
             'mobile' => ['required'],
-            'dob' => 'required|date|before:-18 years',
-            'sponsor_id' => 'required|exists:users,uuid',
-            'payment_id' => 'required|exists:users,uuid',
-        ],
-            [
-                'dob.before'=> 'You must be 18 years old or above'
-            ]
-        );
-
-        $sponsor = User::where('uuid', $request->sponsor_id)->first();
-        $payment = User::where('uuid', $request->payment_id)->first();
-
-        $hands = Hand::where('parent_id', $sponsor->id)->count();
-        if($hands>10){
-            return redirect()->back()->withInput()->withErrors("This user already sponsored 10 people.");
-        }
+            'dob' => 'required|date',
+            'sponsor_id' => 'required|digits:8',
+            'payment_id' => 'required|digits:8',
+        ]);
 
         try{
-            $now = new DateTime();
-            $year = $now->format("Y");
+//            $now = new DateTime();
+//            $year = $now->format("Y");
+            $year = 2022;
 
             $latest_uuid = User::get('uuid')->last();
             $a = str_replace('-', '', $latest_uuid->uuid);
@@ -80,6 +69,21 @@ class RegisteredUserController extends Controller
         catch(Exception $e)
         {
             return redirect()->back()->withInput()->withErrors("Oops! Unsuccessful attempt to generate user id!");
+        }
+
+        $request->sponsor_id = '0012-2022-'.$this->generateId($request->sponsor_id);
+        $request->payment_id = '0012-2022-'.$this->generateId($request->payment_id);
+
+        if(!User::where('uuid', $request->sponsor_id)->exists()){
+            return redirect()->back()->withInput()->withErrors("Given sponsor id doesn't exists.");
+        }
+
+        $sponsor = User::where('uuid', $request->sponsor_id)->first();
+        $payment = User::where('uuid', $request->payment_id)->first();
+
+        $hands = Hand::where('parent_id', $sponsor->id)->count();
+        if($hands>10){
+            return redirect()->back()->withInput()->withErrors("This user already sponsored 10 people.");
         }
 
         $user = User::create([
@@ -141,6 +145,12 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
+    }
+
+    public function generateId($id): string
+    {
+        $split = str_split($id, 4);
+        return implode("-", $split);
     }
 
 }

@@ -193,9 +193,16 @@
                                             <div class="mt-3">
 
                                                 <x-label for="sponsor_id" :value="__('Sponsor ID')" />
-
-                                                <x-input id="sponsor_id" class="block mt-1 w-full" type="text"
-                                                    name="sponsor_id" :value="old('sponsor_id')" required autofocus />
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <x-input id="sponsor_id" class="block mt-1 w-full" type="text"
+                                                                 value="0012-2022-"  readonly autofocus />
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <x-input id="sponsor_id" class="block mt-1 w-full" type="text"
+                                                                 placeholder="Last 8 digit of Sponsor ID" name="sponsor_id" :value="old('sponsor_id')" required autofocus />
+                                                    </div>
+                                                </div>
 
                                                 <label class="mt-3" id="sponsor_name">
 
@@ -255,10 +262,19 @@
 
                                             {{-- payment Id  --}}
                                             <div class="mt-3">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <x-input id="payment_id" class="block mt-1 w-full" type="text"
+                                                                 value="0012-2022-"  readonly autofocus />
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <x-input id="payment_id" class="block mt-1 w-full" type="text"
+                                                                 placeholder="Last 8 digit of Payment ID" name="payment_id" :value="old('payment_id')" required autofocus />
+                                                    </div>
+                                                </div>
                                                 <x-label for="payment_id" :value="__('Payment ID')" />
 
-                                                <x-input id="payment_id" class="block mt-1 w-full" type="text"
-                                                    name="payment_id" :value="old('payment_id')" required autofocus />
+
 
                                                 <div class="mt-3" id="payment_name">
                                                 </div>
@@ -336,7 +352,7 @@
             });
 
             // $(document).ready(function() {
-                
+
             //     $('#sponsor_id').change( function() {
             //         $value = $(this).val();
             //         console.log($value);
