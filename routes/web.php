@@ -7,6 +7,7 @@ use App\Http\Controllers\ContractMessageController;
 use App\Http\Controllers\HandController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PaymentHistoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TypeController;
@@ -161,6 +162,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/points/withdraw', [AccountController::class, 'withdrawView'])->name('Withdraw');
     Route::post('/points/withdraw', [AccountController::class, 'withdraw'])->name('point.withdraw');
     Route::get('/points/generate_point', [AccountController::class, 'generate_point'])->name('generate_point');
+
+    Route::get('/history/sponsor', [PaymentHistoryController::class, 'sponsor'])->name('history.sponsor');
 
 
     Route::get('/points/withdraw/request', [\App\Http\Controllers\Admin\AccountController::class, 'request'])->name('withdraw.request');

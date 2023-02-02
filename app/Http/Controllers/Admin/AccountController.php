@@ -52,11 +52,14 @@ class AccountController extends Controller
             'details' => $notification->point." point withdraw to admin.",
             'point' => $notification->point,
             'payment_id' => Auth::id(),
-            'type' => PaymentType::SENT()
+            'type' => PaymentType::WITHDRAW()
         ]);
 
         Auth::user()->point += $notification->point;
         Auth::user()->update();
+        $notification->update([
+            'status'=>NotificationStatus::READ()
+        ]);
 
         return redirect()->route('withdraw.request')->withMessage($notification['point'].' point withdraw request accepted!');
     }

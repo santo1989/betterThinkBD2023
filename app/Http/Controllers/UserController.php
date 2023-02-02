@@ -11,6 +11,7 @@ use App\Models\Role;
 use App\Models\Type;
 use App\Models\User;
 use Illuminate\Database\QueryException;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -122,7 +123,7 @@ class UserController extends Controller
         }
     }
 
-  public function uploadImage($image)
+    public function uploadImage($image)
     {
         $imageName = time() . '.' . $image->extension();
         $image->move(public_path('images/users'), $imageName);
@@ -146,60 +147,16 @@ class UserController extends Controller
 
     public function approve(Request $request)
     {
-        try{
+        try {
             DB::beginTransaction();
+
             $child_user = User::where('id', $request->child_id)->first();
 
-            if($request->type == 'sponsor'){
-                $hand = Hand::create([
-                    'parent_id' => Auth::id(),
-                    'child_id' => $request->child_id
-                ]);
-
-                $child_user->update([
-                    'is_approved_sponsor' => 1
-                ]);
-
-                $parent_id = $hand->parent_id;
-
-                for($i=1; $i<7; $i++){
-                    if(!is_null($parent_id)){
-                        $type = Type::where("name", "level_$i")->first();
-                        $point = $type->point->point;
-                    }else{
-                        break;
-                    }
-
-                    $parentUser = User::find($parent_id);
-                    $parentUser->point = $parentUser->point+$point;
-                    $parentUser->update();
-
-                    $parentUser->notifications()->create([
-                        "type" => "level_$i",
-                        "message" => "$point point for refer a user $parent_id",
-                        "status" => NotificationStatus::UNREAD()
-                    ]);
-
-                    $parentUser->paymentHistories()->create([
-                        'details' => "$point point for refer a user $parent_id",
-                        'payment_id' => $parent_id,
-                        'type' => PaymentType::RECEIVED()
-                    ]);
-
-                    $hand = Hand::where('child_id', $parent_id)->first();
-                    if(!is_null($hand)){
-                        $parent_id = $hand->parent_id;
-                    }else{
-                        $parent_id = null;
-                    }
-                }
-            }
-
-            if($request->type == 'payment'){
+            if ($request->type == 'payment') {
 
                 $registerFee = Type::where('name', 'register')->first()->point->point;
 
-                if(Auth::user()->point < $registerFee){
+                if (Auth::user()->point < $registerFee) {
                     return redirect()->back()->withInput()->withErrors("You don't have enough point.");
                 }
 
@@ -212,8 +169,8 @@ class UserController extends Controller
                 PaymentHistory::create([
                     'user_id' => Auth::id(),
                     'point' => $registerFee,
-                    'Details' => $registerFee.' point successfully paid for '.$child_user->name. 'registration',
-                    'type' => PaymentType::SENT(),
+                    'Details' => $registerFee . ' point successfully paid for ' . $child_user->name . 'registration',
+                    'type' => PaymentType::PAYMENT(),
                     'payment_id' => $child_user->id
                 ]);
 
@@ -222,19 +179,15 @@ class UserController extends Controller
                 ]);
             }
 
-            if($child_user->is_approved_sponsor == 1 && $child_user->is_approved_payment == 1){
-                $child_user->update([
-                    'is_approve' => 1
-                ]);
-            }
+            $this->createSponsor($request);
 
             $notification = Notification::where('id', $request->notification_id)->first();
             $notification->update([
                 'status' => NotificationStatus::READ()
             ]);
             DB::commit();
-            return redirect()->route('home')->withMessage('Successfully approved '.$request->type);
-        }catch (\Exception $e) {
+            return redirect()->route('home')->withMessage('Successfully approved ' . $request->type);
+        } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->withInput()->withErrors($e);
         }
@@ -257,5 +210,58 @@ class UserController extends Controller
         return $userName;
     }
 
+    public function createSponsor($request)
+    {
+        $child_user = User::where('id', $request->child_id)->first();
 
+        $hand = Hand::create([
+            'parent_id' => Auth::id(),
+            'child_id' => $request->child_id
+        ]);
+
+        $child_user->update([
+            'is_approved_sponsor' => 1
+        ]);
+
+        $parent_id = $hand->parent_id;
+        $lastParent_id = 0;
+
+        for ($i = 1; $i < 7; $i++) {
+            if (!is_null($parent_id) && $parent_id != $lastParent_id) {
+                $type = Type::where("name", "level_$i")->first();
+                $point = $type->point->point;
+            } else {
+                break;
+            }
+
+            $parentUser = User::find($parent_id);
+            $parentUser->point = $parentUser->point + $point;
+            $parentUser->update();
+
+            $parentUser->notifications()->create([
+                "type" => "level_$i",
+                "message" => "$point point for refer a user $parent_id",
+                "status" => NotificationStatus::READ()
+            ]);
+
+            $parentUser->paymentHistories()->create([
+                'details' => "$point point for refer a user $parent_id",
+                'point' => $point,
+                'payment_id' => $parent_id,
+                'type' => PaymentType::SPONSOR()
+            ]);
+
+            $hand = Hand::where('child_id', $parent_id)->first();
+
+            if (!is_null($hand)) {
+                $lastParent_id = $parent_id;
+                $parent_id = $hand->parent_id;
+            } else {
+                $parent_id = null;
+            }
+        }
+        $child_user->update([
+            'is_approve' => 1
+        ]);
+    }
 }
