@@ -33,10 +33,10 @@
                 @php
                     $point = Auth::user()->point;
                 @endphp
-                @if ($point < 20000)
+                @if ($point < 5000)
                     <div class="alert alert-danger">
                         <ul>
-                            <li>Sorry! You point is less then 20,000 . You have to generate point now.</li>
+                            <li>Sorry! You point is less then 5,000 . You have to generate point now.</li>
                         </ul>
                     </div>
                 @else    
@@ -66,8 +66,8 @@
             $('#Generate_point').keyup(function() {
                 var point = $('#Generate_point').val();
                 var point_status = $('#point_status');
-                if (point < 20000) {
-                    point_status.html('<span class="text-danger">Sorry! You point is less then 20,000 . You have to generate point now.</span>');
+                if (point < 5000) {
+                    point_status.html('<span class="text-danger">Sorry! You point is less then 5,000 . You have to generate point now.</span>');
                 } else {
                     point_status.html('<span class="text-success">You can generate point now.</span>');
                 }

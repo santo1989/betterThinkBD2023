@@ -62,9 +62,14 @@ class AccountController extends Controller
         $user = User::find($data['user_id']);
         $point = $user->point + $data['point'];
 
+
         $user->update([
             'point' => $point
         ]);
+
+        $admin = User::find(Auth::user()->role_id == 1);
+        $admin->point = $admin->point - $data['point'];
+        $admin->save();
 
         Auth::user()->paymentHistories()->create([
             'type' => PaymentType::SENT(),
@@ -79,18 +84,26 @@ class AccountController extends Controller
             'payment_id' => Auth::id(),
             'point' => $data['point']
         ]);
-        return redirect()->back()->withMessage('Successfully sent reward ');
+        return redirect()->route('home')->withMessage('Successfully sent reward ');
     }
 
     public function Admin_generate_point(Request $request)
     {
         $this->validate($request, [
-            'points' => 'required|numeric|min:1',
+            'Generate_point' => 'required|numeric|min:1',
         ]);
         $user = User::find(Auth::user()->id);
-        $user->points = $user->points + $request->Generate_point;
+        // dd($user);
+        $user->point = $user->point + $request->Generate_point;
         $user-> save();
-        return redirect()->back();
+        Auth::user()->paymentHistories()->create([
+            'type' => PaymentType::RECEIVED(),
+            'details' => $request->Generate_point." point generate for ".Auth::user()->name,
+            'payment_id' => Auth::id(),
+            'point' => $request->Generate_point
+        ]);
+
+        return redirect()->route('home')->withMessage('Successfully generated point');
     }
 
     public function paymentHistory()

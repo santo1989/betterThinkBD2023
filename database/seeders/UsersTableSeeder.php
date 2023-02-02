@@ -21,7 +21,6 @@ class UsersTableSeeder extends Seeder
             'remember_token' => Str::random(10),
             'nid'=> '1234567890 ',
             'mobile'=> '01700000000',
-            'dob'=> '',
             'sponsor_id'=> '0012-2022-0000-1001',
             'point'=> '10000000', 
             'payment_id'=> '0012-2022-0000-1001',

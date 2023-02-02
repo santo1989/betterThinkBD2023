@@ -34,14 +34,15 @@
           
             
          
-          <div class="form-group">
+          {{-- <div class="form-group">
               <label>Role</label>
               <select name="role_id" id="role_id" class="form-select">
                 @foreach ($roles as $role)
                 <option value="{{ $role->id }}"   {{ $role->id == $user->role_id ? 'selected' : '' }} >{{ $role->name }}</option>
                 @endforeach
             </select>
-          </div>
+          </div> --}}
+          <input type="hidden" name="role_id" value="{{ $user->role_id }}">
         
           </div>
           <x-backend.form.input name="name" type="text" label="Name" :value="$user->name "/>

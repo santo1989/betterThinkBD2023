@@ -36,7 +36,6 @@
                         <th>Address</th>
                         <th>Logo</th>
                         <th>Discount %</th>
-                        <th>Point</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -55,7 +54,6 @@
                                     width="100" height="100">
                             </td>
                             <td>{{ $product->discount_amount }}</td>
-                            <td>{{ $product->point_needed }}</td>
                             <td>
                                 <a class="btn btn-info btn-sm"
                                     href="{{ route('products.show', ['product' => $product->id]) }}">Show</a>

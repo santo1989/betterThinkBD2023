@@ -40,7 +40,7 @@
             @php
                 $point = Auth::user()->point;
             @endphp
-            @if ($point < 0)
+            @if ($point < 5000)
                 <div class="alert alert-danger">
                     <ul>
                         <li>Sorry! You can't Reward point. You have to Generate point first.</li>
@@ -54,14 +54,16 @@
                         {{-- search user by uuid or email or nid or phone number and select user --}}
                         <select name="user_id" class="js-example-basic-single">
                             @foreach ($users as $user)
-                                <option  value="{{ $user->id }}">{{ $user->name }}</option>
+                                <option  value="{{ $user->id }}">{{ $user->name }} : {{ $user->uuid }}</option>
                             @endforeach
                         </select>
 
                     </div>
                     <x-backend.form.input name="point" type="number" label="Admin Reward Point" />
 
-                    <span id="point_status"></span>
+                    <span id="point_status">
+                        
+                    </span>
 
                     <div class="mt-4 mb-0">
                         <button type="submit" class="btn btn-primary">Save</button>
@@ -80,6 +82,7 @@
             $(document).ready(function() {
                 $('.js-example-basic-single').select2();
             });
+
         </script>
     @endpush
 

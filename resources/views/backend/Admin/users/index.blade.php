@@ -68,13 +68,13 @@
   
                               <a class="btn btn-warning btn-sm" href="{{ route('users.edit', ['user' => $user->id]) }}">Edit</a>
   
-                              <form style="display:inline" action="{{ route('users.destroy', ['user' => $user->id]) }}" method="post">
+                              {{-- <form style="display:inline" action="{{ route('users.destroy', ['user' => $user->id]) }}" method="post">
                                   @csrf
                                   @method('delete')
   
                                   <button onclick="return confirm('Are you sure want to delete ?')" class="btn btn-sm btn-danger" type="submit">Delete</button>
                               </form>
-  
+   --}}
                           </td>
                       </tr>
                       @endforeach

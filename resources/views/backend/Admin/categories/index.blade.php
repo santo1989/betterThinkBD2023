@@ -32,7 +32,7 @@
                     <tr>
                         <th>Sl#</th>
                         <th>Title</th>
-                        <th>Description</th>
+                        {{-- <th>Description</th> --}}
                         <th>Image</th>
                         <th>Action</th>
                     </tr>
@@ -43,21 +43,21 @@
                     <tr>
                         <td>{{ ++$sl }}</td>
                         <td>{{ $category->title }}</td>
-                        <td>{{ $category->description }}</td>
+                        {{-- <td>{{ $category->description }}</td> --}}
                         <td>
                             <img src="{{ asset('images/categories/'.$category->image) }}" alt="" width="100">
                         </td>
                         <td>
                             <a class="btn btn-info btn-sm" href="{{ route('categories.show', ['category' => $category->id]) }}" >Show</a>
 
-                            <a class="btn btn-warning btn-sm" href="{{ route('categories.edit', ['category' => $category->id]) }}" >Edit</a>
+                            {{-- <a class="btn btn-warning btn-sm" href="{{ route('categories.edit', ['category' => $category->id]) }}" >Edit</a>
 
                             <form style="display:inline" action="{{ route('categories.destroy', ['category' => $category->id]) }}" method="post">
                                 @csrf
                                 @method('delete')
                                 
                                 <button onclick="return confirm('All product of that categories are also delete ! Are you sure want to delete ?')" class="btn btn-sm btn-danger" type="submit">Delete</button>
-                            </form>
+                            </form> --}}
                         </td>
                     </tr>
                     @endforeach

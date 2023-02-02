@@ -12,7 +12,7 @@
                 {{-- dropdown for division --}}
 
                 <div class="row">
-                    <form>
+                    <form action="{{ route('product_division_search') }}" method="GET">
                         <div class="mb-3">
                             <label for="division_id" class="form-label">Division</label>
                             <select class="form-control" name="division_id" id="division_id">
@@ -23,15 +23,16 @@
                                 @endforeach
                             </select>
                         </div>
-                        {{-- @forelse ($products as $product)
-                            <input type="hidden" name="product_id" value="{{ $product->category_id }}">
+                        @forelse ($products as $product)
+                            <input type="hidden" name="category_id" value="{{ $product->category_id }}">
                             @break($loop->first)
                         @empty
-                        @endforelse --}}
+                        @endforelse
                     </form>
                 </div>
 
                 {{-- dropdown for district --}}
+
 
             </div>
             <div class="row justify-content-center">

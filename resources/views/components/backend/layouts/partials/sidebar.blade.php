@@ -187,7 +187,8 @@
         <div class="sb-sidenav-footer text-white"
             style="background-image: linear-gradient(#1358a7, #0680c6, #273871); text-color:white;">
             <div class="small">Logged in as:</div>
-            {{ auth()->user()->role->name ?? '' }}
+            {{-- {{ auth()->user()->role->name ?? '' }} --}}
+            {{ auth()->user()->uuid ?? '' }}
 
         </div>
     </nav>

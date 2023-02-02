@@ -3,7 +3,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 ?>
 <x-backend.layouts.master>
-      <?php
+
+    <?php
     $notification = \App\Models\Notification::where('user_id', auth::id())
         ->where('status', 'unread')
         ->where(function ($query) {
@@ -22,19 +23,27 @@ use Illuminate\Support\Facades\Auth;
         ->sum('point');
     
     ?>
-    <div class="m-5">
-        <h3>Welcome,
-            {{ Auth::user()->name }}
-        </h3>
-            <div class="row">
-            <div class="col-md-12 alert alert-success" role="alert">
-                Today total earning <p class="btn btn-outline-primary col-1">{{ $todayPoints }}</p>
-                Admin Reword <p class="btn btn-outline-primary col-1">{{ $adminReword }}</p>
-                Total Earning <p class="btn btn-outline-primary col-1">{{ $totalEarning }}</p>
-                Widrow <p class="btn btn-outline-primary col-1">{{ $todayPoints * 0.9 }}</p>
-            </div>
-        </div>
+
+    <x-slot name='breadCrumb'>
+        <br />
+        <div class="text-end">
+            <h4> Current Point : {{ auth()->user()->point ?? '0' }} 
+        <br />
+        Admin Reward : {{ $adminReword ?? '0' }} <br />
+        Client Reward : {{ ($todayPoints - $adminReword) ?? '0' }} <br />
+        Withdraw Point : {{ $todayPoints ?? '0' }} <br />
+        Today Point : {{ $todayPoints ?? '0'}}</h4>
+        {{-- <x-backend.layouts.elements.breadcrumb>
+            <x-slot name="pageHeader"> Dashboard</x-slot>
+            <li class="breadcrumb-item active">Dashboard</li>
+
+        </x-backend.layouts.elements.breadcrumb> --}}
     </div>
+    </x-slot>
+
+
+
+
     @if (session('message'))
         <div class="alert alert-success">
             <span class="close" data-dismiss="alert">&times;</span>
@@ -42,11 +51,11 @@ use Illuminate\Support\Facades\Auth;
         </div>
     @endif
 
-  
+
 
     {{-- notification --}}
     <div class="container">
-    
+
         <div class="row">
 
             <div class="col-md-12">

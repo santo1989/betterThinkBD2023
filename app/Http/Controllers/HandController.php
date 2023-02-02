@@ -78,22 +78,41 @@ for($i=0; $i<$children_count; $i++){
             ->first();
         ;
         if ($level_condition->id == 1) {
-            $parent = Hand::get();
-            $total_parent = count($parent);
-            dd($total_parent, $parent);
-            $parent_details = array();
-            $children = array();
-            for($i=1; $i<=$total_parent; $i++){
-                $parent_details[$parent[$i]->parent_id] = DB::table('users')
-                    ->where('id', $parent[$i]->parent_id)
-                    ->first();
-            }
-            for($i=1; $i<count($parent); $i++){
-                $children[$parent[$i]->parent_id] = DB::table('hands')
-                    ->where('child_id', $parent[$i]->parent_id)
-                    ->get()->toArray();
-            }
+            // $parent = Hand::get();
+            // $total_parent = count($parent);
+            // // dd($total_parent, $parent);
+            // $parent_details = array();
+            // $children = array();
+            // for($i=1; $i<=$total_parent; $i++){
+            //     $parent_details[$parent[$i]->parent_id] = DB::table('users')
+            //         ->where('id', $parent[$i]->parent_id)
+            //         ->first();
+            // }
+            // for($i=1; $i<count($parent); $i++){
+            //     $children[$parent[$i]->parent_id] = DB::table('hands')
+            //         ->where('child_id', $parent[$i]->parent_id)
+            //         ->get()->toArray();
+            // }
             
+            $parent = DB::table('hands')
+                ->where('parent_id', Auth::user()->id)
+                ->first();
+            $parent_details = DB::table('users')
+                ->where('id', $parent->parent_id)
+                ->first();
+            $children = DB::table('hands')
+                ->where('parent_id', Auth::user()->id)
+                ->get()->toArray();
+            $children_count = count($children);
+            $child_details = array();
+
+    for($i=0; $i<$children_count; $i++){
+
+        $child_details[$children[$i]->child_id] = DB::table('users')
+            ->where('id', $children[$i]->child_id)
+            ->first();
+    }
+            return view('backend.Admin.levels.admin_level_show', compact('parent','parent_details', 'children_count', 'child_details'));
 
            
         } else { return redirect()->route('home')->withMessage('You are not allowed to access this page');}

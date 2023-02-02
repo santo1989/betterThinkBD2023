@@ -32,7 +32,8 @@
                                         alt="{{ Auth::user()->name }}">
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $parent_details->name }}</h5>
-                                        <h6 class="card-subtitle mb-2 text-muted ">{{ $parent_details->point }}</h6>
+                                        <h6 class="card-subtitle mb-2 text-muted ">{{ $parent_details->uuid }}</h6>
+                                        <h6 class="card-subtitle mb-2 text-muted ">Point: {{ $parent_details->point }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -58,7 +59,8 @@
                                             alt="{{ $child_details->name }}">
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $child_details->name }}</h5>
-                                            <h6 class="card-subtitle mb-2 text-muted ">{{ $child_details->point }}</h6>
+                                            <h6 class="card-subtitle mb-2 text-muted ">{{ $child_details->uuid }}</h6>
+                                            <h6 class="card-subtitle mb-2 text-muted ">Point: {{ $child_details->point }}</h6>
                                         </div>
                                     </div>
                                 </div>

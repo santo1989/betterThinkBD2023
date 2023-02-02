@@ -24,7 +24,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <a class="btn btn-primary" href={{ route("roles.create") }}>Create</a>
+            {{-- <a class="btn btn-primary" href={{ route("roles.create") }}>Create</a> --}}
           </div>
           <!-- /.card-header -->
           <div class="card-body">
@@ -35,7 +35,7 @@
                 <tr>
                     <th>Sl#</th>
                     <th>Name</th>
-                  <th>Actions</th>
+                  {{-- <th>Actions</th> --}}
                   
                 </tr>
                 </thead>
@@ -45,14 +45,14 @@
                     <tr>
                         <td>{{ ++$sl }}</td>
                         <td>{{ $role->name }}</td>
-                      <td>
+                      {{-- <td>
                         <a class="btn btn-primary" href={{ route("roles.edit", ['role'=>$role->id]) }}>Edit</a>
                         <form action={{ route("roles.destroy", $role->id) }} method="POST" class="d-inline">
                           @csrf
                           @method("DELETE")
                           <button class="btn btn-danger" type="submit">Delete</button>
                         </form>
-                      </td>
+                      </td> --}}
                     </tr>
                 @endforeach
                 

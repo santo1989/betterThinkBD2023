@@ -38,8 +38,9 @@
 
                 @php
                     $point = Auth::user()->point;
+                    // dd($point)
                 @endphp
-                @if ($point < 0)
+                @if ($point < 0 || $point == null)
                     <div class="alert alert-danger">
                         <ul>
                             <li>Sorry! You can't withdraw point. You have to earn point first.</li>

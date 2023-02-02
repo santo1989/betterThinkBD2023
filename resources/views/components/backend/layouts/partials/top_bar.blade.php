@@ -22,6 +22,8 @@
                 <img src="{{ asset('images/users/' . Auth::user()->picture) }}" class="rounded-circle" height="30px"
                     width="30px" alt="{{ Auth::user()->name }}">
                 {{ auth()->user()->name ?? '' }}
+                <br/>
+                {{ auth()->user()->uuid ?? '' }}
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 {{-- <li><a class="dropdown-item" href="{{ route('profiles')}}">Profiles</a></li> --}}

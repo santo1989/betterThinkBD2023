@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\district;
 use App\Models\division;
 use App\Models\Product;
 use Illuminate\Database\QueryException;
@@ -29,7 +30,9 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('backend.Admin.products.create', compact('categories'));
+        $divisions = division::all();
+        $districts = district::all();
+        return view('backend.Admin.products.create', compact('categories', 'divisions', 'districts'));
     }
 
     public function store(request $request)
@@ -45,7 +48,8 @@ class ProductController extends Controller
                 'description1' => $request->description1,
                 'description2' => $request->description2,
                 'discount_amount' => $request->discount_amount,
-                'point_needed' => $request->point_needed,
+                'division_id' => $request->division_id,
+                'district_id' => $request->district_id,
                 'category_id' => $request->category_id,
 
             ]);
@@ -85,7 +89,8 @@ class ProductController extends Controller
                 'description1' => $request->description1,
                 'description2' => $request->description2,
                 'discount_amount' => $request->discount_amount,
-                'point_needed' => $request->point_needed,
+                'division_id' => $request->division_id,
+                'district_id' => $request->district_id,
                 'category_id' => $request->category_id,
             ];
 
@@ -148,8 +153,16 @@ class ProductController extends Controller
 
     public function product_division_search(Request $request)
     {
+        // dd($request->all());
         $search = $request->get('search');
         $productList = Product::where('division_id', 'like', '%' . $search . '%')->get();
         return view('frontend.ProductSearch', ['productList' => $productList]);
+    }
+
+    public function getDistricts($id)
+    {
+        // dd($id);
+        $districts = district::where('division_id', $id)->get();
+        return response()->json($districts);
     }
 }
