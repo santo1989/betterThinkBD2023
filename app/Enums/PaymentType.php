@@ -14,6 +14,7 @@ use MyCLabs\Enum\Enum;
  * @method static REWARD()
  * @method static PAYMENT()
  * @method static SPONSOR()
+ * @method static GENERATE_POINT()
  */
 class PaymentType extends Enum
 {
@@ -23,4 +24,5 @@ class PaymentType extends Enum
     private const REWARD = 'reward';
     private const PAYMENT = 'payment';
     private const SPONSOR = 'sponsor';
+    private const GENERATE_POINT = 'generate_point';
 }

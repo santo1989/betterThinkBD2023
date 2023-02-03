@@ -15,4 +15,12 @@ class PaymentHistoryController extends Controller
             ->latest()->paginate();
         return view('backend.User_Interface.history.sponsor', compact('sponsors'));
     }
+
+    public function generatePoint()
+    {
+        $points = PaymentHistory::where('user_id', Auth::id())
+            ->where('type', PaymentType::GENERATE_POINT())
+            ->latest()->paginate();
+        return view('backend.admin.history.generate-point', compact('points'));
+    }
 }

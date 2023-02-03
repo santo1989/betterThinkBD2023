@@ -44,10 +44,10 @@
                     <div class="form-group">
                         <label for="type_of_placement">Type of Placement</label>
                         <select name="type_of_placement" id="type_of_placement" class="form-control">
-                            <option value="1">Home page Logo</option>
+                            <option value="1">Logo</option>
                             <option value="2">Galary</option>
-                            <option value="3">About us</option>
-                            <option value="4">Contact us</option>
+                            <option value="3">About</option>
+                            <option value="4">Contact</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Create</button>

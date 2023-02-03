@@ -153,10 +153,10 @@ class ProductController extends Controller
 
     public function product_division_search(Request $request)
     {
-        // dd($request->all());
-        $search = $request->get('search');
-        $productList = Product::where('division_id', 'like', '%' . $search . '%')->get();
+    //    dd($request->all());
+        $productList = Product::where('division_id', $request->division_id)->where('category_id', $request->category_id)->get();
         return view('frontend.ProductSearch', ['productList' => $productList]);
+      
     }
 
     public function getDistricts($id)
@@ -165,4 +165,6 @@ class ProductController extends Controller
         $districts = district::where('division_id', $id)->get();
         return response()->json($districts);
     }
+
+
 }
