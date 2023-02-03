@@ -153,8 +153,6 @@
                                                 </label>
 
                                             </div>
-
-
                                         </div>
                                         <div class="w-1/2">
 
@@ -231,13 +229,7 @@
                                         <div class="w-1/2">
 
                                             <div class="mt-3">
-                                                {{-- <a class="underline text-sm text-gray-600 hover:text-gray-900"
-                                            href="{{ route('login') }}">
-                                            {{ __('Already registered?') }}
-                                        </a>
-                                        <x-button class="grid place-items-center h-screen">
-                                                {{ __('Submit') }}
-                                            </x-button> --}}
+                                            
                                                 <button type="submit"
                                                     class="btn btn-outline-primary mx-auto d-block mt-3">Submit</button>
                                             </div>
@@ -251,7 +243,6 @@
             </div>
             <div class="col-md-3 col-lg-3 col-xl-5 align-self-end"> 
               <p>  <img src="{{ asset('ui/frontend/images/assets/reg.png') }}" alt="" heigt=350px; width=150px; class="rounded float-end">
-                {{-- <h2 class="">Better Think BD</h2> --}}
               </p>
             </div>
         </div>

@@ -165,6 +165,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/history/sponsor', [PaymentHistoryController::class, 'sponsor'])->name('history.sponsor');
 
+    Route::get('/history/withdraw', [PaymentHistoryController::class, 'withdraw'])->name('history_withdraw');
+
+    Route::get('/history/rewards', [PaymentHistoryController::class, 'reward'])->name('history_reward');
+
+
     // Admin
     Route::get('/history/generate-point', [PaymentHistoryController::class, 'generatePoint'])->name('history.generate-point');
 

@@ -1,6 +1,6 @@
 <x-frontend.layouts.master>
     <div class="container">
-        @if (is_null($products) || empty($products))
+        @if (is_null($products) || empty($products)|| $products->count() == 0)
             <div class="row" id="empty">
                 <div class="col-md-12 col-lg-12 col-sm-12">
                     <h1 class="text-danger text-center"> <strong>Currently No Information Available!</strong> </h1>
@@ -30,7 +30,11 @@
                         @php
                             $category_id = $products[0]->category_id;
                         @endphp
-                        <input type="hidden" name="category_id" value="{{ $category_id }}">
+                        @isset($category_id)
+                            <input type="hidden" name="category_id" value="{{ $category_id }}">
+                            
+                        @endisset
+                        {{-- <input type="hidden" name="category_id" value="{{ $category_id }}"> --}}
                         <button type="submit" class="btn btn-primary inline">Search By Division</button>
                         </div>
                      </div>   
