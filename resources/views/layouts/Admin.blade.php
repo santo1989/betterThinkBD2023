@@ -45,9 +45,10 @@ use Illuminate\Support\Facades\Auth;
     @endif
 
     <?php
-    $notification = App\Models\Notification::where('status', 'unread')
+    $notification = App\Models\Notification::where('user_id', auth::id())
+        ->where('status', 'unread')
         ->where(function ($query) {
-            $query->where('type', 'sponsor')->orWhere('type', 'payment');
+            $query->Where('type', 'payment');
         })
         ->paginate();
     ?>
