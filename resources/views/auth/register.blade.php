@@ -118,7 +118,7 @@
                                                 <x-label for="nid" :value="__('NID')" />
 
                                                 <x-input id="nid" class="block mt-1 w-full" type="text"
-                                                    name="nid" :value="old('nid')" required autofocus />
+                                                    name="nid" :value="old('nid')" autofocus />
 
                                             </div>
 
@@ -164,7 +164,7 @@
                                                 <x-label for="bkash_no" :value="__('Bkash No')" />
 
                                                 <x-input id="bkash_no" class="block mt-1 w-full" type="text"
-                                                    name="bkash_no" :value="old('bkash_no')" required autofocus />
+                                                    name="bkash_no" :value="old('bkash_no')"  autofocus />
 
                                             </div>
 
@@ -174,7 +174,7 @@
                                                 <x-label for="bank_name" :value="__('Bank Name')" />
 
                                                 <x-input id="bank_name" class="block mt-1 w-full" type="text"
-                                                    name="bank_name" :value="old('bank_name')" required autofocus />
+                                                    name="bank_name" :value="old('bank_name')"  autofocus />
 
                                             </div>
 
@@ -184,7 +184,7 @@
                                                 <x-label for="branch" :value="__('Branch Name')" />
 
                                                 <x-input id="branch" class="block mt-1 w-full" type="text"
-                                                    name="branch" :value="old('branch')" required autofocus />
+                                                    name="branch" :value="old('branch')"  autofocus />
 
                                             </div>
 
@@ -194,7 +194,7 @@
                                                 <x-label for="account_no" :value="__('Account No')" />
 
                                                 <x-input id="account_no" class="block mt-1 w-full" type="text"
-                                                    name="account_no" :value="old('account_no')" required autofocus />
+                                                    name="account_no" :value="old('account_no')"  autofocus />
 
                                             </div>
 
@@ -250,9 +250,9 @@
                            
             </div>
             <div class="col-md-3 col-lg-3 col-xl-5 align-self-end"> 
-                <img src="{{ asset('ui/frontend/images/assets/registerpage.png') }}" alt="" heigt=350px; width=100px; class="rounded float-end"><br/>
-                <h4 class="">Better Think BD</h4>
-                
+              <p>  <img src="{{ asset('ui/frontend/images/assets/reg.png') }}" alt="" heigt=350px; width=150px; class="rounded float-end">
+                {{-- <h2 class="">Better Think BD</h2> --}}
+              </p>
             </div>
         </div>
     </section>

@@ -153,7 +153,9 @@ class ProductController extends Controller
 
     public function product_division_search(Request $request)
     {
-       dd($request->all());
+    //    dd($request->all());
+        $productList = Product::where('division_id', $request->division_id)->where('category_id', $request->category_id)->get();
+        return view('frontend.ProductSearch', ['productList' => $productList]);
       
     }
 

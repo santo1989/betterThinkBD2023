@@ -7,28 +7,35 @@
                 </div>
             </div>
         @else
-            <div>
+            <div class="container">
 
                 {{-- dropdown for division --}}
 
-                <div class="row">
-                    <form action="{{ route('product_division_search') }}" method="GET">
-                        <div class="mb-3">
-                            <label for="division_id" class="form-label">Division</label>
-                            <select class="form-control" name="division_id" id="division_id">
+                
+                    <form action="{{ route('product_division_search') }}" method="get" id="formsubmit">
+                        @csrf
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <select class="form-control" name="division_id" id="division_id" required>
                                 <option selected>Select Division</option>
                                 @foreach ($divisions as $division)
                                     <option value="{{ $division->id }}">{{ $division->name }}-{{ $division->bn_name }}
                                     </option>
                                 @endforeach
                             </select>
+                            
                         </div>
+                        <div class="col-md-6 mb-3">
+                        
                         @php
                             $category_id = $products[0]->category_id;
                         @endphp
                         <input type="hidden" name="category_id" value="{{ $category_id }}">
+                        <button type="submit" class="btn btn-primary inline">Search By Division</button>
+                        </div>
+                     </div>   
                     </form>
-                </div>
+                
 
                 {{-- dropdown for district --}}
 
@@ -47,7 +54,7 @@
                                 <div class="text-center">
                                     <!-- product name-->
                                     <h5 class="fw-bolder">
-                                        <a
+                                        <a class="text-decoration-none"
                                             href="{{ route('product_details', ['id' => $product->id]) }}">{{ $product->title }}</a>
                                     </h5>
                                     <!-- product reviews-->
@@ -92,29 +99,6 @@
                 }
             });
         });
-
-        $(document).ready(function() {
-            $('#division_id').change(function() {
-                let division_id = $(this).val();
-                let category_id = $('input[name=""]').val();
-                if (division_id != '') {
-                    let _token = $('input[name="_token"]').val();
-                    $.ajax({
-                        url: "{{ route('product_division_search') }}",
-                        method: "POST",
-                        data: {
-                            division_id: division_id,
-                            _token: _token
-                        },
-                        success: function(data) {
-                            $('#empty').hide();
-                            $('#card_event').html(data);
-                        }
-                    });
-                }
-            });
-        });
-
 
         
     </script>
