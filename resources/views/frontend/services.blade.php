@@ -12,7 +12,7 @@
                     </div>
                     <h3>Hospital</h3>
                     <p>
-                        <img src="{{ asset('ui/frontend/images/assets/hospital.jpg') }}" alt="" heigt=50px;
+                        <img src="{{ asset('ui/frontend/images/assets/Hospital.jpg') }}" alt="" heigt=50px;
                             width=60px; class="image-log rounded">
                     </p>
 
@@ -25,7 +25,7 @@
                     </div>
                     <h3>Pharmacy</h3>
                     <p>
-                        <img src="{{ asset('ui/frontend/images/assets/pharmacy.jpg') }}" alt="" heigt=50px;
+                        <img src="{{ asset('ui/frontend/images/assets/Pharmacy.jpg') }}" alt="" heigt=50px;
                             width=60px; class="image-log rounded">
                     </p>
 
