@@ -17,7 +17,7 @@
                         Home
                     </a>
 
- <a class="nav-link collapsed text-white" href="#" data-bs-toggle="collapse"
+                    <a class="nav-link collapsed text-white" href="#" data-bs-toggle="collapse"
                         data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                         Website Controller
@@ -29,24 +29,25 @@
                         <nav class="sb-sidenav-menu-nested nav">
 
                             <a class="nav-link text-white" href="{{ route('categories.index') }}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        Categories List &nbsp; <span
-                            class="badge bg-primary text-white">{{ $categoriesCount ?? '0' }}</span>
-                    </a>
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Categories List &nbsp; <span
+                                    class="badge bg-primary text-white">{{ $categoriesCount ?? '0' }}</span>
+                            </a>
 
-                    <a class="nav-link text-white" href="{{ route('products.index') }}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        Products List &nbsp; <span class="badge bg-primary text-white">{{ $productsCount ?? '0' }}</span>
-                    </a>
+                            <a class="nav-link text-white" href="{{ route('products.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Products List &nbsp; <span
+                                    class="badge bg-primary text-white">{{ $productsCount ?? '0' }}</span>
+                            </a>
 
-                    <a class="nav-link text-white" href="{{ route('blogs.index') }}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        Blogs List &nbsp; <span class="badge bg-primary text-white">{{ $blogCount ?? '0' }}</span>
-                    </a>
-                    <a class="nav-link text-white" href="{{ route('utility_dynamic.index') }}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        Web Page Dynamic tools</span>
-                    </a>
+                            <a class="nav-link text-white" href="{{ route('blogs.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Blogs List &nbsp; <span class="badge bg-primary text-white">{{ $blogCount ?? '0' }}</span>
+                            </a>
+                            <a class="nav-link text-white" href="{{ route('utility_dynamic.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Web Page Dynamic tools</span>
+                            </a>
 
                             {{-- <a class="nav-link text-white" href="{{ route('roles.index') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
@@ -58,10 +59,10 @@
                             </a> --}}
                         </nav>
                     </div>
-{{-- website controller end --}}
+                    {{-- website controller end --}}
 
-{{-- Admin controller start --}}
-<a class="nav-link collapsed text-white" href="#" data-bs-toggle="collapse"
+                    {{-- Admin controller start --}}
+                    <a class="nav-link collapsed text-white" href="#" data-bs-toggle="collapse"
                         data-bs-target="#collapseLayouts1" aria-expanded="false" aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                         Admin Controller
@@ -72,35 +73,35 @@
                         data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
 
-                             <a class="nav-link text-white" href="{{ route('types.index') }}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        type List
-                    </a>
+                            <a class="nav-link text-white" href="{{ route('types.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                type List
+                            </a>
 
-                    <a class="nav-link text-white" href="{{ route('admin_level_show') }}">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        All level
-                    </a>
+                            <a class="nav-link text-white" href="{{ route('admin_level_show') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                All level
+                            </a>
 
                         </nav>
                     </div>
-{{-- Admin controller end  --}}
+                    {{-- Admin controller end  --}}
 
 
-                        <a class="nav-link text-white" href="{{ route('reward') }}">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Admin Reward
-                        </a>
+                    <a class="nav-link text-white" href="{{ route('reward') }}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        Admin Reward
+                    </a>
 
                     <a class="nav-link text-white" href="{{ route('withdraw.request') }}">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                         Withdraw Request
                     </a>
 
-                        <a class="nav-link text-white" href="{{ route('generate_point') }}">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Generate Point
-                        </a>
+                    <a class="nav-link text-white" href="{{ route('generate_point') }}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        Generate Point
+                    </a>
 
 
 
@@ -134,16 +135,16 @@
                     </div>
 
                     <a class="nav-link collapsed text-white" href="#" data-bs-toggle="collapse"
-                       data-bs-target="#collapseLayouts4" aria-expanded="false" aria-controls="collapseLayouts">
+                        data-bs-target="#collapseLayouts4" aria-expanded="false" aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                         History
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
 
                     <div class="collapse" id="collapseLayouts4" aria-labelledby="headingOne"
-                         data-bs-parent="#sidenavAccordion">
+                        data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link text-white" href="{{ route('history.generate-point') }}">
+                            <a class="nav-link text-white" href="{{ route('history.generate_point') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Generate Point
                             </a>
@@ -185,13 +186,12 @@
                             Withdraw point
                         </a>
 
-                            <a class="nav-link text-white" href="{{ route('history.sponsor') }}">
-                                <div class="sb-nav-link-icon">
-                                    <i class="fas fa-tachometer-alt"></i>
-                                </div>
-                                Sponsor History
-                            </a>
-
+                        <a class="nav-link text-white" href="{{ route('history.sponsor') }}">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            Sponsor History
+                        </a>
                     @endisset
                     {{-- <a class="nav-link text-white" href="{{ route('level_show') }}">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>

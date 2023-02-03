@@ -21,7 +21,7 @@ class PaymentHistoryController extends Controller
         $points = PaymentHistory::where('user_id', Auth::id())
             ->where('type', PaymentType::GENERATE_POINT())
             ->latest()->paginate();
-        return view('backend.admin.history.generate-point', compact('points'));
+        return view('backend.Admin.history.generate_point', compact('points'));
     }
 
     public function withdraw()
@@ -37,6 +37,6 @@ class PaymentHistoryController extends Controller
         $rewards = PaymentHistory::where('user_id', Auth::id())
             ->where('type', PaymentType::REWARD())
             ->latest()->paginate();
-        return view('backend.Admin.history.reward', compact('rewards')); 
+        return view('backend.Admin.history.reward', compact('rewards'));
     }
 }
