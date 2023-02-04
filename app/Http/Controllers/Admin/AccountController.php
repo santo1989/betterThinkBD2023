@@ -22,7 +22,7 @@ class AccountController extends Controller
 
     public function approvePage(Notification $notification)
     {
-        return view('backend.admin.points.approve', compact('notification'));
+        return view('backend.Admin.points.approve', compact('notification'));
     }
 
     public function approve(Request $notification)
@@ -30,7 +30,7 @@ class AccountController extends Controller
         $notification = Notification::find($notification)->first();
         $requestedUser = User::find($notification->user_id);
 
-        if($notification->point > $requestedUser->point){
+        if ($notification->point > $requestedUser->point) {
 
             $notification->update([
                 'status' => NotificationStatus::READ()
@@ -43,13 +43,13 @@ class AccountController extends Controller
 
         $requestedUser->notifications()->create([
             'type' => NotificationType::USERWITHDRAW(),
-            'message' => $notification->point." point request has been accepted",
+            'message' => $notification->point . " point request has been accepted",
             'status' => NotificationStatus::UNREAD(),
             'point' => $notification->point,
         ]);
 
         $requestedUser->paymentHistories()->create([
-            'details' => $notification->point." point withdraw to admin.",
+            'details' => $notification->point . " point withdraw to admin.",
             'point' => $notification->point,
             'payment_id' => Auth::id(),
             'type' => PaymentType::WITHDRAW()
@@ -58,9 +58,9 @@ class AccountController extends Controller
         Auth::user()->point += $notification->point;
         Auth::user()->update();
         $notification->update([
-            'status'=>NotificationStatus::READ()
+            'status' => NotificationStatus::READ()
         ]);
 
-        return redirect()->route('withdraw.request')->withMessage($notification['point'].' point withdraw request accepted!');
+        return redirect()->route('withdraw.request')->withMessage($notification['point'] . ' point withdraw request accepted!');
     }
 }

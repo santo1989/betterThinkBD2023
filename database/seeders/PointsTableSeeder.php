@@ -47,7 +47,7 @@ class PointsTableSeeder extends Seeder
         Point::create([
             'type_id' => '7',
             'point' => '2000',
-            'details' => 'You have got 2000 points for New User',
+            'details' => 'Admin have got 2000 points for New User Registration',
         ]);
     }
 }

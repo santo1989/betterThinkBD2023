@@ -16,12 +16,12 @@ class CategoriesTableSeeder extends Seeder
         // \App\Models\Category::factory(3)->create();
         \App\Models\Category::create([
             'title' => 'Hospital',
-            'image' => 'hospital.jpg',
-            
+            'image' => 'Hospital.jpg',
+
         ]);
         \App\Models\Category::create([
             'title' => 'Pharmacy',
-            'image' => 'pharmacy.jpg',
+            'image' => 'Pharmacy.jpg',
         ]);
         \App\Models\Category::create([
             'title' => 'Super Shop',
@@ -39,6 +39,5 @@ class CategoriesTableSeeder extends Seeder
             'title' => 'Restaurant',
             'image' => 'Restaurant.jpg',
         ]);
-
     }
 }

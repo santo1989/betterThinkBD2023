@@ -265,4 +265,9 @@ class UserController extends Controller
             'is_approve' => 1
         ]);
     }
+
+    public function getName()
+    {
+       
+    }
 }

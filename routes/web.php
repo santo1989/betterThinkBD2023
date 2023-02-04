@@ -77,7 +77,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
     Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
-    Route::get('/users/{user}/edit',[UserController::class, 'edit']
+    Route::get(
+        '/users/{user}/edit',
+        [UserController::class, 'edit']
     )->name('users.edit');
     Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
@@ -165,8 +167,13 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/history/sponsor', [PaymentHistoryController::class, 'sponsor'])->name('history.sponsor');
 
+    Route::get('/history/withdraw', [PaymentHistoryController::class, 'withdraw'])->name('history_withdraw');
+
+    Route::get('/history/rewards', [PaymentHistoryController::class, 'reward'])->name('history_reward');
+
+
     // Admin
-    Route::get('/history/generate-point', [PaymentHistoryController::class, 'generatePoint'])->name('history.generate-point');
+    Route::get('/history/generate-point', [PaymentHistoryController::class, 'generatePoint'])->name('history.generate_point');
 
 
     Route::get('/points/withdraw/request', [\App\Http\Controllers\Admin\AccountController::class, 'request'])->name('withdraw.request');
@@ -236,4 +243,9 @@ Route::get('/route-clear', function () {
 Route::get('/route-cache', function () {
     $route_cache = Artisan::call('route:cache');
     echo "route cache<br>";
+});
+
+Route::get('/updateapp', function () {
+    $dump_autoload = Artisan::call('dump-autoload');
+    echo 'dump-autoload complete';
 });

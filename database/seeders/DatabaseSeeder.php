@@ -20,12 +20,13 @@ class DatabaseSeeder extends Seeder
             RolesTableSeeder::class,
             UsersTableSeeder::class,
             CategoriesTableSeeder::class,
-            ProductsTableSeeder::class,
-            BlogsTableSeeder::class,
+            // ProductsTableSeeder::class,
+            // BlogsTableSeeder::class,
             TypesTableSeeder::class,
             PointsTableSeeder::class,
             DivisionsTableSeeder::class,
             DistrictsTableSeeder::class,
+            HandsTableSeeder::class,
 
         ]);
 

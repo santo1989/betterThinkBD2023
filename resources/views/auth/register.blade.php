@@ -139,12 +139,13 @@
                                                 <x-label for="sponsor_id" :value="__('Sponsor ID')" />
                                                 <div class="row">
                                                     <div class="col-4">
-                                                        <x-input id="sponsor_id" class="block mt-1 w-full" type="text"
-                                                                 value="0012-2022-"  readonly autofocus />
+                                                        <x-input id="sponsor_id" class="block mt-1 w-full"
+                                                            type="text" value="0012-2022-" readonly autofocus />
                                                     </div>
                                                     <div class="col-8">
-                                                        <x-input id="sponsor_id" class="block mt-1 w-full" type="text"
-                                                                 placeholder="Last 8 digit of Sponsor ID" name="sponsor_id" :value="old('sponsor_id')" required autofocus />
+                                                        <x-input id="sponsor_id" class="block mt-1 w-full"
+                                                            type="text" placeholder="Last 8 digit of Sponsor ID"
+                                                            name="sponsor_id" :value="old('sponsor_id')" required autofocus />
                                                     </div>
                                                 </div>
 
@@ -153,8 +154,6 @@
                                                 </label>
 
                                             </div>
-
-
                                         </div>
                                         <div class="w-1/2">
 
@@ -164,7 +163,7 @@
                                                 <x-label for="bkash_no" :value="__('Bkash No')" />
 
                                                 <x-input id="bkash_no" class="block mt-1 w-full" type="text"
-                                                    name="bkash_no" :value="old('bkash_no')"  autofocus />
+                                                    name="bkash_no" :value="old('bkash_no')" autofocus />
 
                                             </div>
 
@@ -174,7 +173,7 @@
                                                 <x-label for="bank_name" :value="__('Bank Name')" />
 
                                                 <x-input id="bank_name" class="block mt-1 w-full" type="text"
-                                                    name="bank_name" :value="old('bank_name')"  autofocus />
+                                                    name="bank_name" :value="old('bank_name')" autofocus />
 
                                             </div>
 
@@ -184,7 +183,7 @@
                                                 <x-label for="branch" :value="__('Branch Name')" />
 
                                                 <x-input id="branch" class="block mt-1 w-full" type="text"
-                                                    name="branch" :value="old('branch')"  autofocus />
+                                                    name="branch" :value="old('branch')" autofocus />
 
                                             </div>
 
@@ -194,7 +193,7 @@
                                                 <x-label for="account_no" :value="__('Account No')" />
 
                                                 <x-input id="account_no" class="block mt-1 w-full" type="text"
-                                                    name="account_no" :value="old('account_no')"  autofocus />
+                                                    name="account_no" :value="old('account_no')" autofocus />
 
                                             </div>
 
@@ -209,15 +208,16 @@
                                                 <div class="row">
                                                     <x-label for="payment_id" :value="__('Payment ID')" />
                                                     <div class="col-3">
-                                                        <x-input id="payment_id" class="block mt-1 w-full" type="text"
-                                                                 value="0012-2022-"  readonly autofocus />
+                                                        <x-input id="payment_id" class="block mt-1 w-full"
+                                                            type="text" value="0012-2022-" readonly autofocus />
                                                     </div>
                                                     <div class="col-8">
-                                                        <x-input id="payment_id" class="block mt-1 w-full" type="text"
-                                                                 placeholder="Last 8 digit of Payment ID" name="payment_id" :value="old('payment_id')" required autofocus />
+                                                        <x-input id="payment_id" class="block mt-1 w-full"
+                                                            type="text" placeholder="Last 8 digit of Payment ID"
+                                                            name="payment_id" :value="old('payment_id')" required autofocus />
                                                     </div>
                                                 </div>
-                                                
+
 
 
 
@@ -231,13 +231,7 @@
                                         <div class="w-1/2">
 
                                             <div class="mt-3">
-                                                {{-- <a class="underline text-sm text-gray-600 hover:text-gray-900"
-                                            href="{{ route('login') }}">
-                                            {{ __('Already registered?') }}
-                                        </a>
-                                        <x-button class="grid place-items-center h-screen">
-                                                {{ __('Submit') }}
-                                            </x-button> --}}
+
                                                 <button type="submit"
                                                     class="btn btn-outline-primary mx-auto d-block mt-3">Submit</button>
                                             </div>
@@ -247,19 +241,18 @@
                         </div>
                     </div>
                 </div>
-                           
+
             </div>
-            <div class="col-md-3 col-lg-3 col-xl-5 align-self-end"> 
-              <p>  <img src="{{ asset('ui/frontend/images/assets/reg.png') }}" alt="" heigt=350px; width=150px; class="rounded float-end">
-                {{-- <h2 class="">Better Think BD</h2> --}}
-              </p>
+            <div class="col-md-3 col-lg-3 col-xl-5 align-self-end">
+                <p> <img src="{{ asset('ui/frontend/images/assets/reg.PNG') }}" alt="" heigt=350px;
+                        width=150px; class="rounded float-end">
+                </p>
             </div>
         </div>
     </section>
     @push('css')
         <style>
-   
-         .gradient-custom {
+            .gradient-custom {
                 /* fallback for old browsers */
                 background: #f093fb;
 

@@ -25,6 +25,8 @@
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
             User Reward Point History <a class="btn btn-sm btn-info" href="{{ route('admin.payment.history') }}">History</a>
+            <a class="btn btn-sm btn-info" href="{{ route('history_reward') }}">reward point</a>
+            
         </div>
         <div class="card-body">
 
