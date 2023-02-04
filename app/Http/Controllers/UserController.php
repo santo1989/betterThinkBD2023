@@ -213,9 +213,10 @@ class UserController extends Controller
     public function createSponsor($request)
     {
         $child_user = User::where('id', $request->child_id)->first();
+        $parent_user = User::where('uuid', $child_user->sponsor_id)->first();
 
         $hand = Hand::create([
-            'parent_id' => Auth::id(),
+            'parent_id' => $parent_user->id,
             'child_id' => $request->child_id
         ]);
 
