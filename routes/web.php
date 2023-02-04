@@ -196,6 +196,11 @@ Route::post('/autocomplete', [UserController::class, 'autocomplete'])->name("aut
 
 Route::get('/get/district/{id}', [ProductController::class, 'getDistricts'])->name('getDistricts');
 
+Route::get(
+    '/all-level',
+    function () {
+    return view('backend.Admin.levels.all_level_show');
+}); 
 
 require __DIR__ . '/auth.php';
 
@@ -249,3 +254,5 @@ Route::get('/updateapp', function () {
     $dump_autoload = Artisan::call('dump-autoload');
     echo 'dump-autoload complete';
 });
+
+
