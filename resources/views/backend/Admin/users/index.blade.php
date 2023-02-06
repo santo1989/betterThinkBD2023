@@ -46,7 +46,7 @@
               <div class="card-body">
                   {{-- role Table goes here --}}
   
-                  <table id="example2" class="table table-bordered table-hover">
+                  <table id="datatablesSimple" class="table table-bordered table-hover">
                     <thead>
                       <tr>
                         <th>Sl#</th>
@@ -67,6 +67,8 @@
                           <td>
   
                               <a class="btn btn-warning btn-sm" href="{{ route('users.edit', ['user' => $user->id]) }}">Edit</a>
+
+                              <a class="btn btn-info btn-sm" href="{{ route('users.details', ['user' => $user->id]) }}">Show</a>
   
                               {{-- <form style="display:inline" action="{{ route('users.destroy', ['user' => $user->id]) }}" method="post">
                                   @csrf

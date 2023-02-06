@@ -266,8 +266,22 @@ class UserController extends Controller
         ]);
     }
 
-    public function getName()
+    public function getpaymentUserName(Request $request)
     {
-       
+        $user = User::where('uuid', $request->payment_id)->first();
+        return $user->name;
     }
+
+    public function getUserName(Request $request)
+    {
+        $user = User::where('uuid', $request->sponsor_id)->first();
+        return $user->name;
+    }
+
+    public function details(Request $request, $id)
+    {
+        $user = User::where('id', $id)->first();
+        return view('backend.Admin.users.details', compact('user'));
+    }
+    
 }
