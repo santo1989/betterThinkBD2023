@@ -74,7 +74,6 @@ class UserController extends Controller
                 'name' => $request->name,
                 'role_id' => $request->role_id,
                 'password' => $request->password ? Hash::make($request->password) : $user->password,
-
             ];
 
             $user->update($requestData);
@@ -145,7 +144,7 @@ class UserController extends Controller
         return view('backend.User_Interface.approved.approve', compact('notification'));
     }
 
-    public function approve(Request $request)
+    public function approve(Request $request): RedirectResponse
     {
         try {
             DB::beginTransaction();
@@ -161,9 +160,14 @@ class UserController extends Controller
                 }
 
                 $userPoint = Auth::user()->point - $registerFee;
-
                 Auth::user()->update([
                     'point' => $userPoint
+                ]);
+
+                $admin = $this->getAdmin();
+                $adminPoint = $admin->point + $registerFee;
+                $admin->update([
+                    'point' => $adminPoint
                 ]);
 
                 PaymentHistory::create([
@@ -239,6 +243,12 @@ class UserController extends Controller
             $parentUser->point = $parentUser->point + $point;
             $parentUser->update();
 
+            $admin = $this->getAdmin();
+            $adminPoint = $admin->point - $point;
+            $admin->update([
+                'point' => $adminPoint
+            ]);
+
             $parentUser->notifications()->create([
                 "type" => "level_$i",
                 "message" => "$point point for refer a user $parent_id",
@@ -283,5 +293,9 @@ class UserController extends Controller
         $user = User::where('id', $id)->first();
         return view('backend.Admin.users.details', compact('user'));
     }
-    
+
+    public function getAdmin()
+    {
+        return User::where('role_id', 1)->first();
+    }
 }

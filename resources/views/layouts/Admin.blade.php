@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
         ->whereDate('created_at', Carbon::today())
         ->sum('point');
     $totalEarning = \App\Models\PaymentHistory::where('payment_id', 2)
+        ->where('type', 'sponsor')
         ->whereDate('created_at', Carbon::today())
         ->sum('point');
 
