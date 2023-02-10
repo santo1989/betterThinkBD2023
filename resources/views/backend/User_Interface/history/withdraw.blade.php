@@ -1,6 +1,36 @@
 <x-backend.layouts.master>
-    <div class="container">
-        <table class="table">
+           <x-slot name="pageTitle">
+          History
+      </x-slot>
+
+      <x-slot name='breadCrumb'>
+        <x-backend.layouts.elements.breadcrumb>
+            <x-slot name="pageHeader"> Point </x-slot>
+            <li class="breadcrumb-item">Point</li>
+            <li class="breadcrumb-item active">History</li>
+        </x-backend.layouts.elements.breadcrumb>
+    </x-slot>
+    <section class="content">
+      <div class="container-fluid">
+  
+  @if (session('message'))
+    <div class="alert alert-success">
+        <span class="close" data-dismiss="alert">&times;</span>
+        <strong>{{ session('message') }}.</strong>
+    </div>
+    @endif
+  
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+  
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                  {{-- Table goes here --}}
+  
+                  <table id="datatablesSimple" class="table table-bordered table-hover">
             <thead>
             <tr>
                 <th scope="col">#</th>
@@ -21,7 +51,19 @@
                 </tr>
             @endforeach
             </tbody>
-            {{ $withdraws->links() }}
-        </table>
-    </div>
+                  </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+  
+            
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
 </x-backend.layouts.master>

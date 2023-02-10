@@ -128,7 +128,7 @@
                     <a class="nav-link collapsed text-white" href="#" data-bs-toggle="collapse"
                         data-bs-target="#collapseLayouts4" aria-expanded="false" aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                        History
+                        Point History
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
 
@@ -138,6 +138,16 @@
                             <a class="nav-link text-white" href="{{ route('history.generate_point') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Generate Point
+                            </a>
+
+                            <a class="nav-link text-white" href="{{ route('history_withdraw') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Withdraw
+                            </a>
+
+                            <a class="nav-link text-white" href="{{ route('history_reward') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Reward
                             </a>
                         </nav>
                     </div>

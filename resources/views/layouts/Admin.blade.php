@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\Auth;
         Admin Reward : {{ $adminReword ?? '0' }} <br />
         Client Reward : {{ ($todayPoints - $adminReword) ?? '0' }} <br />
         Withdraw Point : {{ $todayPoints ?? '0' }} <br />
-        Today Point : {{ $todayPoints ?? '0'}}</h4>
+        Today Client Point : {{ $todayPoints ?? '0'}}</h4>
         {{-- <x-backend.layouts.elements.breadcrumb>
             <x-slot name="pageHeader"> Dashboard</x-slot>
             <li class="breadcrumb-item active">Dashboard</li>

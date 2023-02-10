@@ -39,4 +39,12 @@ class PaymentHistoryController extends Controller
             ->latest()->paginate();
         return view('backend.Admin.history.reward', compact('rewards'));
     }
+
+    public function client_rewards()
+    {
+        $client_rewards = PaymentHistory::where('user_id', Auth::id())
+            ->where('type', PaymentType::REWARD())
+            ->latest()->paginate();
+        return view('backend.User_Interface.history.client_reward', compact('client_rewards'));
+    }
 }
