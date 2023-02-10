@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
         ->paginate();
 
     $todayPoints = \App\Models\PaymentHistory::where('user_id', Auth::id())
+        ->where('type', 'sponsor')
         ->whereDate('created_at', Carbon::today())
         ->sum('point');
     $adminReward = \App\Models\PaymentHistory::where('user_id', Auth::id())
