@@ -10,13 +10,12 @@ use App\Models\Hand;
 use App\Models\Notification;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
-use Exception;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-use DateTime;
 use Illuminate\Support\Str;
 
 class RegisteredUserController extends Controller
@@ -32,14 +31,10 @@ class RegisteredUserController extends Controller
     }
 
     /**
-     * Handle an incoming registration request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     *
-     * @throws \Illuminate\Validation\ValidationException
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -52,25 +47,6 @@ class RegisteredUserController extends Controller
             'payment_id' => 'required|digits:8',
         ]);
 
-        try{
-//            $now = new DateTime();
-//            $year = $now->format("Y");
-            $year = 2022;
-
-            $latest_uuid = User::get('uuid')->last();
-            $a = str_replace('-', '', $latest_uuid->uuid);
-            $b = Str::substr($a, 8);
-            $c = (int)$b;
-            $d = (string)($c+1);
-            $e= sprintf('%08d', $d);
-            $f = Str::substr($e, 0, 4).'-'.Str::substr($e, 4);
-            $user_id = '0012'.'-'.$year.'-'.$f;
-        }
-        catch(Exception $e)
-        {
-            return redirect()->back()->withInput()->withErrors("Oops! Unsuccessful attempt to generate user id!");
-        }
-
         $request->sponsor_id = '0012-2022-'.$this->generateId($request->sponsor_id);
         $request->payment_id = '0012-2022-'.$this->generateId($request->payment_id);
 
@@ -82,12 +58,12 @@ class RegisteredUserController extends Controller
         $payment = User::where('uuid', $request->payment_id)->first();
 
         $hands = Hand::where('parent_id', $sponsor->id)->count();
-        if($hands>10){
+        if($hands>10 && $sponsor->role->name != 'Admin'){
             return redirect()->back()->withInput()->withErrors("This user already sponsored 10 people.");
         }
 
         $user = User::create([
-            'uuid' => $user_id,
+            'uuid' => $this->generateUuid(),
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
@@ -151,6 +127,18 @@ class RegisteredUserController extends Controller
     {
         $split = str_split($id, 4);
         return implode("-", $split);
+    }
+
+    public function generateUuid(): string
+    {
+        $latest_uuid = User::get('uuid')->last();
+        $a = str_replace('-', '', $latest_uuid->uuid);
+        $b = Str::substr($a, 8);
+        $c = (int)$b;
+        $d = (string)($c+1);
+        $e= sprintf('%08d', $d);
+        $f = Str::substr($e, 0, 4).'-'.Str::substr($e, 4);
+        return '0012-2022-'.$f;
     }
 
 }

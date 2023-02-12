@@ -173,6 +173,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/history/rewards', [PaymentHistoryController::class, 'reward'])->name('history_reward');
 
+    Route::get('/history/referral', [AccountController::class, 'referral'])->name('history.referral');
+
 
     // Admin
     Route::get('/history/generate-point', [PaymentHistoryController::class, 'generatePoint'])->name('history.generate_point');
@@ -202,7 +204,7 @@ Route::get(
     '/all-level',
     function () {
     return view('backend.Admin.levels.all_level_show');
-}); 
+});
 
 require __DIR__ . '/auth.php';
 

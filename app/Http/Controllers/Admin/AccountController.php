@@ -8,6 +8,7 @@ use App\Enums\PaymentType;
 use App\Http\Controllers\Controller;
 use App\Models\Notification;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,7 +26,7 @@ class AccountController extends Controller
         return view('backend.Admin.points.approve', compact('notification'));
     }
 
-    public function approve(Request $notification)
+    public function approve(Request $notification): RedirectResponse
     {
         $notification = Notification::find($notification)->first();
         $requestedUser = User::find($notification->user_id);

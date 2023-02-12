@@ -151,6 +151,16 @@
                         </nav>
                     </div>
 
+                    <div class="collapse" id="collapseLayouts4" aria-labelledby="headingOne"
+                         data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link text-white" href="{{ route('history.referral') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Referral
+                            </a>
+                        </nav>
+                    </div>
+
 
                 </div>
             @endcan
@@ -191,6 +201,13 @@
                                 <i class="fas fa-tachometer-alt"></i>
                             </div>
                             Sponsor History
+                        </a>
+
+                        <a class="nav-link text-white" href="{{ route('history.referral') }}">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            Referral
                         </a>
                     @endisset
                     {{-- <a class="nav-link text-white" href="{{ route('level_show') }}">

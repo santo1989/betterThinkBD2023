@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use App\Enums\NotificationStatus;
 use App\Enums\NotificationType;
 use App\Enums\PaymentType;
-use App\Models\Notification;
+use App\Models\Hand;
 use App\Models\User;
-use Faker\Provider\Payment;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -93,7 +92,6 @@ class AccountController extends Controller
             'Generate_point' => 'required|numeric|min:1',
         ]);
         $user = User::find(Auth::user()->id);
-        // dd($user);
         $user->point = $user->point + $request->Generate_point;
         $user->save();
         Auth::user()->paymentHistories()->create([
@@ -112,4 +110,24 @@ class AccountController extends Controller
 
         return view('backend.Admin.points.history', compact('histories'));
     }
+
+    public function referral()
+    {
+        $result = [];
+        $this->getReferrals(Auth::id(), $result);
+        $referredUsers = User::whereIn('id', $result)->get();
+        return view('backend.User_Interface.history.referral', [
+            'referredUsers' => $referredUsers
+        ]);
+    }
+
+    public function getReferrals($userId, &$result)
+    {
+        $referrals = Hand::where('parent_id', $userId)->get();
+        foreach ($referrals as $referral) {
+            $result[] = $referral->child_id;
+            $this->getReferrals($referral->child_id, $result);
+        }
+    }
+
 }
