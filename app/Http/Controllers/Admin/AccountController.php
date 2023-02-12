@@ -7,6 +7,7 @@ use App\Enums\NotificationType;
 use App\Enums\PaymentType;
 use App\Http\Controllers\Controller;
 use App\Models\Notification;
+use App\Models\PaymentHistory;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -31,8 +32,8 @@ class AccountController extends Controller
         $notification = Notification::find($notification)->first();
         $requestedUser = User::find($notification->user_id);
 
-        if ($notification->point > $requestedUser->point) {
-
+        if ($notification->point > $requestedUser->point)
+        {
             $notification->update([
                 'status' => NotificationStatus::READ()
             ]);
@@ -41,6 +42,19 @@ class AccountController extends Controller
 
         $requestedUser['point'] -= $notification->point;
         $requestedUser->update();
+
+        $admin = $this->getAdmin();
+        $adminPoint = $admin->point + $notification->point;
+        $admin->update([
+            'point' => $adminPoint
+        ]);
+        PaymentHistory::create([
+            'user_id' => $admin->id,
+            'point' => $adminPoint,
+            'Details' => $notification->point . ' point withdraw by ' . $requestedUser->name . ", id: " . ($requestedUser->uuid),
+            'type' => PaymentType::ADD_POINT(),
+            'payment_id' => $requestedUser->id
+        ]);
 
         $requestedUser->notifications()->create([
             'type' => NotificationType::WITHDRAW(),
@@ -63,5 +77,17 @@ class AccountController extends Controller
         ]);
 
         return redirect()->route('withdraw.request')->withMessage($notification['point'] . ' point withdraw request accepted!');
+    }
+
+    public function earned()
+    {
+        $earned = PaymentHistory::where('type', PaymentType::ADD_POINT())->get();
+
+        return view('backend.User_Interface.history.earned', compact('earned'));
+    }
+
+    public function getAdmin()
+    {
+        return User::where('role_id', 1)->first();
     }
 }

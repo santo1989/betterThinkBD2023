@@ -149,6 +149,11 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Reward
                             </a>
+
+                            <a class="nav-link text-white" href="{{ route('history.earned') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Earned
+                            </a>
                         </nav>
                     </div>
 

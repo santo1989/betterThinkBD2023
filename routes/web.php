@@ -175,7 +175,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/history/rewards', [PaymentHistoryController::class, 'reward'])->name('history_reward');
 
     Route::get('/history/referral', [AccountController::class, 'referral'])->name('history.referral');
-    
+
+    Route::get('/history/earned', [\App\Http\Controllers\Admin\AccountController::class, 'earned'])->name('history.earned');
+
     Route::get('/history/client_rewards', [PaymentHistoryController::class, 'client_rewards'])->name('history.client_rewards');
 
 

@@ -169,6 +169,13 @@ class UserController extends Controller
                 $admin->update([
                     'point' => $adminPoint
                 ]);
+                PaymentHistory::create([
+                    'user_id' => $admin->id,
+                    'point' => $adminPoint,
+                    'Details' => $registerFee . ' point added on your account for payment transaction of ' . $child_user->name . ", id: " . ($child_user->uuid) . ' registration',
+                    'type' => PaymentType::ADD_POINT(),
+                    'payment_id' => $child_user->id
+                ]);
 
                 PaymentHistory::create([
                     'user_id' => Auth::id(),
