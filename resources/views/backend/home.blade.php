@@ -4,7 +4,17 @@
     @break
 
     @case('User')
-        @include('layouts.User')
+    @if(auth()->user()->is_approve == 1)
+    @include('layouts.User') 
+    @else
+ <x-backend.layouts.master>
+
+ <div class="col-md-12 text-center text-danger">
+                Waiting for Conformation and Approval.
+            </div>
+        </x-backend.layouts.master>
+    @endif
+       
     @break
 
     @case('Guest')
@@ -30,7 +40,9 @@
     @default
         <x-backend.layouts.master>
 
-
+<div class="col-md-12 text-center text-danger">
+                Waiting for Conformation and Approval.
+            </div>
         </x-backend.layouts.master>
 @endswitch
 

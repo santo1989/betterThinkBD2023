@@ -56,7 +56,7 @@
                     <label for="exampleFormControlSelect1">Select Payment Method</label>
                     <select name="method" class="form-control" id="exampleFormControlSelect1">
                         <option>Bank</option>
-                        <option>Mobile</option>
+                        <option>Mobile Bkash</option>
                     </select>
                 </div>
 

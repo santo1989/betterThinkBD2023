@@ -160,8 +160,9 @@ Route::middleware('auth')->group(function () {
     //points
 
     Route::get('/points/reward', [AccountController::class, 'rewardView'])->name('reward');
-    Route::post('/points/reward', [AccountController::class, 'reward'])->name('admin.reward');
+    Route::post('/points/history/reward', [AccountController::class, 'reward'])->name('admin.reward');
     Route::get('/points/history', [AccountController::class, 'paymentHistory'])->name('admin.payment.history');
+
 
     Route::get('/points/withdraw', [AccountController::class, 'withdrawView'])->name('Withdraw');
     Route::post('/points/withdraw', [AccountController::class, 'withdraw'])->name('point.withdraw');
@@ -174,6 +175,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/history/rewards', [PaymentHistoryController::class, 'reward'])->name('history_reward');
 
     Route::get('/history/referral', [AccountController::class, 'referral'])->name('history.referral');
+    
+    Route::get('/history/client_rewards', [PaymentHistoryController::class, 'client_rewards'])->name('history.client_rewards');
 
 
     // Admin

@@ -173,7 +173,7 @@ class UserController extends Controller
                 PaymentHistory::create([
                     'user_id' => Auth::id(),
                     'point' => $registerFee,
-                    'Details' => $registerFee . ' point successfully paid for ' . $child_user->name . 'registration',
+                    'Details' => $registerFee . ' point successfully paid for ' . $child_user->name . ", id: " . ($child_user->uuid) . 'registration',
                     'type' => PaymentType::PAYMENT(),
                     'payment_id' => $child_user->id
                 ]);

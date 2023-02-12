@@ -11,7 +11,9 @@
         </x-backend.layouts.elements.breadcrumb>
     </x-slot>
       
-    <section class="content">
+
+                   
+      <section class="content">
       <div class="container-fluid">
   
   @if (session('message'))
@@ -47,7 +49,7 @@
                   {{-- role Table goes here --}}
   
                   <table id="datatablesSimple" class="table table-bordered table-hover">
-                    <thead>
+                     <thead>
                       <tr>
                         <th>Sl#</th>
                         <th>Name</th>
@@ -69,7 +71,6 @@
                               <a class="btn btn-warning btn-sm" href="{{ route('users.edit', ['user' => $user->id]) }}">Edit</a>
 
                               <a class="btn btn-info btn-sm" href="{{ route('users.details', ['user' => $user->id]) }}">Show</a>
-  
                               {{-- <form style="display:inline" action="{{ route('users.destroy', ['user' => $user->id]) }}" method="post">
                                   @csrf
                                   @method('delete')

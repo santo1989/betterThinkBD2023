@@ -32,23 +32,25 @@
   
                   <table id="datatablesSimple" class="table table-bordered table-hover">
             <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Point</th>
-                    <th scope="col">Details</th>
-                    <th scope="col">Date</th>
-                </tr>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Details</th>
+                <th scope="col">From</th>
+                <th scope="col">Point</th>
+                <th scope="col">Date</th>
+            </tr>
             </thead>
             <tbody>
-                @foreach ($points as $point)
-                    <tr>
-                        <th scope="row">{{ $loop->iteration }}</th>
-                        <td>{{ $point->point }}</td>
-                        <td>{{ $point->details }}</td>
-                        <td>{{ $point->created_at }}</td>
-                    </tr>
-                @endforeach
-       </tbody>
+            @foreach($client_rewards as $client_reward)
+                <tr>
+                    <th scope="row">{{ $loop->iteration }}</th>
+                    <td>{{ $client_reward->details }}</td>
+                    <td>{{ $client_reward->payment_id }}</td>
+                    <td>{{ $client_reward->point }}</td>
+                    <td>{{ $client_reward->created_at }}</td>
+                </tr>
+            @endforeach
+           </tbody>
                   </table>
               </div>
               <!-- /.card-body -->

@@ -54,7 +54,7 @@
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Select User</label>
                         {{-- search user by uuid or email or nid or phone number and select user --}}
-                        <select name="user_id" class="js-example-basic-single">
+                        <select name="user_id" class="js_single">
                             @foreach ($users as $user)
                                 <option  value="{{ $user->id }}">{{ $user->name }} : {{ $user->uuid }}</option>
                             @endforeach
@@ -82,7 +82,7 @@
 
         <script>
             $(document).ready(function() {
-                $('.js-example-basic-single').select2();
+                $('.js_single').select2();
             });
 
         </script>

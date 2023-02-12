@@ -102,15 +102,6 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                         Generate Point
                     </a>
-
-
-
-
-
-
-
-
-
                     {{-- @can('user-management') --}}
 
                     <a class="nav-link collapsed text-white" href="#" data-bs-toggle="collapse"
@@ -137,7 +128,7 @@
                     <a class="nav-link collapsed text-white" href="#" data-bs-toggle="collapse"
                         data-bs-target="#collapseLayouts4" aria-expanded="false" aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                        History
+                        Point History
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
 
@@ -147,6 +138,16 @@
                             <a class="nav-link text-white" href="{{ route('history.generate_point') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Generate Point
+                            </a>
+
+                            <a class="nav-link text-white" href="{{ route('history_withdraw') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Withdraw
+                            </a>
+
+                            <a class="nav-link text-white" href="{{ route('history_reward') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Reward
                             </a>
                         </nav>
                     </div>
@@ -167,6 +168,8 @@
 
 
             @can('User')
+             @if(auth()->user()->is_approve == 1)
+
                 <div class="nav">
                     <div class="sb-sidenav-menu-heading">List</div>
                     <a class="nav-link text-white" href="{{ route('home') }}">
@@ -196,26 +199,57 @@
                             Withdraw point
                         </a>
 
-                        <a class="nav-link text-white" href="{{ route('history.sponsor') }}">
+                        {{-- <a class="nav-link text-white" href="{{ route('history.sponsor') }}">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-tachometer-alt"></i>
                             </div>
                             Sponsor History
-                        </a>
+                        </a> --}}
+                        <a class="nav-link collapsed text-white" href="#" data-bs-toggle="collapse"
+                        data-bs-target="#collapseLayouts4" aria-expanded="false" aria-controls="collapseLayouts">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        History
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
 
-                        <a class="nav-link text-white" href="{{ route('history.referral') }}">
-                            <div class="sb-nav-link-icon">
-                                <i class="fas fa-tachometer-alt"></i>
-                            </div>
-                            Referral
-                        </a>
+                    <div class="collapse" id="collapseLayouts4" aria-labelledby="headingOne"
+                        data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link text-white" href="{{ route('history.client_rewards') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Client Reward
+                            </a>
+                            <a class="nav-link text-white" href="{{ route('history.sponsor') }}">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                </div>
+                                Sponsor
+                            </a>
+                            <a class="nav-link text-white" href="{{ route('history.referral') }}">
+                                <div class="sb-nav-link-icon">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                </div>
+                                Referral
+                            </a>
+                        </nav>
+                    </div>
                     @endisset
                     {{-- <a class="nav-link text-white" href="{{ route('level_show') }}">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                         level
                     </a> --}}
 
+
                 </div>
+             @else
+            <div class="nav">
+                    <div class="sb-sidenav-menu-heading">List</div>
+                    <a class="nav-link text-white" href="#">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        Waiting for Conformation
+                    </a>
+                </div>
+                @endif
             @endcan
             @can('Guest')
                 <div class="nav">
@@ -232,8 +266,9 @@
             style="background-image: linear-gradient(#1358a7, #0680c6, #273871); text-color:white;">
             <div class="small">Logged in as:</div>
             {{-- {{ auth()->user()->role->name ?? '' }} --}}
-            {{ auth()->user()->uuid ?? '' }}
-
+            @if(auth()->user()->is_approve == 1)
+                {{ auth()->user()->uuid ?? '' }}
+            @endif
         </div>
     </nav>
 </div>

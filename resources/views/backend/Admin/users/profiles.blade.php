@@ -16,7 +16,7 @@
                                 <img src="{{ asset('images/users/' . $user->picture) }}" class="rounded-circle"
                                     width="150" alt="{{ $user->name }}">
                                 <div class="mt-3">
-                                    <h4>{{ $user->name ?? '' }}</h4>
+                                    <h4>{{ $user->name ?? 'No Data found' }}</h4>
                                     <p class="text-muted font-size-sm">{{ $user->email }}</p>
                                     <a class="btn btn-warning btn-sm"
                                         href="{{ route('profile_edit', ['user' => $user->id]) }}"><i class="fa fa-edit"
@@ -29,7 +29,7 @@
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                 <h6 class="mb-0">Sponser</h6>
-                                <span class="text-secondary">{{ $user->sponser_id ?? '' }}</span>
+                                <span class="text-secondary">{{ $user->sponser_id ?? 'No Data found' }}</span>
                             </li>
 
                             <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
@@ -48,7 +48,7 @@
                                     <h6 class="mb-0">Bkash</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    {{ $user->bkash_no ?? '' }}
+                                    {{ $user->bkash_no ?? 'No Data found' }}
                                 </div>
                             </div>
                             <hr>
@@ -57,9 +57,9 @@
                                     <h6 class="mb-0">Bank Information</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    Account No: {{ $user->account_no ?? '' }},<br /> Bank Name:
-                                    {{ $user->bank_name ?? '' }},<br /> Branch:
-                                    {{ $user->branch ?? '' }}
+                                    Account No: {{ $user->account_no ?? 'No Data found' }},<br /> Bank Name:
+                                    {{ $user->bank_name ?? 'No Data found' }},<br /> Branch:
+                                    {{ $user->branch ?? 'No Data found' }}
                                 </div>
                             </div>
                             <hr>
@@ -75,7 +75,7 @@
                                 </div>
                                 <div class="col-sm-9 text-secondary">
 
-                                    {{ $sponser->name ?? '' }}, {{ $sponser->mobile ?? '' }}
+                                    {{ $sponser->name ?? 'No Data found' }}, {{ $sponser->mobile ?? 'No Data found' }}
                                 </div>
                             </div>
                             <hr>
@@ -90,7 +90,7 @@
                                 <div class="col-sm-9 text-secondary">
 
 
-                                    {{ $payment->name ?? '' }}, {{ $payment->mobile ?? '' }}
+                                    {{ $payment->name ?? 'No Data found' }}, {{ $payment->mobile ?? 'No Data found' }}
 
 
                                 </div>
