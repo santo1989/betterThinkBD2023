@@ -59,7 +59,7 @@ class AccountController extends Controller
         $requestedUser->notifications()->create([
             'type' => NotificationType::WITHDRAW(),
             'message' => $notification->point . " point request has been accepted",
-            'status' => NotificationStatus::UNREAD(),
+            'status' => NotificationStatus::READ(),
             'point' => $notification->point,
         ]);
 
