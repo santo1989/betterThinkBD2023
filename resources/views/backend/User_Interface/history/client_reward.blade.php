@@ -1,13 +1,13 @@
 <x-backend.layouts.master>
            <x-slot name="pageTitle">
-          History
+          Reward History
       </x-slot>
 
       <x-slot name='breadCrumb'>
         <x-backend.layouts.elements.breadcrumb>
-            <x-slot name="pageHeader"> Point </x-slot>
-            <li class="breadcrumb-item">Point</li>
-            <li class="breadcrumb-item active">History</li>
+            <x-slot name="pageHeader">Reward Point </x-slot>
+            <li class="breadcrumb-item">Reward Point</li>
+            <li class="breadcrumb-item active">Reward History</li>
         </x-backend.layouts.elements.breadcrumb>
     </x-slot>
     <section class="content">

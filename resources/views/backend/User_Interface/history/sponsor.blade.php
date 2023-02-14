@@ -1,13 +1,13 @@
 <x-backend.layouts.master>
          <x-slot name="pageTitle">
-          History
+          Sponsor History
       </x-slot>
 
       <x-slot name='breadCrumb'>
         <x-backend.layouts.elements.breadcrumb>
-            <x-slot name="pageHeader"> Point </x-slot>
-            <li class="breadcrumb-item">Point</li>
-            <li class="breadcrumb-item active">History</li>
+            <x-slot name="pageHeader">Sponsor Point </x-slot>
+            <li class="breadcrumb-item">Sponsor Point</li>
+            <li class="breadcrumb-item active">Sponsor History</li>
         </x-backend.layouts.elements.breadcrumb>
     </x-slot>
     <section class="content">
@@ -45,7 +45,12 @@
                 <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $sponsor->details }}</td>
-                    <td>{{ $sponsor->payment_id }}</td>
+                    {{-- <td>{{ $sponsor->payment_id }}</td> --}}
+                    @php $name = App\Models\User::where('id', $sponsor->payment_id)->first()->name;
+                    // dd($name)
+                    @endphp
+                    <td> {{ $name ?? '' }} </td>
+                    {{-- <td>{{ $sponsor->payment->user->name }}</td> --}}
                     <td>{{ $sponsor->point }}</td>
                     <td>{{ $sponsor->created_at }}</td>
                 </tr>

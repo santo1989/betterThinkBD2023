@@ -156,6 +156,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/levels/admin_level_show', [HandController::class, 'admin_level_show'])->name('admin_level_show');
 
+    Route::get('/levels/admin_user_child/{id}', [HandController::class, 'admin_user_child'])->name('admin_user_child');
+
+    Route::get('/levels/user_child/{id}', [HandController::class, 'user_child'])->name('user_child');
+
 
     //points
 

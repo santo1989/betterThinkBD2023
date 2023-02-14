@@ -1,13 +1,9 @@
 <x-backend.layouts.master>
     <div class="container">
-
-
         <div class="text-center pt-3 pb-3">
-            <div class="badge badge-info ">
-                <h5>Levels under {{ Auth::user()->name }}</h5>
+           <div class="badge badge-info ">
+                <h5>Levels {{ $level_count }} under {{ Auth::user()->name }}</h5>
             </div>
-
-
 
         </div>
         @if (session('message'))
@@ -19,17 +15,13 @@
         <div class="text-center">
             <div class="card mb-4 text-center">
                 <div class="card-header pt-1 pb-1">
-                    {{-- <div class="badge badge-primary pt-1 pb-1">
-                        <h5>Level 1</h5>
-                    </div> --}}
-
                     @isset($parent)
                         <div class="row justify-content-center pt-1 pb-1">
                             <div class="col-md-3 col-xl-3">
                                 <div class="card" style="width:18rem;">
-                                    <img src="{{ asset('images/users/' . Auth::user()->picture) }}"
+                                    <img src="{{ asset('images/users/' . $parent_details->picture) }}"
                                         class="card-img-top rounded" height="100px" width="100px"
-                                        alt="{{ Auth::user()->name }}">
+                                        alt="{{ $parent_details->name }}">
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $parent_details->name }}</h5>
                                         <h6 class="card-subtitle mb-2 text-muted ">{{ $parent_details->uuid }}</h6>
@@ -40,9 +32,10 @@
                         </div>
                     @endisset
                 </div>
+
                 <div class="card-body">
                     <div class="badge badge-secondary pt-1 pb-1">
-                        <h5>Level 1</h5>
+                        <h5>Level under {{ $parent_details->name }} </h5>
                     </div>
                     @isset($child_details)
                         <div class="row justify-content-between pt-1 pb-1">
@@ -61,14 +54,13 @@
                                             <h5 class="card-title">{{ $child_details->name }}</h5>
                                             <h6 class="card-subtitle mb-2 text-muted ">{{ $child_details->uuid }}</h6>
                                             <h6 class="card-subtitle mb-2 text-muted ">Point: {{ $child_details->point }}</h6>
-                                            <form action="{{ route('admin_user_child', $child_details->id) }}" method="GET">
+                                                   <form action="{{ route('user_child', $child_details->id) }}" method="GET">
                                                 @csrf
-                                                <input type="hidden" name="level_count" value="{{ 1 }}">
+                                                <input type="hidden" name="level_count" value="{{ $level_count }}">
                                                 <button class="btn btn-primary btn-sm"  onclick="window.location='{{ route('admin_user_child', $child_details->id) }}' "
                                                 >View</button>
                                             </form>
-                                            
-                                            {{-- <button class="btn btn-primary btn-sm"  onclick="window.location='{{ route('admin_user_child', $child_details->id) }}' "
+                                            {{-- <button class="btn btn-primary btn-sm"  onclick="window.location='{{ route('user_child', $child_details->id) }}' "
                                             >View</button> --}}
                                         </div>
                                     </div>
@@ -91,6 +83,8 @@
             </div>
         </div>
     </div>
+
+    
     
 </x-backend.layouts.master>
 

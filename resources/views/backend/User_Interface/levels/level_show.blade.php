@@ -19,10 +19,6 @@
         <div class="text-center">
             <div class="card mb-4 text-center">
                 <div class="card-header pt-1 pb-1">
-                    {{-- <div class="badge badge-primary pt-1 pb-1">
-                        <h5>Level 1</h5>
-                    </div> --}}
-
                     @isset($parent)
                         <div class="row justify-content-center pt-1 pb-1">
                             <div class="col-md-3 col-xl-3">
@@ -49,7 +45,7 @@
 
 
                             @forelse ($child_details as $child_details)
-                                <div class="col-md-2 col-xl-2 col-sm-12">
+                                <div class="col-md-2 col-xl-2 col-sm-12 pt-1 pb-1">
 
 
 
@@ -60,7 +56,16 @@
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $child_details->name }}</h5>
                                             <h6 class="card-subtitle mb-2 text-muted ">{{ $child_details->uuid }}</h6>
-                                            <h6 class="card-subtitle mb-2 text-muted ">Point: {{ $child_details->point }}</h6>
+                                            <h6 class="card-subtitle mb-2 text-muted ">Point: {{ $child_details->point }}
+                                            </h6>
+                                            <form action="{{ route('user_child', $child_details->id) }}" method="GET">
+                                                @csrf
+                                                <input type="hidden" name="level_count" value="{{ 1 }}">
+                                                <button class="btn btn-primary btn-sm"  onclick="window.location='{{ route('admin_user_child', $child_details->id) }}' "
+                                                >View</button>
+                                            </form>
+                                            {{-- <button class="btn btn-primary btn-sm"
+                                                onclick="window.location='{{ route('user_child', $child_details->id) }}' ">View</button> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -82,4 +87,5 @@
             </div>
         </div>
     </div>
+
 </x-backend.layouts.master>
