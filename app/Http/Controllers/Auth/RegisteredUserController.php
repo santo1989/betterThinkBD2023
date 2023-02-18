@@ -58,10 +58,10 @@ class RegisteredUserController extends Controller
         $payment = User::where('uuid', $request->payment_id)->first();
 
         $hands = Hand::where('parent_id', $sponsor->id)->count();
-        if($hands>10 && $sponsor->role->name != 'Admin'){
+        if($hands>=10 && $sponsor->role->name != 'Admin'){
             return redirect()->back()->withInput()->withErrors("This user already sponsored 10 people.");
         }
-
+        
         $user = User::create([
             'uuid' => $this->generateUuid(),
             'name' => $request->name,
