@@ -70,7 +70,7 @@
 
                 <x-backend.form.input name="discount_amount" label="Discount %" :value="$product->discount_amount" />
 
-                <x-backend.form.input name="point_needed" label="Point Needed" :value="$product->point_needed" />
+                {{-- <x-backend.form.input name="point_needed" label="Point Needed" :value="$product->point_needed" /> --}}
 
                 <x-backend.form.button>Update</x-backend.form.button>
 

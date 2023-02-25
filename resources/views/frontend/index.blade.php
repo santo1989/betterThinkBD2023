@@ -47,44 +47,13 @@
 
         </div>
     </div> --}}
-<div class="row justify-content-center">
-            <p>
-               <img src="{{ asset('ui/frontend/images/assets/frontimage.jpg') }}" alt="" class="img-fluid">
-            </p>
-</div>
-
-    <hr class="hr1 bg-info p-1 mt-2 mb-2">
-
-
-    <div class="container">
-
-        <div class="row justify-content-between">
-            @forelse ($categories as $category)
-                <div class="col-xl-4 col-md-4 col-sm-12  pt-2 pb-1">
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-image" style=" background-color:rgba(0,119,191,255);">
-                            <img src="{{ asset('images/categories/' . $category->image) }}"
-                                class="card-img-top pt-5 pb-5" height="300px" alt="...">
-                        </div>
-
-                        <div class="card-body text-center" style=" height:100px;">
-                            <a href="{{ route('category_details', ['id' => $category->id]) }}" class="btn text-center">
-                                <h5 class="card-title text-center">{{ Str::words($category->title, '10') }}</h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-            @empty
-                <div class="col-md-12">
-                    <div class="alert alert-danger">
-                        No Category Found
-                    </div>
-                </div>
-            @endforelse
-        </div>
+    <div class="row justify-content-center">
+        <p>
+            <img src="{{ asset('ui/frontend/images/assets/frontimage.jpg') }}" alt="" class="img-fluid">
+        </p>
     </div>
-    <hr class="h2 bg-info mt-1 mb-1">
+
+     <hr class="h2 bg-info mt-1 mb-1">
 
     {{-- logo show start  --}}
 
@@ -103,7 +72,8 @@
                         <div class="col-md-2">
                             <div class="card">
                                 <img src="{{ asset('images/utilityDynamic/' . $product->picture) }}"
-                                    class="card-img-top img-thumbnail" alt="{{ $product->name }}">
+                                    class="card-img-top img-thumbnail" alt="{{ $product->name }}" width="100px"
+                                    height="100px">
                                 {{-- <div class="card-body">
                                     <h5 class="card-title">{{ $product->title }}</h5>
                                     <p class="card-text">{{ $product->description1 }}</p>
@@ -141,7 +111,39 @@
 
     <!-- Carousel wrapper -->
 
+    <hr class="h2 bg-info mt-1 mb-1">
     {{-- logo show end  --}}
+
+
+    <div class="container">
+
+        <div class="row justify-content-between">
+            @forelse ($categories as $category)
+                <div class="col-xl-4 col-md-4 col-sm-12  pt-2 pb-1">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-image" style=" background-color:rgba(0,119,191,255);">
+                            <img src="{{ asset('images/categories/' . $category->image) }}"
+                                class="card-img-top pt-5 pb-5" height="300px" alt="...">
+                        </div>
+
+                        <div class="card-body text-center" style=" height:100px;">
+                            <a href="{{ route('category_details', ['id' => $category->id]) }}" class="btn text-center">
+                                <h5 class="card-title text-center">{{ Str::words($category->title, '10') }}</h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            @empty
+                <div class="col-md-12">
+                    <div class="alert alert-danger">
+                        No Category Found
+                    </div>
+                </div>
+            @endforelse
+        </div>
+    </div>
+
 
 
 
@@ -222,10 +224,10 @@
             }
 
             /* .card-img-top {
-                  width: 100%;
-                  height: 200px;
-                  object-fit: cover;
-                } */
+                          width: 100%;
+                          height: 200px;
+                          object-fit: cover;
+                        } */
             @media (min-width: 576px) {
 
                 /* Show 4 products per row on screens larger than 576px */
