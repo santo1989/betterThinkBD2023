@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\NotificationStatus;
+use App\Enums\NotificationType;
 use App\Enums\PaymentType;
 use App\Models\Hand;
 use App\Models\Notification;
@@ -234,6 +235,15 @@ class UserController extends Controller
         $child_user->update([
             'is_approved_sponsor' => 1
         ]);
+
+        $hands = Hand::where('parent_id', $parent_user->id)->count();
+        if($hands==10 && $parent_user->role->name != 'Admin'){
+            $parent_user->notifications()->create([
+                "type" => NotificationType::HITTENREFERRAL(),
+                "message" => "UUID: $parent_user->uuid hit 10 referrals",
+                "status" => NotificationStatus::UNREAD()
+            ]);
+        }
 
         $parent_id = $hand->parent_id;
         $lastParent_id = 0;

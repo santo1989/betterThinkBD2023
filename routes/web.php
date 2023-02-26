@@ -171,14 +171,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/points/withdraw', [AccountController::class, 'withdrawView'])->name('Withdraw');
     Route::post('/points/withdraw', [AccountController::class, 'withdraw'])->name('point.withdraw');
     Route::get('/points/generate_point', [AccountController::class, 'generate_point'])->name('generate_point');
-
     Route::get('/history/sponsor', [PaymentHistoryController::class, 'sponsor'])->name('history.sponsor');
-
     Route::get('/history/withdraw', [PaymentHistoryController::class, 'withdraw'])->name('history_withdraw');
-
     Route::get('/history/rewards', [PaymentHistoryController::class, 'reward'])->name('history_reward');
-
     Route::get('/history/referral', [AccountController::class, 'referral'])->name('history.referral');
+    Route::get('/history/ten-referral', [AccountController::class, 'hitTenReferral'])->name('history.ten-referral');
 
     Route::get('/history/earned', [\App\Http\Controllers\Admin\AccountController::class, 'earned'])->name('history.earned');
 

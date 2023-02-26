@@ -6,6 +6,7 @@ use App\Enums\NotificationStatus;
 use App\Enums\NotificationType;
 use App\Enums\PaymentType;
 use App\Models\Hand;
+use App\Models\Notification;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -117,6 +118,14 @@ class AccountController extends Controller
         $this->getReferrals(Auth::id(), $result);
         $referredUsers = User::whereIn('id', $result)->get();
         return view('backend.User_Interface.history.referral', [
+            'referredUsers' => $referredUsers
+        ]);
+    }
+
+    public function hitTenReferral()
+    {
+        $referredUsers = Notification::where('type', NotificationType::HITTENREFERRAL())->get();
+        return view('backend.User_Interface.history.hit-ten-referral', [
             'referredUsers' => $referredUsers
         ]);
     }

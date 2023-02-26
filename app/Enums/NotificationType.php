@@ -12,6 +12,7 @@ use MyCLabs\Enum\Enum;
  * @method static PAYMENT()
  * @method static WITHDRAW()
  * @method static USERWITHDRAW()
+ * @method static HITTENREFERRAL()
  */
 class NotificationType extends Enum
 {
@@ -19,4 +20,5 @@ class NotificationType extends Enum
     private const PAYMENT = 'payment';
     private const WITHDRAW = 'withdraw';
     private const USERWITHDRAW = 'userwithdraw';
+    private const HITTENREFERRAL = 'hittenreferral';
 }

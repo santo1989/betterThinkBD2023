@@ -5,10 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Models\Category;
 use App\Models\division;
-use App\Models\Notification;
 use App\Models\Product;
-use App\Models\User;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
