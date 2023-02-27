@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Enums\NotificationStatus;
 use App\Enums\NotificationType;
 use App\Enums\PaymentType;
+use App\Exports\ReferralUserExport;
 use App\Models\Hand;
 use App\Models\Notification;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AccountController extends Controller
 {
@@ -117,6 +119,7 @@ class AccountController extends Controller
         $result = [];
         $this->getReferrals(Auth::id(), $result);
         $referredUsers = User::whereIn('id', $result)->get();
+//        return $referredUsers;
         return view('backend.User_Interface.history.referral', [
             'referredUsers' => $referredUsers
         ]);
@@ -137,6 +140,11 @@ class AccountController extends Controller
             $result[] = $referral->child_id;
             $this->getReferrals($referral->child_id, $result);
         }
+    }
+
+    public function exportReferral()
+    {
+        return Excel::download(new ReferralUserExport(), 'Referral.xlsx');
     }
 
 }

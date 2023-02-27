@@ -175,6 +175,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/history/withdraw', [PaymentHistoryController::class, 'withdraw'])->name('history_withdraw');
     Route::get('/history/rewards', [PaymentHistoryController::class, 'reward'])->name('history_reward');
     Route::get('/history/referral', [AccountController::class, 'referral'])->name('history.referral');
+    Route::get('/history/referral/export', [AccountController::class, 'exportReferral'])->name('history.referral.export');
     Route::get('/history/ten-referral', [AccountController::class, 'hitTenReferral'])->name('history.ten-referral');
 
     Route::get('/history/earned', [\App\Http\Controllers\Admin\AccountController::class, 'earned'])->name('history.earned');

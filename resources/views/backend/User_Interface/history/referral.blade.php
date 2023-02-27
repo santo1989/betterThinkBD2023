@@ -25,6 +25,12 @@
                     <div class="card">
                         <div class="card-header">
                             <h4> Total Referral : {{ $referredUsers->count() ?? '0' }}</h4>
+                            <div class="form-group">
+                                <a href="{{ route('history.referral.export') }}" class="btn btn-outline-info btn-lg float-right">
+                                    Export
+                                </a>
+                            </div>
+
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">

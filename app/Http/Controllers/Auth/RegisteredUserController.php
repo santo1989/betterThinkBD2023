@@ -61,7 +61,7 @@ class RegisteredUserController extends Controller
         if($hands>=10 && $sponsor->role->name != 'Admin'){
             return redirect()->back()->withInput()->withErrors("This user already sponsored 10 people.");
         }
-        
+
         $user = User::create([
             'uuid' => $this->generateUuid(),
             'name' => $request->name,
