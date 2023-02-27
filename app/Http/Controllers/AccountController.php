@@ -132,7 +132,7 @@ class AccountController extends Controller
 
     public function getReferrals($userId, &$result)
     {
-        $referrals = Hand::where('parent_id', $userId)->get();
+        $referrals = Hand::where('parent_id', $userId)->latest()->get();;
         foreach ($referrals as $referral) {
             $result[] = $referral->child_id;
             $this->getReferrals($referral->child_id, $result);
